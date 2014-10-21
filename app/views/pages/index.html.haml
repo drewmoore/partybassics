@@ -1,0 +1,27 @@
+.row
+  .col-xs-12
+    - column = 0
+    - @pages.each do |page|
+      - if column % 3 == 0
+        .row
+      .col-xs-4.admin-text
+        .row
+          .col-xs-12.pages-index-cell-header
+            %h2=page.title
+            %h5 #{page.controller}##{page.action}
+        .row.pages-index-cell-display
+          .col-xs-8
+            %ul
+              - page.contents.each do |content|
+                %li
+                  %p
+                    =render inline: content.text
+          .col-xs-4.pages-index-cell-graphics
+            - page.graphics.each do |graphic|
+              =image_tag(asset_path(graphic.image))
+        .row
+          .col-xs-12
+            = button_to "Edit", edit_page_path(page.id), :method => :get
+            - if current_user.role == "admin"
+              = button_to "Delete", page, data: {confirm: "Are you sure you want to delete the page at #{page.controller}##{page.action}?"}, :method => :delete
+      - column = column + 1

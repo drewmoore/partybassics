@@ -1,0 +1,35 @@
+.row
+  .col-xs-3
+  .col-xs-6.admin-text
+    = form_for @graphic, html: { multipart: true } do |f|
+      %fieldset
+        %legend Upload a Graphic
+        = if @graphic.errors.any?
+          .row
+            .col-xs-12
+              %h2 Errors:
+              %ul
+                = @graphic.errors.full_messages.each do |m|
+                  %li=m
+        .row
+          .col-xs-4
+            =f.label :identifier do
+              Identifier <small class="asterisk">*</small>
+          .col-xs-4
+            =f.text_field :identifier, :require => true
+          .col-xs-4
+        .row
+          .col-xs-4
+            =f.label :image do
+              Upload An Image <small class="asterisk">*</small>
+          .col-xs-4
+            =f.file_field :image, :required => true
+          .col-xs-4
+        .row
+          .col-xs-12
+            =f.submit "Create A Graphic"
+        .row
+          .col-xs-12
+            %label.required-label
+              %small.asterisk * required
+  .col-xs-3

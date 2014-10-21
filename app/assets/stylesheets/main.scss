@@ -1,0 +1,97 @@
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background-color: black;
+}
+
+.container-fluid {
+  height: 100%;
+  width: 100%;
+  min-height: 100%;
+  overflow-y: hidden;
+  margin: 0px auto;
+}
+
+.full-screen {
+  height: 100%;
+  min-height: 100%;
+  width: 100%;
+}
+
+.third-screen {
+  height: 100%;
+  min-height: 100%;
+  width: 33%;
+}
+
+/*
+.full-height {
+  height: 100%;
+  min-height: 100%;
+}
+*/
+
+.site-container {
+  display: block;
+  position: relative;
+}
+
+/*
+.site-container-bg {
+  background: asset-data-url("face3.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  top: 0;
+  left: 0px;
+  z-index: -1;
+}
+*/
+
+div[class^="panel"] {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  //border: 1px dotted white;
+}
+
+.panelL {
+  z-index: -2;
+  left: 0;
+  //border: 1px dotted pink;
+}
+
+.panelC {
+  z-index: -1;
+  //border: 1px dotted white;
+}
+
+
+.panelR {
+  z-index: -3;
+  right: 0;
+  //border: 1px dotted lightblue;
+}
+
+[class^="trypt"] {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
+  height: 100%;
+  min-height: 100%;
+  max-height: 100%;
+  top: 0;
+  z-index: -2;
+}
+
+[class^="trypt-bright"] {
+  z-index: -1;
+}

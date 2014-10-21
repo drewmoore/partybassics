@@ -1,0 +1,41 @@
+.row
+  .col-xs-3
+  .col-xs-6.admin-text
+    =form_for @page do |f|
+      %fieldset
+        %legend Create a Page
+        =if @page.errors.any?
+          .row
+            .col-xs-12
+              %h2 Errors:
+              %ul
+                =@page.errors.full_messages.each do |m|
+                  %li=m
+        .row
+          .col-xs-4
+            =f.label :title
+          .col-xs-4
+            =f.text_field :title
+          .col-xs-4
+        .row
+          .col-xs-4
+            =f.label :controller do
+              Controller <small class="asterisk">*</small>
+          .col-xs-4
+            =f.text_field :controller, :required => true
+          .col-xs-4
+        .row
+          .col-xs-4
+            =f.label :action do
+              Action <small class="asterisk">*</small>
+          .col-xs-4
+            =f.text_field :action, :required => true
+          .col-xs-4
+        .row
+          .col-xs-12
+            =f.submit "Create Page"
+        .row
+          .col-xs-12
+            %label.required-label
+              %small.asterisk * required
+  .col-xs-3

@@ -1,0 +1,72 @@
+.row
+  .col-xs-3
+  .col-xs-6.admin-text
+    =form_for @page do |f|
+      %fieldset
+        %legend Edit a Page
+        =if @page.errors.any?
+          .row
+            .col-xs-12
+              %h2 Errors:
+              %ul
+                =@page.errors.full_messages.each do |m|
+                  %li=m
+        .row
+          .col-xs-4
+            =f.label :title
+          .col-xs-4
+            =f.text_field :title
+          .col-xs-4
+        - if current_user.role == "admin"
+          .row
+            .col-xs-4
+              =f.label :controller do
+                Controller <small class="asterisk">*</small>
+            .col-xs-4
+              =f.text_field :controller, :required => true
+            .col-xs-4
+          .row
+            .col-xs-4
+              =f.label :action do
+                Action <small class="asterisk">*</small>
+            .col-xs-4
+              =f.text_field :action, :required => true
+            .col-xs-4
+        .row
+          .col-xs-12
+            =f.submit "Update the Page"
+        - if current_user.role == "admin"
+          .row
+            .col-xs-12
+              %label.required-label
+                %small.asterisk * required
+  .col-xs-3
+.row
+  .col-xs-1
+  .col-xs-5.admin-text#contents-list
+    %h3 Page Contents
+    =render partial: 'contents_list', object: @page
+  .col-xs-5.admin-text#graphics-list
+    %h3 Page Graphics
+    =render partial: 'graphics_list', object: @page
+  .col-xs-1
+- if current_user.role == "admin"
+  .row
+    .col-xs-1
+    .col-xs-5.admin-text
+      %form
+        %fieldset
+          %legend Add a Content to This Page
+          %select#contents-menu{:data => {:id => @page.id}}
+            - @contents.each do |content|
+              %option{:value => content.id} #{content.identifier}
+          %button#add-content Add the Content
+    .col-xs-5.admin-text
+      %form
+        %fieldset
+          %legend Add a Graphic to This Page
+          %select#graphics-menu{:data => {:id => @page.id}}
+            - @graphics.each do |graphic|
+              %option{:value => graphic.id} #{graphic.identifier}
+          %button#add-graphic Add the Graphic
+    .col-xs-1

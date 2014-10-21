@@ -1,0 +1,60 @@
+.row
+  .col-xs-2
+  .col-xs-8.controls-index-heading
+    %h1.admin-text Welcome to Your Site's Control Panel
+  .col-xs-2
+.row
+  .col-xs-4.admin-text
+    %p.controls-index-intro
+      Here is where you can change certain aspects of your site, such as text and images. On the right, you will see descriptions of each of
+      the menus on your dashboard. Some of the terms you will see:
+    %p
+      <strong>Pages</strong> represent the different pages of your site, such as your homepage and "whatever.com/dogs", for example.
+    %p
+      <strong>Contents</strong> represent the different blocks of text on your webpages.
+    %p
+      <strong>Graphics</strong> represent the different images that appear throughout your site.
+  .col-xs-8
+    .row
+      .col-xs-4.admin-text.controls-index-menu-desc
+        %h4 Pages
+        %p
+          %strong Manage
+          will allow you to see a listing of the pages of your site. Click an edit button to manage the contents of that page.
+        %p
+          %strong View
+          will allow you to view your pages as any visitor would but with your dashboard at the top of the screen.
+        %p
+          A page is listed by what's called it's <strong>controller</strong> and it's <strong> action</strong>. Ex: your homepage is usually
+          <strong>welcome#index</strong>. It's controller is <strong>welcome</strong> and it's action is <strong>index</strong>.
+        %p
+          If you had a page showing dogs, it would be <strong>dogs#index</strong>.
+          A link to information on a specific dog would be <strong>dogs#show</strong>.
+          This is the basic structure of most websites.
+      .col-xs-4.admin-text.controls-index-menu-desc
+        %h4 Contents
+        %p
+          Lists all the different blocks of text on your site for editing. This is a good menu to use to edit text that appears on more than
+          one page.
+        %p
+          Contents, like graphics, are listed by their <strong>identifiers</strong>, which let your web browser know where to put and what to do with
+          them.
+        %p
+          For example, if you owned a store and wanted to change your hours of operation, the <strong>identifier</strong> for that content
+          would most likely be <strong>hours-of-operation</strong>.
+        %p
+          Each content listing will include the pages on your site on which it resides, listed by
+          <strong>controller</strong> and <strong>action</strong>.
+      .col-xs-4.admin-text.controls-index-menu-desc
+        %h4 Graphics
+        %p
+          Lists all the different images used on your website that can be changed.
+        %p
+          Graphics, like contents, are listed by their <strong>identifiers</strong>. If you were to "open up the hood" on your site, you would
+          see that these identifiers also contain instructions to a web browser on exactly where to put and how to size the images they represent.
+        %p
+          For example, if you wanted to change your company's logo, you would just have to find the graphic with an <strong>identifier</strong>
+          named <strong>company-logo</strong>, or <strong>brand-image</strong>, etc.
+        %p
+          Each graphic listing will include the pages on your site that display this image, listed by <strong>controller</strong>
+          and <strong>action</strong>.

@@ -1,0 +1,114 @@
+$admin-background: rgba(200,200,200, .9);
+$admin-text-background: rgba(230, 230, 230, 1);
+$admin-cell-background: rgba(180, 180, 180, 1);
+
+body {
+  background-color: $admin-background;
+}
+
+legend {
+  text-align: center;
+}
+
+li {
+  list-style-type: none;
+}
+
+.button_to, .button_to div {
+  display: inline;
+}
+
+#contents-list, #graphics-list {
+  h3 {
+    text-align: center;
+  }
+  p {
+    text-overflow: clip;
+  }
+  .graphics-list-images {
+    text-align: right;
+  }
+  img {
+    max-width: 25%;
+  }
+  button {
+    float: right;
+  }
+}
+
+.asterisk {
+  color: rgba(255, 0, 0, 1);
+}
+
+.required-label {
+  position: absolute;
+  bottom: 1em;
+  right: 1em;
+}
+
+.graphics-index-cell {
+  text-align: center;
+}
+
+.graphics-index-pic {
+  max-width: 50%;
+}
+
+.pages-index-cell-header {
+  text-align: center;
+}
+
+.pages-index-cell-display {
+  max-height: 18em;
+  overflow: auto;
+}
+
+.pages-index-cell-graphics {
+  text-align: right;
+  img {
+    max-width: 50%;
+    margin: .5em;
+  }
+}
+
+.controls-index-heading {
+  text-align: center;
+}
+
+.controls-index-intro {
+  text-indent: 1em;
+}
+
+.admin-cell {
+  padding: 1em;
+}
+
+.admin-text {
+  background-color: $admin-text-background;
+  border-radius: 10px;
+  padding: 1.25em;
+  border: 1em solid $admin-cell-background;
+  h5 {
+    font-weight: 800;
+    text-align: center;
+    margin: 0px auto 1.5em auto;
+  }
+}
+
+.admin-text-identifier {
+  text-align: center;
+}
+
+.controls-index-menu-desc {
+  h4 {
+    text-align: center;
+  }
+}
+
+.graphic-edit-image-display {
+  text-align: center;
+  padding: 1.5em;
+  img {
+    max-width: 30%;
+  }
+}
