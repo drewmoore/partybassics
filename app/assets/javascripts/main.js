@@ -5,25 +5,34 @@
   $(document).ready(initialize);
 
   function initialize(){
-    $(window).resize(resizing);
-    //positionHeadsThreeColumns();
-    //positionHeadsOneColumnCenter();
-    positionHeadsPanorama();
+    initializeEventHandlers();
+    positionHeadsOneColumnCenter();
   }
 
-  function resizing() {
+  function initializeEventHandlers() {
+    $('#three-column').click(positionHeadsThreeColumns);
+    $('#panorama-column').click(positionHeadsPanorama);
   }
 
   function positionHeadsOneColumnCenter() {
+    /*
     $('#folds-container').removeClass('full-screen');
-    $('#folds-container').addClass('three-quarters-screen');
+    $('#folds-container').addClass('two-thirds-screen');
     $('#folds-container').css('left', '33%');
     $('div[class^="panel"]').width('100%');
+    */
+    $('div[class^="fold"]').css('left', '33%');
+    $('div[class^="panel"]').width('75%');
+
   }
 
   function positionHeadsThreeColumns() {
+    //$('#folds-container').removeClass('two-thirds-screen');
+    //$('#folds-container').addClass('full-screen');
+    //$('#folds-container').css('left', '0%');
     $('div[class^="panel"]').width('33%');
     var folds = $('[class^="fold"]');
+    $('.foldL').animate({'left': '0%'}, 1500);
     $('.foldC').animate({'left': '25%'}, 1500);
     $('.foldR').animate({'left': '50%'}, 1500);
     _.each(folds, function(fold){
@@ -48,11 +57,14 @@
   }
 
   function positionHeadsPanorama(){
+    $('#folds-container').removeClass('two-thirds-screen');
+    $('#folds-container').addClass('full-screen');
+    $('#folds-container').animate({'left': '0%'});
     $('div[class^="panel"]').width('50%');
     var folds = $('[class^="fold"]');
     $('.foldL').animate({'left': '0%'}, 1500);
     $('.foldC').animate({'left': '25%'}, 1500);
-    $('.foldR').animate({'right': '0%'}, 1500);
+    $('.foldR').animate({'left': '50%'}, 1500);
     _.each(folds, function(fold){
       var $left = $(fold).find('.panelL');
       var $center = $(fold).find('.panelC');
