@@ -16,6 +16,10 @@ body {
   margin: 0px auto;
 }
 
+#folds-container {
+  position: relative;
+}
+
 .full-screen {
   height: 100%;
   min-height: 100%;
@@ -26,6 +30,12 @@ body {
   height: 100%;
   min-height: 100%;
   width: 50%;
+}
+
+.three-quarters-screen {
+  height: 100%;
+  min-height: 100%;
+  width: 75%;
 }
 
 .third-screen {
@@ -78,7 +88,7 @@ div[class^="fold"] {
 }
 
 .foldR {
-  right: 0;
+  //right: 0;
 }
 
 .panelL {
@@ -94,7 +104,7 @@ div[class^="fold"] {
 
 .panelR {
   z-index: -3;
-  right: 0;
+  //right: 0;
   //border: 1px dotted lightblue;
 }
 

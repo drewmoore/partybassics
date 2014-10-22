@@ -6,18 +6,28 @@
 
   function initialize(){
     $(window).resize(resizing);
-    positionHeads();
+    //positionHeadsThreeColumns();
+    positionHeadsOneColumnCenter();
   }
 
   function resizing() {
   }
 
-  function positionHeads() {
+  function positionHeadsOneColumnCenter() {
+    //$('div[class^="fold"] div[class^="panel"]').css('position', 'static');
+    $('#folds-container').removeClass('full-screen');
+    $('#folds-container').addClass('three-quarters-screen');
+    $('#folds-container').css('left', '33%');
+    $('div[class^="panel"]').width('100%');
+    //$('div[class^="fold"]]').css('left': '25%')
+  }
+
+  function positionHeadsThreeColumns() {
+    $('div[class^="panel"]').width('33%');
     var folds = $('[class^="fold"]');
+    $('.foldC').animate({'left': '25%'}, 1500);
+    $('.foldR').animate({'left': '50%'}, 1500);
     _.each(folds, function(fold){
-      if($(fold).hasClass('foldC')){
-        $(fold).css('left', '25%');
-      }
       //var $left = $($('.panelL')[0]);
       var $left = $(fold).find('.panelL');
       //var $center = $($('.panelC')[0]);
