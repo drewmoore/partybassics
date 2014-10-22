@@ -45,6 +45,7 @@ gem 'therubyracer'
 gem 'carrierwave'
 gem 'devise'
 gem 'jquery-turbolinks'
+gem 'lodash-rails'
 
 group :production do
   gem 'rails_12factor'

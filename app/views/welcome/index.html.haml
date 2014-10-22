@@ -1,11 +1,14 @@
 .row.full-screen
   .col-xs-12.site-container.full-screen
-    .panelL.third-screen
-      =image_tag("face-panel-blue.png", class: "tryptL full-screen")
-      =image_tag("face-panel-bright.png", class: "trypt-brightL full-screen")
-    .panelC.third-screen
-      =image_tag("face-panel-blue.png", class: "tryptC full-screen")
-      =image_tag("face-panel-bright.png", class: "trypt-brightC full-screen")
-    .panelR.third-screen
-      =image_tag("face-panel-blue.png", class: "tryptR full-screen")
-      =image_tag("face-panel-bright.png", class: "trypt-brightR full-screen")
+    - folds = ["L", "C", "R"]
+    - f_count = 1
+    - folds.each do |f|
+      .half-screen(style="z-index: -#{f_count}" class="fold#{f}")
+        - trypts = ["L", "C", "R"]
+        - t_count = (folds.length + 1) * f_count
+        - trypts.each do |t|
+          .third-screen(class="panel#{t}" style="z-index: -#{t_count}")
+            =image_tag("face-panel-blue.png", class: "trypt#{t_count} full-screen")
+            =image_tag("face-panel-bright.png", class: "trypt-bright#{t_count} full-screen")
+            - t_count += 1
+      - f_count += 1

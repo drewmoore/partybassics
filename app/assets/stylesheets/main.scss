@@ -11,7 +11,8 @@ body {
   height: 100%;
   width: 100%;
   min-height: 100%;
-  overflow-y: hidden;
+  //overflow-y: hidden;
+  overflow-y: auto;
   margin: 0px auto;
 }
 
@@ -19,6 +20,12 @@ body {
   height: 100%;
   min-height: 100%;
   width: 100%;
+}
+
+.half-screen {
+  height: 100%;
+  min-height: 100%;
+  width: 50%;
 }
 
 .third-screen {
@@ -52,11 +59,26 @@ body {
 }
 */
 
-div[class^="panel"] {
+
+div[class^="fold"], div[class^="panel"] {
   display: inline-block;
   position: absolute;
   top: 0;
   //border: 1px dotted white;
+}
+
+div[class^="fold"] {
+  margin: 0px auto;
+  padding: 0px;
+  display: inline-block;
+}
+
+.foldL {
+  left: 0;
+}
+
+.foldR {
+  right: 0;
 }
 
 .panelL {
@@ -70,7 +92,6 @@ div[class^="panel"] {
   //border: 1px dotted white;
 }
 
-
 .panelR {
   z-index: -3;
   right: 0;
@@ -78,9 +99,6 @@ div[class^="panel"] {
 }
 
 [class^="trypt"] {
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
   position: absolute;
   width: 100%;
   min-width: 100%;
