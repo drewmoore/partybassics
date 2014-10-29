@@ -12,6 +12,8 @@
   function initializeEventHandlers() {
     $('#three-column').click(positionHeadsThreeColumns);
     $('#panorama-column').click(positionHeadsPanorama);
+    $('.content-panel').mouseenter(tryptGlow);
+    $('.content-panel').mouseleave(tryptFade);
   }
 
   function positionHeadsOneColumnCenter() {
@@ -39,13 +41,13 @@
       var $left = $(fold).find('.panelL');
       var $center = $(fold).find('.panelC');
       var $right = $(fold).find('.panelR');
-      var viewWidth = $(fold).width();
+      //var viewWidth = $(fold).width();
 
-      var panelWidth = $center.width();
-      var centerLeftAnchor = (viewWidth / 2) - (panelWidth / 2);
-      var leftAnchor = centerLeftAnchor - (panelWidth * 0.33);
-      var centerRightAnchor = (viewWidth / 2) + (panelWidth / 2);
-      var rightAnchor = centerRightAnchor - (panelWidth * 0.66);
+      //var panelWidth = $center.width();
+      //var centerLeftAnchor = (viewWidth / 2) - (panelWidth / 2);
+      //var leftAnchor = centerLeftAnchor - (panelWidth * 0.33);
+      //var centerRightAnchor = (viewWidth / 2) + (panelWidth / 2);
+      //var rightAnchor = centerRightAnchor - (panelWidth * 0.66);
 
       $left.css('left', '25%');
       $center.css('left', '37%');
@@ -81,6 +83,20 @@
       $center.css('left', '25%');
       $right.css('left', '50%');
     });
+  }
+
+  function tryptGlow(){
+    var self = this;
+    if($(self).hasClass('content-heading')){
+      $('[class^="trypt-bright"]').animate({'opacity': '1'}, 1000);
+    }
+    console.log(self);
+  }
+
+  function tryptFade(){
+    if($(self).hasClass('content-heading')){
+      $('[class^="trypt-bright"]').animate({'opacity': '.2'}, 1000);
+    }
   }
 
 })();
