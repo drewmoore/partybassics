@@ -1,0 +1,15 @@
+.row
+  .col-xs-12
+    - @events.each do |event|
+      .col-xs-4.admin-text
+
+        .row
+          .col-xs-12.events-index-cell-header
+            %h2=event.title
+            %h5 #{event.date}
+            %h5 #{event.time}
+            =image_tag(asset_path(event.flyer))
+        .row
+          .col-xs-12
+            = button_to "Edit", edit_event_path(event.id), :method => :get
+            = button_to "Delete", event, data: {confirm: "Are you sure you want to delete the event #{event.title} on #{event.date} at #{event.time}?"}, :method => :delete

@@ -143,8 +143,20 @@ div[class^="fold"] {
   border-radius: 30px;
 }
 
-.logo {
+[id^="event_date"] {
+  display: inline-block;
+  width: 30%;
 }
+
+.form-row {
+  margin: 1em auto;
+}
+.submit-custom {
+  margin: 1.5em auto 0em auto;
+}
+
+
+
 
 @media (min-width: 1200px) {
   body {

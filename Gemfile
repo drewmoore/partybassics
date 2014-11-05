@@ -46,6 +46,7 @@ gem 'carrierwave'
 gem 'devise'
 gem 'jquery-turbolinks'
 gem 'lodash-rails'
+gem 'bootstrap_form'
 
 group :production do
   gem 'rails_12factor'

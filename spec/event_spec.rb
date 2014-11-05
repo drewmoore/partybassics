@@ -2,7 +2,7 @@ require_relative 'spec_helper'
 
 describe 'Event' do
   before(:each) do
-    e1 = Event.create(title: 'Test Event', date: Date.yesterday)
+    e1 = Event.create(title: 'Test Event', date: Date.yesterday, time: Date.yesterday)
   end
 
   it "should exist" do
@@ -16,5 +16,9 @@ describe 'Event' do
   it "should have a date" do
     e = Event.find_by title: "Test Event"
     expect(e.date).to eql(Date.yesterday.to_s)
+  end
+  it "should have a time" do
+    e = Event.find_by title: "Test Event"
+    expect(e.time).to eql(Date.yesterday.to_s)
   end
 end

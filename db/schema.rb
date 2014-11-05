@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141104221348) do
+ActiveRecord::Schema.define(version: 20141105212242) do
 
   create_table "contents", force: true do |t|
     t.datetime "created_at"
@@ -30,6 +30,9 @@ ActiveRecord::Schema.define(version: 20141104221348) do
     t.datetime "updated_at"
     t.string   "title"
     t.string   "date"
+    t.time     "string"
+    t.string   "time"
+    t.string   "flyer"
   end
 
   create_table "graphics", force: true do |t|
