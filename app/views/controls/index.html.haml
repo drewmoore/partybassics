@@ -4,19 +4,30 @@
     %h1.admin-text Welcome to Your Site's Control Panel
   .col-xs-2
 .row
-  .col-xs-4.admin-text
+  .col-xs-3.admin-text
     %p.controls-index-intro
       Here is where you can change certain aspects of your site, such as text and images. On the right, you will see descriptions of each of
       the menus on your dashboard. Some of the terms you will see:
+    %p
+      <strong>Events</strong> represent your events, yo! These are your flyers, plus info like the date, time, and a title like "Awesome DJ Show."
     %p
       <strong>Pages</strong> represent the different pages of your site, such as your homepage and "whatever.com/dogs", for example.
     %p
       <strong>Contents</strong> represent the different blocks of text on your webpages.
     %p
       <strong>Graphics</strong> represent the different images that appear throughout your site.
-  .col-xs-8
+  .col-xs-9
     .row
-      .col-xs-4.admin-text.controls-index-menu-desc
+      .col-xs-3.admin-text.controls-index-menu-desc
+        %h4 Events
+        %p
+          %strong Edit
+          will allow you to manage your events listed on the site. You can change the title, the flyer image, and the date. This is where
+          you would go to delete events, as well.
+        %p
+          %strong Create New
+          is where you would go to add a new event and its flyer to your site.
+      .col-xs-3.admin-text.controls-index-menu-desc
         %h4 Pages
         %p
           %strong Manage
@@ -31,7 +42,7 @@
           If you had a page showing dogs, it would be <strong>dogs#index</strong>.
           A link to information on a specific dog would be <strong>dogs#show</strong>.
           This is the basic structure of most websites.
-      .col-xs-4.admin-text.controls-index-menu-desc
+      .col-xs-3.admin-text.controls-index-menu-desc
         %h4 Contents
         %p
           Lists all the different blocks of text on your site for editing. This is a good menu to use to edit text that appears on more than
@@ -45,7 +56,7 @@
         %p
           Each content listing will include the pages on your site on which it resides, listed by
           <strong>controller</strong> and <strong>action</strong>.
-      .col-xs-4.admin-text.controls-index-menu-desc
+      .col-xs-3.admin-text.controls-index-menu-desc
         %h4 Graphics
         %p
           Lists all the different images used on your website that can be changed.

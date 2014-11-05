@@ -9,6 +9,7 @@ require 'environment'
 require 'page'
 require 'content'
 require 'graphic'
+require 'event'
 
 Environment.environment = "test"
 
@@ -28,6 +29,11 @@ RSpec.configure do |config|
       Graphic.delete_all
     else
       Environment.database_connection.create_table "graphics"
+    end
+    if Environment.database_connection.table_exists? "events"
+      Event.delete_all
+    else
+      Environment.database_connection.create_table "events"
     end
   end
   config.order = "random"

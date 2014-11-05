@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       resources :pages
       resources :contents
       resources :graphics
+      resources :events
       get '/controls', to: 'controls#index'
       post '/pages/add-content', to: 'pages#add_content'
       post '/pages/remove-content', to: 'pages#remove_content'

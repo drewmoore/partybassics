@@ -94,6 +94,7 @@
   }
 
   function tryptFade(){
+    var self = this;
     if($(self).hasClass('content-heading')){
       $('[class^="trypt-bright"]').animate({'opacity': '.2'}, 1000);
     }
