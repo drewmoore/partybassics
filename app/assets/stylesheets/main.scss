@@ -151,8 +151,30 @@ div[class^="fold"] {
 .form-row {
   margin: 1em auto;
 }
+
 .submit-custom {
   margin: 1.5em auto 0em auto;
+}
+
+.events-index-cell-header {
+  h2 {
+    text-align: center;
+  }
+  h5 {
+    margin: .5em;
+  }
+}
+.events-index-cell-flyer {
+  text-align: center;
+  img {
+    min-width: 50%;
+    max-width: 50%;
+    margin: 0em auto;
+  }
+}
+.events-index-cell-buttons {
+  text-align: center;
+  margin: 1em;
 }
 
 
