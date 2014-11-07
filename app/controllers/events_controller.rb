@@ -18,6 +18,13 @@ class EventsController < ApplicationController
     end
   end
 
+  def destroy
+    @event = Event.find(params[:id])
+    date = @event.date
+    title = @event.title
+    @event.destroy
+    redirect_to events_path, :notice => "The event '#{title}' on #{date} has been deleted."
+  end
 
   private
 
