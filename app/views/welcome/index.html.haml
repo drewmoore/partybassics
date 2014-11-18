@@ -18,8 +18,11 @@
       .content-panel.content-heading
         =image_tag("logo-dark.png", class: "logo")
         %h1 Nashville's Premier EDM Promotions
-        %button#three-column Three Columns
-        %button#panorama-column Panorama
+        .content-heading-controls
+          .left-half
+            %button.three-column-button About Us
+          .right-half
+            %button.panorama-column-button Events / Tix
 
       .content-panel.content-footer
         .row
