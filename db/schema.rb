@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141107222433) do
+ActiveRecord::Schema.define(version: 20141118075101) do
 
   create_table "contents", force: true do |t|
     t.datetime "created_at"
@@ -33,7 +33,12 @@ ActiveRecord::Schema.define(version: 20141107222433) do
     t.time     "string"
     t.string   "time"
     t.string   "flyer"
-    t.string   "description"
+    t.string   "description", default: ""
+    t.string   "facebook_id"
+    t.string   "venue"
+    t.string   "street"
+    t.string   "zip"
+    t.string   "city"
   end
 
   create_table "graphics", force: true do |t|

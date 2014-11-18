@@ -18,6 +18,21 @@ class EventsController < ApplicationController
     end
   end
 
+  def edit
+    @event = Event.find(params[:id])
+  end
+
+  def update
+    @event = Event.find(params[:id])
+    @event.date = convert_date
+    if @event.update_attributes(event_params)
+      flash[:notice] = "Event has been updated."
+      redirect_to events_path
+    else
+      render "edit"
+    end
+  end
+
   def destroy
     @event = Event.find(params[:id])
     date = @event.date
@@ -36,7 +51,7 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:title, :time, :flyer)
+    params.require(:event).permit(:title, :time, :flyer, :facebook_id, :description, :venue, :city, :street, :zip)
   end
 
 end

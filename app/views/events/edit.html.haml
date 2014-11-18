@@ -3,7 +3,7 @@
   .col-xs-6.admin-text
     =form_for @event, html: { multipart: true } do |f|
       %fieldset
-        %legend Add an Event
+        %legend Change an Event
         = if @event.errors.any?
           .row.form-row
             .col-xs-12
@@ -11,6 +11,9 @@
               %ul
                 = @event.errors.full_messages.each do |m|
                   %li=m
+        .row.form-row
+          .col-xs-12.event-edit-flyer
+            =image_tag(asset_path(@event.flyer))
         .row.form-row
           .col-xs-4
             =f.label :title
@@ -32,12 +35,38 @@
           .col-xs-4
             =f.label :date
           .col-xs-8
-            =f.date_select :date
+            %select#event_date_1i{:name => "event[date(1i)]"}
+              - start_year = Date.today.to_s.split("-")[0]
+              - end_year = (start_year.to_i + 10).to_s
+              - year_range = (start_year..end_year)
+              - year_range.each do |y|
+                - if y === @event.date.split("-")[0]
+                  %option{:value => y.to_s, :selected => true} #{y}
+                - else
+                  %option{:value => y.to_s} #{y}
+
+            %select#event_date_2i{:name => "event[date(2i)]"}
+              - months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+              - nums = (1..12)
+              - nums.each do |n|
+                - if n === @event.date.split("-")[1].to_i
+                  %option{:value => n.to_s, :selected => true} #{months[n - 1]}
+                - else
+                  %option{:value => n.to_s} #{months[n - 1]}
+
+            %select#event_date_3i{:name => "event[date(3i)]"}
+              - nums = (1..31)
+              - nums.each do |n|
+                - if n === @event.date.split("-")[2].to_i
+                  %option{:value => n.to_s, :selected => true} #{n}
+                - else
+                  %option{:value => n.to_s} #{n}
+
         .row.form-row
           .col-xs-4
             =f.label :time
           .col-xs-4
-            =f.time_field :time
+            %input#event_time{:name => "event[time]", :type => "time", :value => @event.time}
           .col-xs-4
         .row.form-row
           .col-xs-4
@@ -73,15 +102,14 @@
           .col-xs-4
         .row.form-row
           .col-xs-4
-            =f.label :flyer do
-              Flyer <small class="asterisk"> *</small>
+            =f.label :flyer
           .col-xs-4
-            =f.file_field :flyer, :required => true
+            =f.file_field :flyer
           .col-xs-4
         .row.form-row
           .col-xs-4
           .col-xs-4
-            =f.submit "Add the Event, yo!", :class => "submit-custom"
+            =f.submit "Change the Event, yo!", :class => "submit-custom"
           .col-xs-4
 
         .row

@@ -12,7 +12,7 @@
               - day = event.date.split("-")[2].to_i
               - date = Date.new(year, month, day)
 
-            - if event.time
+            - if !event.time.empty?
               - hours = event.time.split(":")[0]
               - minutes = event.time.split(":")[1]
               - if hours.to_i > 12
@@ -22,6 +22,7 @@
               - time = (hours.to_i % 12).to_s << ":"<< minutes << " " << append
 
             %h2=event.title
+            %h5=event.venue
             %h5 #{date.strftime("%A, %B %d, %Y")}
             %h5 #{time}
           .col-xs-12.events-index-cell-flyer
