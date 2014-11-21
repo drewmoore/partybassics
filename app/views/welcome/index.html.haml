@@ -16,20 +16,27 @@
 
     #content-container.full-screen
       .content-panel.content-heading
-        =image_tag("logo-dark.png", class: "logo")
-        %h1 Nashville's Premier EDM Promotions
+        .logo
+          .logo-image{:style => "background-image: url(#{asset_path('logo-dark.png')})"}
+          //=image_tag("logo-dark.png")
+        %h1 Nashville's Premier Event Promotions
         .content-heading-controls
           .left-half
             %button.three-column-button About Us
           .right-half
             %button.panorama-column-button Events / Tix
 
+      #content-body
+
       .content-panel.content-footer
         .row
-          .col-xs-6
+          .col-xs-4
             %small Follow Us on Social Media:
             <div class="fb-like" data-layout="button" data-share="true" data-width="150" data-show-faces="false" data-href="https://www.facebook.com/groups/partybassics/"></div>
-          .col-xs-6
+          .col-xs-4
+            %small Website by <a href="http://andrewwilliammoore.com" target="new">Drew Moore</a>
+          .col-xs-4
             %small Like this Website:
             <div class="fb-like" data-layout="button" data-share="true" data-width="150" data-show-faces="false" data-href="http://partybassics.andrewwilliammoore.com"></div>
+            %small.admin-link <a href="users/sign_in">Admin</a>
 

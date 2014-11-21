@@ -1,0 +1,16 @@
+#events-display-panel
+  #events-arrow-left-container
+    #events-arrow-left
+  #events-scroll-window
+    #events-scroll-panel
+      - @events.each do |event|
+        .event-cell
+          .event-flyer{:style => "background-image: url(#{asset_path(event.flyer)})"}
+          .event-cell-info
+            %h5=event.title
+            .left-half
+              %strong=event_date(event.date).strftime("%a %b %d")
+            .right-half
+              %strong=event.venue
+  #events-arrow-right-container
+    #events-arrow-right

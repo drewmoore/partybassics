@@ -41,6 +41,13 @@ class EventsController < ApplicationController
     redirect_to events_path, :notice => "The event '#{title}' on #{date} has been deleted."
   end
 
+  def display
+    @events = Event.all
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
 
   def convert_date

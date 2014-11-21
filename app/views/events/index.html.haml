@@ -5,29 +5,15 @@
 
         .row
           .col-xs-12.events-index-cell-header
-
-            - if event.date
-              - year = event.date.split("-")[0].to_i
-              - month = event.date.split("-")[1].to_i
-              - day = event.date.split("-")[2].to_i
-              - date = Date.new(year, month, day)
-
-            - if !event.time.empty?
-              - hours = event.time.split(":")[0]
-              - minutes = event.time.split(":")[1]
-              - if hours.to_i > 12
-                - append = "PM"
-              - else
-                - append = "AM"
-              - time = (hours.to_i % 12).to_s << ":"<< minutes << " " << append
-
             %h2=event.title
             %h5=event.venue
-            %h5 #{date.strftime("%A, %B %d, %Y")}
-            %h5 #{time}
+            - if event.date
+              %h5=event_date(event.date).strftime("%A, %B %d, %Y")
+            - if !event.time.empty?
+              %h5=event_time(event.time)
           .col-xs-12.events-index-cell-flyer
             =image_tag(asset_path(event.flyer))
         .row
           .col-xs-12.events-index-cell-buttons
             = button_to "Edit", edit_event_path(event.id), :method => :get
-            = button_to "Delete", event, data: {confirm: "Are you sure you want to delete the event '#{event.title}' on #{date.strftime("%b %d %y")}?"}, :method => :delete
+            = button_to "Delete", event, data: {confirm: "Are you sure you want to delete the event '#{event.title}' on #{event_date(event.date).strftime("%b %d %y")}?"}, :method => :delete

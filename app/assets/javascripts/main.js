@@ -52,6 +52,9 @@
       $center.css('left', '25%');
       $right.css('left', '50%');
     });
+
+    $.ajax({type: 'get', url: 'events/display', success: function(data){
+    }});
   }
 
   function tryptGlow(){
