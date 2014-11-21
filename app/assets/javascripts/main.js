@@ -53,8 +53,25 @@
       $right.css('left', '50%');
     });
 
-    $.ajax({type: 'get', url: 'events/display', success: function(data){
-    }});
+    $.ajax({type: 'get', url: 'events/display', success: sizeEvents});
+  }
+
+  function sizeEvents() {
+    var $scrollWindow = $('#events-scroll-window');
+    var windowWidth = parseFloat($scrollWindow.width());
+    var $scrollPanel = $('#events-scroll-panel');
+    var $cells = $('.event-cell');
+    var cellCount = $cells.length;
+    var widthRatio = 0.33;
+    var newCellWidth = windowWidth * widthRatio;
+    var widthNeeded = newCellWidth * cellCount;
+    var marginRatio = 0.06;
+    var marginPerSide = newCellWidth * marginRatio;
+    var safetyMargin = newCellWidth + (marginPerSide * 2);
+    var newPanelWidth = widthNeeded + (marginPerSide * (cellCount * 2)) + safetyMargin;
+    $scrollPanel.css('width', newPanelWidth.toString());
+    $cells.css('margin', '0px ' + (marginPerSide * 2).toString() + 'px');
+    $cells.css('width', newCellWidth.toString());
   }
 
   function tryptGlow(){
@@ -62,7 +79,6 @@
     if($(self).hasClass('content-heading') || $(self).hasClass('content-footer')){
       $('[class^="trypt-bright"]').animate({'opacity': '1'}, 1000);
     }
-    console.log(self);
   }
 
   function tryptFade(){
@@ -77,9 +93,6 @@
     FB.login(function(response){
       if(response.status === 'connected'){
         FB.api('/v2.2/' + facebookId, function(apiResponse){
-
-          console.log('api response: ', apiResponse);
-
           $('#event_title').val(apiResponse.name);
           $('#event_description').val(apiResponse.description);
           var date = apiResponse.start_time.split('T')[0];
@@ -102,9 +115,6 @@
         });
       }
     });
-
-    console.log('getFacebookEvent: ');
-
     event.preventDefault();
   }
 
