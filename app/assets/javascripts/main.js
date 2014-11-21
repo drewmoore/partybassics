@@ -12,8 +12,8 @@
   function initializeEventHandlers() {
     $('.three-column-button').click(positionHeadsThreeColumns);
     $('.panorama-column-button').click(positionHeadsPanorama);
-    $('.content-panel').mouseenter(tryptGlow);
-    $('.content-panel').mouseleave(tryptFade);
+    $('.content-footer').mouseenter(tryptGlow);
+    $('.content-footer').mouseleave(tryptFade);
     $('#facebook-event').click(getFacebookEvent);
   }
 
@@ -54,16 +54,28 @@
     });
 
     $.ajax({type: 'get', url: 'events/display', success: sizeEvents});
+    $(window).bind('resize', sizeEvents);
   }
 
   function sizeEvents() {
     var $scrollWindow = $('#events-scroll-window');
+    var screenWidth = window.screen.width;
+    var viewportWidth = window.innerWidth;
+    var viewportWidthRatio = viewportWidth / screenWidth;
+    var widthRatio = 0.0;
+    if(viewportWidthRatio < 0.5){
+      widthRatio = 0.75;
+    } else {
+      widthRatio = 0.33;
+    }
     var windowWidth = parseFloat($scrollWindow.width());
+    var windowHeight = parseFloat($scrollWindow.height());
     var $scrollPanel = $('#events-scroll-panel');
     var $cells = $('.event-cell');
     var cellCount = $cells.length;
-    var widthRatio = 0.33;
+    var heightRatio = 1.00;
     var newCellWidth = windowWidth * widthRatio;
+    var newCellHeight = windowHeight * heightRatio;
     var widthNeeded = newCellWidth * cellCount;
     var marginRatio = 0.06;
     var marginPerSide = newCellWidth * marginRatio;
@@ -72,6 +84,7 @@
     $scrollPanel.css('width', newPanelWidth.toString());
     $cells.css('margin', '0px ' + (marginPerSide * 2).toString() + 'px');
     $cells.css('width', newCellWidth.toString());
+    $cells.css('height', newCellHeight.toString());
   }
 
   function tryptGlow(){

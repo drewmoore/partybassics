@@ -368,20 +368,10 @@ div[class^="fold"] {
 .event-cell {
   position: relative;
   display: inline-block;
-<<<<<<< HEAD
-  min-height: 98%;
-  max-height: 98%;
-  min-width: 27em;
-=======
-  //min-height: 98%;
-  //max-height: 98%;
-  //min-width: 15%;
-  //max-width: 15%;
->>>>>>> events-sizing
   background-color: $panel-grey;
   vertical-align: top;
   margin: 0% 3em;
-  padding: 18% 0.3% 0.3% 1.5%;
+  //padding: 18% 0.3% 0.3% 1.5%;
   text-align: center;
   border-radius: 20px;
   .event-flyer {
