@@ -1,4 +1,7 @@
 (function() {
+
+  'use strict';
+
   $(document).ready(initialize);
 
   function initialize() {
@@ -9,8 +12,8 @@
   }
 
   function addContent(event) {
-    pageId = $('#contents-menu').attr('data-id');
-    contentId = $('#contents-menu').val();
+    var pageId = $('#contents-menu').attr('data-id');
+    var contentId = $('#contents-menu').val();
     $.ajax({type: 'post', url: '/pages/add-content', data: {contentId:contentId, pageId:pageId}, success: function(data){
       console.log('');
     }});
@@ -19,29 +22,28 @@
 
   function removeContent(event) {
     var self = this;
-    pageId = $(self).attr('data-page-id');
-    contentId = $(self).attr('data-content-id');
+    var pageId = $(self).attr('data-page-id');
+    var contentId = $(self).attr('data-content-id');
     $.ajax({type: 'post', url: '/pages/remove-content', data: {contentId:contentId, pageId:pageId}, success: function(data){
       console.log('');
-    }})
+    }});
     event.preventDefault();
   }
 
   function addGraphic(event) {
-    pageId = $('#graphics-menu').attr('data-id');
-    graphicId = $('#graphics-menu').val();
+    var pageId = $('#graphics-menu').attr('data-id');
+    var graphicId = $('#graphics-menu').val();
     $.ajax({type: 'post', url: '/pages/add-graphic', data: {graphicId:graphicId, pageId:pageId}, success: function(data){
       console.log('');
-    }})
+    }});
     event.preventDefault();
   }
 
   function removeGraphic(event) {
     var self = this;
-    pageId = $(self).attr('data-page-id');
-    graphicId = $(self).attr('data-graphic-id');
+    var pageId = $(self).attr('data-page-id');
+    var graphicId = $(self).attr('data-graphic-id');
     $.ajax({type: 'post', url: '/pages/remove-graphic', data: {graphicId:graphicId, pageId:pageId}, success: function(data){
-      conole.log('');
     }});
     event.preventDefault();
   }

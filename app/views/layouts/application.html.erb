@@ -201,23 +201,25 @@
     </nav>
   <% end %>
 
-  <% if flash[:notice] %>
-    <div class="row">
-      <div class="col-xs-12">
-        <p class="notice">
-          <%= flash[:notice] %>
-        </p>
+  <% if user_signed_in? %>
+    <% if flash[:notice] %>
+      <div class="row">
+        <div class="col-xs-12">
+          <p class="notice">
+            <%= flash[:notice] %>
+          </p>
+        </div>
       </div>
-    </div>
-  <% end %>
-  <% if flash[:alert] %>
-    <div class="row">
-      <div class="col-xs-12">
-        <p class="alert">
-          <%= flash[:alert] %>
-        </p>
+    <% end %>
+    <% if flash[:alert] %>
+      <div class="row">
+        <div class="col-xs-12">
+          <p class="alert">
+            <%= flash[:alert] %>
+          </p>
+        </div>
       </div>
-    </div>
+    <% end %>
   <% end %>
 
   <%= yield %>

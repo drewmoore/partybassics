@@ -1,6 +1,7 @@
 (function(){
 
   'use strict';
+  var arrowColorRested;
 
   $(document).ready(initialize);
 
@@ -39,10 +40,10 @@
   }
 
   function positionHeadsPanorama(){
-    $('.foldL').animate({'left': '0%'}, 1500);
-    $('.foldC').animate({'left': '25%'}, 1500);
-    $('.foldR').animate({'left': '50%'}, 1500);
-    $('div[class^="panel"]').animate({'width':'50%'});
+    tryptGlow();
+    $('.foldL').animate({'left': '0%'}, 1000);
+    $('.foldC').animate({'left': '25%'}, 1000);
+    $('.foldR').animate({'left': '50%'}, 1000);
     var folds = $('[class^="fold"]');
     _.each(folds, function(fold){
       var $left = $(fold).find('.panelL');
@@ -52,24 +53,31 @@
       $center.css('left', '25%');
       $right.css('left', '50%');
     });
-
-    $.ajax({type: 'get', url: 'events/display', success: sizeEvents});
+    $('div[class^="panel"]').animate({'width':'50%'}, 1000, function(){
+      $.ajax({type: 'get', url: 'events/display', success: getEvents});
+    });
     $(window).bind('resize', sizeEvents);
   }
 
-  function sizeEvents() {
-
+  function getEvents() {
     $('.arrow-container').bind('click', eventsScroll);
+    arrowColorRested = $('#events-arrow-left').css('border-right-color');
+    sizeEvents(function(){
+      tryptFade();
+    });
+  }
 
+  function sizeEvents(callback) {
     var $scrollWindow = $('#events-scroll-window');
     var screenWidth = window.screen.width;
     var viewportWidth = window.innerWidth;
     var viewportWidthRatio = viewportWidth / screenWidth;
-    var widthRatio = 0.0;
-    if(viewportWidthRatio < 0.5){
+    var widthRatio;
+    // Check to determine if device is in portrait or landscape orientation.
+    if(viewportWidthRatio < 0.5 || viewportWidth < window.innerHeight){
       widthRatio = 0.75;
     } else {
-      widthRatio = 0.33;
+      widthRatio = 0.50;
     }
     var windowWidth = parseFloat($scrollWindow.width());
     var windowHeight = parseFloat($scrollWindow.height());
@@ -82,51 +90,72 @@
     var widthNeeded = newCellWidth * cellCount;
     var marginRatio = 0.06;
     var marginPerSide = newCellWidth * marginRatio;
-    var safetyMargin = newCellWidth + (marginPerSide * 2);
+    var safetyMargin = newCellWidth + (marginPerSide * 4);
     var newPanelWidth = widthNeeded + (marginPerSide * (cellCount * 2)) + safetyMargin;
     $scrollPanel.css('width', newPanelWidth.toString());
     $cells.css('margin', '0px ' + (marginPerSide * 2).toString() + 'px');
     $cells.css('width', newCellWidth.toString());
     $cells.css('height', newCellHeight.toString());
+    if(callback){callback();}
   }
 
   function eventsScroll() {
     var $self = $(this);
     var id = $self.attr('id');
     var $scrollPanel = $('#events-scroll-panel');
-    var side = '';
+    var side;
     _.each(id.split('-'), function(str){
       if(str === 'left'){ side = 'left';}
       if(str === 'right'){ side = 'right';}
     });
     var moveRatio = 0.2;
     var leftPosition = parseFloat($scrollPanel.css('left').split('p')[0]);
-    var amountToMove = (leftPosition - ($scrollPanel.width() * moveRatio)).toString();
-    var moveTime = 1000;
-    if(side === 'left'){
-      //$scrollPanel.animate({'left': '-20%'}, 1500);
-      $scrollPanel.animate({'left': amountToMove + 'px'}, moveTime);
-      //$('.foldL').animate({'left': '0%'}, 1500);
+    var amountToMove;
+    var moveTime = 200;
+
+    // Make sure the panel doesn't go entirely off-screen
+    if(onScreen(side)){
+      var flipSide;
+      if(side === 'left'){
+        amountToMove = (leftPosition - ($scrollPanel.width() * moveRatio)).toString();
+        flipSide = 'right';
+      }
+      if(side === 'right'){
+        amountToMove = (leftPosition + ($scrollPanel.width() * moveRatio)).toString();
+        flipSide = 'left';
+      }
+      var $arrow = $('#events-arrow-' + side);
+      var propertyToColor = 'border-' + flipSide + '-color';
+      var arrowColorActive = $('a').css('color');
+      $arrow.css(propertyToColor, arrowColorActive);
+      $scrollPanel.animate({'left': amountToMove + 'px'}, moveTime, function(){
+        $arrow.css(propertyToColor, arrowColorRested);
+      });
     }
+  }
 
-    //debugger;
-
-    console.log('eventsScroll: ', 'amountToMove: ', amountToMove);
+  function onScreen(side) {
+    var $scrollPanel = $('#events-scroll-panel');
+    var panelLeft = parseFloat($scrollPanel.css('left').split('p')[0]);
+    var trueFalse = false;
+    var $cells = $('.event-cell');
+    var limitRatio = window.innerWidth / window.innerHeight;
+    var $scrollWindow = $('#events-scroll-window');
+    if(side === 'left'){
+      trueFalse = (panelLeft * -1) < ($scrollPanel.width() - $cells.width() * limitRatio);
+    } else if(side === 'right'){
+      trueFalse = panelLeft < ($scrollWindow.width() - $cells.width() * limitRatio);
+    }
+    return trueFalse;
   }
 
 
   function tryptGlow(){
-    var self = this;
-    if($(self).hasClass('content-heading') || $(self).hasClass('content-footer')){
-      $('[class^="trypt-bright"]').animate({'opacity': '1'}, 1000);
-    }
+    $('[class^="trypt-bright"]').animate({'opacity': '1'}, 1500);
   }
 
   function tryptFade(){
-    var self = this;
-    if($(self).hasClass('content-heading') || $(self).hasClass('content-footer')){
-      $('[class^="trypt-bright"]').animate({'opacity': '.2'}, 1000);
-    }
+    $('[class^="trypt-bright"]').animate({'opacity': '.2'}, 1500);
   }
 
   function getFacebookEvent(event){

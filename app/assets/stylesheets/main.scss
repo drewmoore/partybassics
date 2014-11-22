@@ -1,8 +1,9 @@
 $yellow: rgba(200, 175, 0, .9);
 $pink: rgba(230, 0, 90, .9);
 $panel-grey: rgba(10, 10, 10, .7);
+$veil-grey: rgba(10, 10, 10, .5);
 $blue-cloud: rgba(66, 139, 202, .2);
-$white: rgba(175, 175, 175, .6);
+$white: rgba(175, 175, 175, .8);
 
 @font-face {
   font-family: "Audiowide";
@@ -21,8 +22,34 @@ $white: rgba(175, 175, 175, .6);
 html, body {
   height: 100%;
   width: 100%;
-}
 
+  scrollbar-width: 2%;
+  scrollbar-track-color: $panel-grey;
+  scrollbar-face-color: $white;
+  scrollbar-highlight-color: $veil-grey;
+  scrollbar-3dlight-color: $yellow;
+  scrollbar-shadow-color: $panel-grey;
+  scrollbar-darkshadow-color: $panel-grey;
+}
+::-webkit-scrollbar {
+  height: .33em;
+}
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px $panel-grey;
+  border-radius: 20px;
+  background-color: $panel-grey;
+}
+::-webkit-scrollbar-track:active {
+  -webkit-box-shadow: inset 0 0 6px $veil-grey;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  background-color: $white;
+}
+::-webkit-scrollbar-thumb:active {
+  background-color: $blue-cloud;
+  border: 1px solid $white;
+}
 body {
   background-color: black;
 }
@@ -47,7 +74,7 @@ a {
   width: 100%;
   min-height: 100%;
   //overflow-y: hidden;
-  overflow-y: auto;
+  overflow-y: hidden;
   margin: 0px auto;
 }
 
@@ -319,21 +346,17 @@ div[class^="fold"] {
   border-bottom: 7em solid transparent;
   height: 0px;
   width: 0px;
-  //position: absolute;
 }
 
 #events-arrow-left {
-  //position: absolute;
   left: 0%;
-  border-right: 4em solid $blue-cloud;
-  //margin: 2% 0px;
+  border-right: 4em solid $white;
 }
 
 
 #events-arrow-right {
-  //position: relative;
   right: 0%;
-  border-left: 4em solid $blue-cloud;
+  border-left: 4em solid $white;
 }
 
 #events-scroll-window {
@@ -348,7 +371,7 @@ div[class^="fold"] {
   max-height: 100%;
   //margin: 2% 2%;
   padding: 2%;
-  overflow-x: hidden;
+  overflow-x: auto;
   overflow-y: auto;
 }
 
@@ -363,6 +386,7 @@ div[class^="fold"] {
   max-height: 100%;
   padding: 1%;
   text-align: left;
+  background-color: $veil-grey;
 }
 
 .event-cell {
@@ -396,7 +420,7 @@ div[class^="fold"] {
     min-height: 18%;
     max-height: 18%;
     color: $white;
-    h5 {
+    h4 {
       position: absolute;
       text-align: center;
       width: 100%;
@@ -406,7 +430,12 @@ div[class^="fold"] {
       margin: 0% auto;
       font-family: "Oswald-Bold";
     }
-    .left-half, .right-half {
+    h5 {
+      position: absolute;
+      text-align: center;
+      width: 100%;
+      font-size: 110%;
+      font-weight: 600;
       bottom: 1%;
       font-family: "Oswald-Regular";
     }
@@ -470,13 +499,13 @@ div[class^="fold"] {
 
 
 
-@media (min-width: 1200px) {
+@media (min-width: 801px) {
   body {
     font-size: 14px;
   }
 }
 
-@media (max-width: 1199px) {
+@media (max-width: 800px) {
   body {
     font-size: 7px;
   }

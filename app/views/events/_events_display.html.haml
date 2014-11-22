@@ -7,10 +7,7 @@
         .event-cell
           .event-flyer{:style => "background-image: url(#{asset_path(event.flyer)})"}
           .event-cell-info
-            %h5=event.title
-            .left-half
-              %strong=event_date(event.date).strftime("%a %b %d")
-            .right-half
-              %strong=event.venue
+            %h4=event.title
+            %h5=event_date(event.date).strftime("%a %b %d")
   #events-arrow-right-container.arrow-container
     #events-arrow-right
