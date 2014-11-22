@@ -58,6 +58,9 @@
   }
 
   function sizeEvents() {
+
+    $('.arrow-container').bind('click', eventsScroll);
+
     var $scrollWindow = $('#events-scroll-window');
     var screenWidth = window.screen.width;
     var viewportWidth = window.innerWidth;
@@ -86,6 +89,31 @@
     $cells.css('width', newCellWidth.toString());
     $cells.css('height', newCellHeight.toString());
   }
+
+  function eventsScroll() {
+    var $self = $(this);
+    var id = $self.attr('id');
+    var $scrollPanel = $('#events-scroll-panel');
+    var side = '';
+    _.each(id.split('-'), function(str){
+      if(str === 'left'){ side = 'left';}
+      if(str === 'right'){ side = 'right';}
+    });
+    var moveRatio = 0.2;
+    var leftPosition = parseFloat($scrollPanel.css('left').split('p')[0]);
+    var amountToMove = (leftPosition - ($scrollPanel.width() * moveRatio)).toString();
+    var moveTime = 1000;
+    if(side === 'left'){
+      //$scrollPanel.animate({'left': '-20%'}, 1500);
+      $scrollPanel.animate({'left': amountToMove + 'px'}, moveTime);
+      //$('.foldL').animate({'left': '0%'}, 1500);
+    }
+
+    //debugger;
+
+    console.log('eventsScroll: ', 'amountToMove: ', amountToMove);
+  }
+
 
   function tryptGlow(){
     var self = this;
