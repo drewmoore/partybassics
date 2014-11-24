@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.scrollTo.min.js
 //= require twitter/bootstrap
 //= require turbolinks
 //= require jquery.turbolinks

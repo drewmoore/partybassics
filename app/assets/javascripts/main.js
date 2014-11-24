@@ -90,7 +90,7 @@
     var widthNeeded = newCellWidth * cellCount;
     var marginRatio = 0.06;
     var marginPerSide = newCellWidth * marginRatio;
-    var safetyMargin = newCellWidth + (marginPerSide * 4);
+    var safetyMargin = (newCellWidth + (marginPerSide * 4)) * 2;
     var newPanelWidth = widthNeeded + (marginPerSide * (cellCount * 2)) + safetyMargin;
     $scrollPanel.css('width', newPanelWidth.toString());
     $cells.css('margin', '0px ' + (marginPerSide * 2).toString() + 'px');
@@ -103,52 +103,33 @@
     var $self = $(this);
     var id = $self.attr('id');
     var $scrollPanel = $('#events-scroll-panel');
+    var $scrollWindow = $('#events-scroll-window');
     var side;
     _.each(id.split('-'), function(str){
-      if(str === 'left'){ side = 'left';}
-      if(str === 'right'){ side = 'right';}
+      if(str === 'left'){ side = 'right';}
+      if(str === 'right'){ side = 'left';}
     });
-    var moveRatio = 0.2;
-    var leftPosition = parseFloat($scrollPanel.css('left').split('p')[0]);
+    var moveRatio = 0.1;
     var amountToMove;
     var moveTime = 200;
-
-    // Make sure the panel doesn't go entirely off-screen
-    if(onScreen(side)){
-      var flipSide;
-      if(side === 'left'){
-        amountToMove = (leftPosition - ($scrollPanel.width() * moveRatio)).toString();
-        flipSide = 'right';
-      }
-      if(side === 'right'){
-        amountToMove = (leftPosition + ($scrollPanel.width() * moveRatio)).toString();
-        flipSide = 'left';
-      }
-      var $arrow = $('#events-arrow-' + side);
-      var propertyToColor = 'border-' + flipSide + '-color';
-      var arrowColorActive = $('a').css('color');
-      $arrow.css(propertyToColor, arrowColorActive);
-      $scrollPanel.animate({'left': amountToMove + 'px'}, moveTime, function(){
-        $arrow.css(propertyToColor, arrowColorRested);
-      });
-    }
-  }
-
-  function onScreen(side) {
-    var $scrollPanel = $('#events-scroll-panel');
-    var panelLeft = parseFloat($scrollPanel.css('left').split('p')[0]);
-    var trueFalse = false;
-    var $cells = $('.event-cell');
-    var limitRatio = window.innerWidth / window.innerHeight;
-    var $scrollWindow = $('#events-scroll-window');
+    var flipSide;
     if(side === 'left'){
-      trueFalse = (panelLeft * -1) < ($scrollPanel.width() - $cells.width() * limitRatio);
-    } else if(side === 'right'){
-      trueFalse = panelLeft < ($scrollWindow.width() - $cells.width() * limitRatio);
+      amountToMove = '+=' + parseInt(($scrollPanel.width() * moveRatio)).toString() + 'px';
+      flipSide = 'right';
     }
-    return trueFalse;
-  }
+    if(side === 'right'){
+      amountToMove = '-=' + parseInt(($scrollPanel.width() * moveRatio)).toString() + 'px';
+      flipSide = 'left';
+    }
+    var $arrow = $('#events-arrow-' + flipSide);
+    var propertyToColor = 'border-' + side + '-color';
+    var arrowColorActive = $('a').css('color');
+    $arrow.css(propertyToColor, arrowColorActive);
 
+    $scrollWindow.scrollTo(amountToMove, 0, {duration: moveTime, onAfter: function(){
+      $arrow.css(propertyToColor, arrowColorRested);
+    }});
+  }
 
   function tryptGlow(){
     $('[class^="trypt-bright"]').animate({'opacity': '1'}, 1500);

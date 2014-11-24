@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
   layout :layout_by_resource
   before_filter :update_sanitized_params, if: :devise_controller?
 
+  include Mobvious::Rails::Controller
+
   def after_sign_in_path_for user
     controls_path
   end

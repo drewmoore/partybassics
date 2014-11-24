@@ -47,6 +47,8 @@ gem 'devise'
 gem 'jquery-turbolinks'
 gem 'lodash-rails'
 gem 'bootstrap_form'
+gem 'mobvious-rails'
+gem 'mini_magick'
 
 group :production do
   gem 'rails_12factor'

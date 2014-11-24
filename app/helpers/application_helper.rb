@@ -1,4 +1,6 @@
 module ApplicationHelper
+  include Mobvious::Rails::Helper
+
   def event_date date
     year = date.split("-")[0].to_i
     month = date.split("-")[1].to_i

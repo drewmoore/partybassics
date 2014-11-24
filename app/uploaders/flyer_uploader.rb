@@ -1,10 +1,39 @@
 # encoding: utf-8
 
 class FlyerUploader < CarrierWave::Uploader::Base
+  include CarrierWave::MiniMagick
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
+
+  version :landscape, :if => :is_landscape? do
+    process :resize_to_fit => [800, 533]
+    version :display do
+      process :resize_to_fit => [500, 333]
+    end
+  end
+
+  version :portrait, :if => :is_portrait? do
+    process :resize_to_fit => [533, 800]
+    version :display do
+      process :resize_to_fit => [333, 500]
+    end
+  end
+
+
+  protected
+
+    def is_landscape? picture
+      image = MiniMagick::Image.open(picture.path)
+      image[:width] > image[:height]
+    end
+
+    def is_portrait? picture
+      image = MiniMagick::Image.open(picture.path)
+      image[:height] > image[:width]
+    end
+
 
   # Choose what kind of storage to use for this uploader:
   storage :file
