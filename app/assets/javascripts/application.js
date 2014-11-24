@@ -18,3 +18,4 @@
 //= require jquery.turbolinks
 //= require_tree .
 //= require lodash
+//= require facebook

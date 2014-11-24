@@ -23,13 +23,14 @@ Rails.application.routes.draw do
     end
     unauthenticated :user do
       root 'welcome#index', as: :unauthenticated_root
+      get 'events/display' => 'events#display'
+      get 'events/display-one/:id', to: 'events#display_one'
       get '/pages/(*all)', to: redirect('/')
       get '/contents/(*all)', to: redirect('/')
       get '/graphics/(*all)', to: redirect('/')
     end
   end
 
-  get 'events/display' => 'events#display'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

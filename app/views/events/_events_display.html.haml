@@ -4,7 +4,7 @@
   #events-scroll-window
     #events-scroll-panel
       - @events.each do |event|
-        .event-cell
+        .event-cell{:data => {:id => event.id}}
           - if File.exists? event.flyer.versions[:portrait].path
             .event-flyer.portrait{:style => "background-image: url(#{asset_path(event.flyer.versions[:portrait].display)})"}
           - elsif File.exists? event.flyer.versions[:landscape].path

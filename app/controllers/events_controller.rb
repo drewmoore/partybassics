@@ -48,6 +48,13 @@ class EventsController < ApplicationController
     end
   end
 
+  def display_one
+    @event = Event.find(params[:id])
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
 
   def convert_date
