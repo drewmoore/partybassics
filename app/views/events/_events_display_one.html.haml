@@ -1,1 +1,25 @@
-%h1 wsup
+#event-display-one
+  .event-third
+    .event-poster-frame
+      - if File.exists? @event.flyer.versions[:portrait].path
+        .event-poster.portrait{:style => "background-image: url(#{asset_path(@event.flyer.versions[:portrait])})"}
+      - elsif File.exists? @event.flyer.versions[:landscape].path
+        .event-poster.landscape{:style => "background-image: url(#{asset_path(@event.flyer.versions[:landscape])})"}
+  .event-third
+    .event-content-middle
+      %h2= @event.title
+      %h4=@event.venue
+      %h5=event_date(@event.date).strftime("%A, %B %d %Y")
+      - if !@event.time.empty?
+        %h5 #{@event.city}, #{event_time(@event.time)}
+      %a{:href => "#", :target => "new"} <h5>Get Tickets</h5>
+      - if !@event.facebook_id.empty?
+        %a{:href => "http://facebook.com/events/#{@event.facebook_id}", :target => "new"} Check it out on Facebook
+      - if !@event.street.empty? and !@event.city.empty?
+        .event-map-container
+          <iframe frameborder="0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA9PK12yeQsAsR4Mt40YYq-hAKCI_Ulinw&q=#{google_map_query(@event.street, @event.zip)}">
+          </iframe>
+
+  .event-third
+    .event-content-right
+      %p= @event.description

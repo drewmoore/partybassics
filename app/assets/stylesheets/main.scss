@@ -3,6 +3,7 @@ $pink: rgba(230, 0, 90, .9);
 $panel-grey: rgba(10, 10, 10, .7);
 $veil-grey: rgba(10, 10, 10, .5);
 $blue-cloud: rgba(66, 139, 202, .2);
+$blue-bright: #428bca;
 $white: rgba(175, 175, 175, .8);
 
 @font-face {
@@ -74,7 +75,6 @@ a {
   height: 100%;
   width: 100%;
   min-height: 100%;
-  //overflow-y: hidden;
   overflow-y: auto;
   margin: 0px auto;
 }
@@ -415,7 +415,7 @@ div[class^="fold"] {
     background-size: 40% 100%;
   }
   .landscape {
-    background-size: 75% 75%;
+    background-size: 62% 80%;
   }
 
   .event-cell-info {
@@ -448,6 +448,115 @@ div[class^="fold"] {
     }
   }
 }
+
+#event-display-one {
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 97%;
+  max-height: 97%;
+  border-radius: 30px;
+  margin: .5% auto;
+  text-align: center;
+  position: absolute;
+}
+
+.event-third {
+  min-width: 33%;
+  max-width: 33%;
+  min-height: 100%;
+  max-height: 100%;
+  display: inline-block;
+  position: relative;
+  vertical-align: top;
+  text-align: left;
+}
+
+.event-poster-frame {
+  position: absolute;
+  top: 1em;
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 98%;
+  max-height: 98%;
+  padding: 48%;
+  background-color: $panel-grey;
+  border-radius: 33px;
+}
+
+.event-poster {
+  position: absolute;
+  top: 4%;
+  left: 0;
+  min-width: 98%;
+  max-width: 98%;
+  min-height: 92%;
+  max-height: 92%;
+  padding: 42%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.portrait {
+  background-size: 53% 100%;
+  background-position: 33% 50%;
+}
+.landscape {
+  background-size: 70% 60%;
+}
+
+[class^="event-content-"] {
+  background-color: $panel-grey;
+  border-radius: 33px;
+  padding: 5%;
+  margin: 3% auto;
+  overflow-y: auto;
+
+  h2, h4, h5 {
+    text-align: center;
+    margin: 3% auto;
+  }
+  h2 {
+    font-size: 130%;
+    font-weight: 500;
+    font-family: "Audiowide";
+    color: $blue-bright;
+    text-shadow: 0px 0px 20px rgba(250, 250, 75, .9);
+  }
+  h4 {
+    font-size: 120%;
+    font-weight: 600;
+    font-family: "Oswald-Regular";
+    color: $white;
+  }
+  h5 {
+    font-size: 100%;
+    font-weight: 600;
+    color: $white;
+    font-family: "Oswald-Regular";
+  }
+  p {
+    color: $white;
+    font-size: 100%;
+    font-weight: 400;
+    font-family: "Oswald-Regular";
+  }
+  a, a > h5 {
+    font-family: "Audiowide";
+    color: $yellow;
+    text-align: left;
+  }
+  .event-map-container {
+    text-align: center;
+    iframe {
+      width: 80%;
+      height: 40%;
+      margin: 6% auto 2% auto;
+      opacity: 0.7;
+    }
+  }
+}
+
+
 
 
 
@@ -501,6 +610,7 @@ div[class^="fold"] {
     margin: 0px auto;
   }
 }
+
 
 
 

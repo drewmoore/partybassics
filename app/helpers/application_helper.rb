@@ -18,4 +18,9 @@ module ApplicationHelper
     end
     (hours.to_i % 12).to_s << ":"<< minutes << " " << append
   end
+
+  def google_map_query(street, zip)
+    new_street = street.gsub(" ", "+")
+    return new_street << "," << zip
+  end
 end

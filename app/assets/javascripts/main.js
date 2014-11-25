@@ -41,6 +41,7 @@
   }
 
   function positionHeadsPanorama(){
+    $('#content-body').empty();
     tryptGlow();
     $('.foldL').animate({'left': '0%'}, 1000);
     $('.foldC').animate({'left': '25%'}, 1000);
@@ -57,26 +58,39 @@
     $('div[class^="panel"]').animate({'width':'50%'}, 1000, function(){
       $.ajax({type: 'get', url: 'events/display', success: getEvents});
     });
+    $(window).unbind('resize');
     $(window).bind('resize', sizeEvents);
   }
 
   function getEvents() {
     $('.arrow-container').bind('click', eventsScroll);
     $('.event-flyer').bind('click', displayEvent);
+    $('.event-flyer').bind('mouseover', eventMouseOver);
+    $('.event-flyer').bind('mouseout', eventMouseOut);
     arrowColorRested = $('#events-arrow-left').css('border-right-color');
     sizeEvents(function(){
       tryptFade();
     });
   }
 
+  function eventMouseOver(){
+    var $self = $(this);
+    $self.closest('.event-cell').css('box-shadow', '0px 0px 10px rgba(175, 175, 175, .8)');
+    console.log('mouseover');
+  }
+
+  function eventMouseOut(){
+    var $self = $(this);
+    $self.closest('.event-cell').css('box-shadow', 'none');
+    console.log('mouseout');
+  }
+
+
   function sizeEvents(callback) {
     var $scrollWindow = $('#events-scroll-window');
-    var screenWidth = window.screen.width;
-    var viewportWidth = window.innerWidth;
-    var viewportWidthRatio = viewportWidth / screenWidth;
     var widthRatio;
     // Check to determine if device is in portrait or landscape orientation.
-    if(viewportWidthRatio < 0.5 || viewportWidth < window.innerHeight){
+    if(isPortrait()){
       widthRatio = 0.75;
     } else {
       widthRatio = 0.50;
@@ -99,6 +113,45 @@
     $cells.css('width', newCellWidth.toString());
     $cells.css('height', newCellHeight.toString());
     if(callback){callback();}
+  }
+
+  function sizeThaEvent(){
+    var $contentBody = $('#content-body');
+    var $eventThirds = $('.event-third');
+    var $contentPanels = $('[class^="event-content"]');
+    var $eventPosterFrame = $('.event-poster-frame');
+    var heightRatio = 0.96;
+    var panelRatio = 0.84;
+    var $eventPoster = $('.event-poster');
+    $eventPosterFrame.height(newHeight(heightRatio));
+    $eventThirds.height(newHeight(heightRatio));
+    $contentPanels.height(newHeight(panelRatio));
+    if(isPortrait()){
+      if($eventPoster.hasClass('portrait')){
+        $eventPoster.css('background-size', '79% 70%');
+      }
+      if($eventPoster.hasClass('landscape')){
+        $eventPoster.css('background-size', '100% 40%');
+      }
+    } else {
+      if($eventPoster.hasClass('portrait')){
+        $eventPoster.css('background-size', '53% 100%');
+      }
+      if($eventPoster.hasClass('landscape')){
+        $eventPoster.css('background-size', '70% 60%');
+      }
+    }
+
+    function newHeight(ratio){
+      return (parseFloat($contentBody.height()) * ratio).toString();
+    }
+  }
+
+  function isPortrait(){
+    var screenWidth = window.screen.width;
+    var viewportWidth = window.innerWidth;
+    var viewportWidthRatio = viewportWidth / screenWidth;
+    if(viewportWidthRatio < 0.5 || window.innerWidth < window.innerHeight){ return true; } else { return false; }
   }
 
   function eventsScroll() {
@@ -173,16 +226,18 @@
 
   function displayEvent(){
     // receives HTML from events#display_one and its partial
+    $('#content-body').empty();
     tryptGlow();
     positionHeadsThreeColumns();
     var $self = $(this);
     var $cell = $self.closest('.event-cell');
     var url = '/events/display-one/' + $cell.attr('data-id');
     $.ajax({url:url, type:'get', success: function(){
+      sizeThaEvent();
       tryptFade();
     }});
-
-    console.log('displayEvent: ', $self);
+    $(window).unbind('resize');
+    $(window).bind('resize', sizeThaEvent);
   }
 
   function convertToMonthString(month){
