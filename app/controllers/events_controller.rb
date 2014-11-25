@@ -42,7 +42,16 @@ class EventsController < ApplicationController
   end
 
   def display
-    @events = Event.all
+    all_events = Event.all
+    @events = all_events.sort_by do |e|
+      datestring = ""
+      datearray = e.date.split("-")
+      year = datearray[0]
+      month = datearray[1]
+      day = datearray[2]
+      datestring << year << month << day
+    end
+    @events.reverse!
     respond_to do |format|
       format.js
     end

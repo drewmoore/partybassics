@@ -11,6 +11,6 @@
             .event-flyer.landscape{:style => "background-image: url(#{asset_path(event.flyer.versions[:landscape].display)})"}
           .event-cell-info
             %h4=event.title
-            %h5=event_date(event.date).strftime("%a %b %d")
+            %h5=event_date(event.date).strftime("%a %b %d, %Y")
   #events-arrow-right-container.arrow-container
     #events-arrow-right

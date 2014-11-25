@@ -12,7 +12,10 @@
       %h5=event_date(@event.date).strftime("%A, %B %d %Y")
       - if !@event.time.empty?
         %h5 #{@event.city}, #{event_time(@event.time)}
-      %a{:href => "#", :target => "new"} <h5>Get Tickets</h5>
+
+
+      - if in_future?(@event)
+        %a{:href => "#", :target => "new"} <h5>Get Tickets</h5>
       - if !@event.facebook_id.empty?
         %a{:href => "http://facebook.com/events/#{@event.facebook_id}", :target => "new"} Check it out on Facebook
       - if !@event.street.empty? and !@event.city.empty?
