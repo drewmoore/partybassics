@@ -51,7 +51,7 @@ class EventsController < ApplicationController
       day = datearray[2]
       datestring << year << month << day
     end
-    @events.reverse!
+    @current_event = get_current_event
     respond_to do |format|
       format.js
     end
@@ -65,6 +65,21 @@ class EventsController < ApplicationController
   end
 
   private
+
+  def get_current_event
+    today = DateTime.now.to_date.strftime
+    @current_event = Event.where("date" => today).limit(1)
+    if @current_event.empty?
+      today_date = today.gsub("-","")
+      eligible_events = []
+      @events.each do |event|
+        event_date = event.date.gsub("-","")
+        eligible_events << event if event_date >= today_date
+      end
+      @current_event = eligible_events[0]
+    end
+    @current_event
+  end
 
   def convert_date
     year = params[:event]["date(1i)"]

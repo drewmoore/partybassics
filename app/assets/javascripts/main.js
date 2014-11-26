@@ -41,8 +41,25 @@
     $('.event-flyer').bind('mouseout', eventMouseOut);
     arrowColorRested = $('#events-arrow-left').css('border-right-color');
     sizeEvents(function(){
+      scrollToCurrent();
       tryptFade();
     });
+  }
+
+  function scrollToCurrent(){
+    var $cells = $('.event-cell');
+    var currentId = $cells.attr('data-current');
+    var $currentEvent;
+    _.each($cells, function(cell){
+      var cellId = $(cell).attr('data-id');
+      if(cellId === currentId){
+        $currentEvent = $(cell);
+      }
+    });
+    //var position = parseInt($currentEvent.css('left')) - ($cells.width / 2);
+    //$scrollWindow.scrollTo(amountToMove, 0, {duration: moveTime, onAfter: function(){
+    var position = $currentEvent.position().left - ($cells.width() / 2);
+    $('#events-scroll-window').scrollTo(position, 0, {duration: 200});
   }
 
   function displayEvent(){
@@ -104,13 +121,11 @@
   function eventMouseOver(){
     var $self = $(this);
     $self.closest('.event-cell').css('box-shadow', '0px 0px 10px rgba(175, 175, 175, .8)');
-    console.log('mouseover');
   }
 
   function eventMouseOut(){
     var $self = $(this);
     $self.closest('.event-cell').css('box-shadow', 'none');
-    console.log('mouseout');
   }
 
 
@@ -149,7 +164,7 @@
     var $contentPanels = $('[class^="event-content"]');
     var $eventPosterFrame = $('.event-poster-frame');
     var heightRatio = 0.96;
-    var panelRatio = 0.84;
+    var panelRatio = 0.80;
     var $eventPoster = $('.event-poster');
     $eventPosterFrame.height(newHeight(heightRatio));
     $eventThirds.height(newHeight(heightRatio));
