@@ -1,0 +1,23 @@
+#event-display-one
+  .event-third
+    .event-content-left.about-panel
+      %h2 Party With Us
+      - @pictures.each do |pic|
+        =image_tag(pic)
+  .event-third
+    .event-content-middle.about-panel
+      %h2 We Are Party Bassics
+      %p Yo, yo yo, this is Party Bassics in the muthafuckin house!!!!! You know we're gonna have some raves up in here. The subs will be shakin, the asses, too! Fucking Nashville!!! Through them hands in the air, yeah!
+  .event-third
+    .event-content-right.about-panel
+      %h2 Contact Us
+      .about-contact
+        %h4 Professional
+        %a{:href => "mailto:drew@noiseshift.com", :target => "new"} <h5>partybassics@partybassics.com</h5>
+      .about-contact
+        %h4 Social
+        %a{:href => "https://www.facebook.com/partybassicsusa", :target => "new"} <h5>facebook.com/partybassicsusa</h5>
+        %a{:href => "https://www.facebook.com/groups/partybassics/", :target => "new"} <h5>facebook.com/groups/partybassics</h5>
+        %a{:href => "https://twitter.com/partybassics", :target => "new"} <h5>@partybassics</h5>
+        %a{:href => "http://instagram.com/partybassics", :target => "new"} <h5>instagram.com/partybassics</h5>
+        %a{:href => "http://www.eventbrite.com/o/party-bassics-5693583035", :target => "new"} <h5>on eventbrite.com</h5>

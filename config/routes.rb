@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   devise_scope :user do
     authenticated :user do
       root :to => 'welcome#index'
+      get 'events/display' => 'events#display'
+      get 'events/display-one/:id', to: 'events#display_one'
       resources :pages
       resources :contents
       resources :graphics
@@ -30,6 +32,8 @@ Rails.application.routes.draw do
       get '/graphics/(*all)', to: redirect('/')
     end
   end
+
+  get 'about-us' => 'welcome#about_us'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

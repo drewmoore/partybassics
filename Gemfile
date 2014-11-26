@@ -49,6 +49,7 @@ gem 'lodash-rails'
 gem 'bootstrap_form'
 gem 'mobvious-rails'
 gem 'mini_magick'
+gem 'unirest'
 
 group :production do
   gem 'rails_12factor'

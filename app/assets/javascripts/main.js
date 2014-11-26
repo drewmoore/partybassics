@@ -23,6 +23,12 @@
     $('#content-body').empty();
     tryptGlow();
     positionHeadsThreeColumns();
+    $.ajax({url: '/about-us', type: 'get', success: receiveWelcomeAbout});
+    $(window).bind('resize', sizeEvents);
+  }
+
+  function receiveWelcomeAbout(){
+    sizeThaEvent();
     tryptFade();
   }
 
@@ -41,12 +47,13 @@
     $('.event-flyer').bind('mouseout', eventMouseOut);
     arrowColorRested = $('#events-arrow-left').css('border-right-color');
     sizeEvents(function(){
-      scrollToCurrent();
-      tryptFade();
+      scrollToCurrent(function(){
+        tryptFade();
+      });
     });
   }
 
-  function scrollToCurrent(){
+  function scrollToCurrent(callback){
     var $cells = $('.event-cell');
     var currentId = $cells.attr('data-current');
     var $currentEvent;
@@ -56,10 +63,9 @@
         $currentEvent = $(cell);
       }
     });
-    //var position = parseInt($currentEvent.css('left')) - ($cells.width / 2);
-    //$scrollWindow.scrollTo(amountToMove, 0, {duration: moveTime, onAfter: function(){
     var position = $currentEvent.position().left - ($cells.width() / 2);
-    $('#events-scroll-window').scrollTo(position, 0, {duration: 200});
+    var scrollTime = 500;
+    $('#events-scroll-window').scrollTo(position, 0, {duration: scrollTime, onAfter: callback});
   }
 
   function displayEvent(){
@@ -163,8 +169,8 @@
     var $eventThirds = $('.event-third');
     var $contentPanels = $('[class^="event-content"]');
     var $eventPosterFrame = $('.event-poster-frame');
-    var heightRatio = 0.96;
-    var panelRatio = 0.80;
+    var heightRatio = 0.90;
+    var panelRatio = 0.75;
     var $eventPoster = $('.event-poster');
     $eventPosterFrame.height(newHeight(heightRatio));
     $eventThirds.height(newHeight(heightRatio));
