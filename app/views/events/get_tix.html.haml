@@ -1,0 +1,11 @@
+%h1 Get Tickets
+%h2= @event.title
+%h5= event_date(@event.date).strftime("%a, %b %d")
+
+
+
+
+
+/
+  %form{:action => "", :method => "POST"}
+    %script{:src => "https://checkout.stripe.com/checkout.js", :class => "stripe-button", :data => {:key => "pk_test_KJazToe4tOsKKu8w9Fo51znv", :amount => "2000", :name => "Demo Site", :description => "2 widgets ($20.00)", :image => "/128x128.png"}}

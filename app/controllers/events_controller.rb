@@ -64,6 +64,11 @@ class EventsController < ApplicationController
     end
   end
 
+  def get_tix
+    @event = Event.find(params[:id])
+    render "get_tix"
+  end
+
   private
 
   def get_current_event
