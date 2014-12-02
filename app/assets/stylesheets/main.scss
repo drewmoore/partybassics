@@ -624,8 +624,16 @@ div[class^="fold"] {
   margin: 1em;
 }
 
-.notice {
-  color: #ff2222;
+.flash {
+  text-align: center;
+  margin: 1em auto;
+  background-color: $blue-cloud;
+  p {
+    color: #ff2222;
+    font-size: 1.25em;
+    font-weight: 600;
+    margin: .25em auto;
+  }
 }
 
 #facebook-event {

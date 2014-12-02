@@ -38,6 +38,7 @@
     var eventId = $('#buy-tickets-button').attr('data-event-id');
     $form.append($('<input type="hidden" name="stripeToken" />').val(token.id));
     $form.append($('<input type="hidden" name="email" />').val(token.email));
+    $form.append($('<input type="hidden" name="lastfour" />').val(token.card.last4));
     $form.append($('<input type="hidden" name="amount" />').val(purchaseAmount));
     $form.append($('<input type="hidden" name="event-id" />').val(eventId));
     $form.append($('<input type="hidden" name="quantity" />').val(eventQuantity));

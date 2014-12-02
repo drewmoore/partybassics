@@ -8,21 +8,19 @@ class ChargesController < ApplicationController
     @event = Event.find(params["event-id"])
     @quantity = params[:quantity]
     @email = params[:email]
+    @amount = params[:amount]
+    @lastfour = params[:lastfour]
+    begin
+      charge = Stripe::Charge.create(
+        :amount      => @amount,
+        :description => @event.title,
+        :card  => params[:stripeToken],
+        :currency    => 'usd'
+      )
 
-    customer = Stripe::Customer.create(
-      :email => params[:email],
-      :card  => params[:stripeToken]
-    )
-
-    charge = Stripe::Charge.create(
-      :customer    => customer.id,
-      :amount      => params[:amount],
-      :description => @event.title,
-      :currency    => 'usd'
-    )
-
-  rescue Stripe::CardError => e
-    flash[:error] = e.message
-    redirect_to "/charges/new/#{@event.id}"
+    rescue Stripe::CardError => e
+      flash[:error] = e.message
+      redirect_to "/charges/new/#{@event.id}"
+    end
   end
 end
