@@ -6,6 +6,21 @@ module EventsHelper
     Date.new(year, month, day)
   end
 
+  def date_suffix date
+    day = date.split("-")[2].to_i
+    suffix = ""
+    case day
+    when 1, 31
+      suffix = "st"
+    when 2
+      suffix = "nd"
+    when 3
+      suffix = "rd"
+    else
+      suffix = "th"
+    end
+  end
+
   def event_time time
     hours = time.split(":")[0]
     minutes = time.split(":")[1]

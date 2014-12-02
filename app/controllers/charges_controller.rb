@@ -18,6 +18,8 @@ class ChargesController < ApplicationController
         :currency    => 'usd'
       )
 
+      ChargeMailer.purchase_confirmation(@email, @event, @quantity, @amount, @lastfour).deliver
+
     rescue Stripe::CardError => e
       flash[:error] = e.message
       redirect_to "/charges/new/#{@event.id}"

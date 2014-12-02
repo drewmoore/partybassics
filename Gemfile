@@ -51,6 +51,8 @@ gem 'mobvious-rails'
 gem 'mini_magick'
 gem 'unirest'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+gem 'nokogiri'
+gem 'premailer-rails'
 
 group :production do
   gem 'rails_12factor'
