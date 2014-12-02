@@ -102,6 +102,17 @@
           .col-xs-4
         .row.form-row
           .col-xs-4
+            =f.label :price
+          .col-xs-4
+            =f.text_field :price
+            .row
+              .col-xs-12
+                <small> Ex: <small class="asterisk">10.95</small> No dollar sign needed!</small>
+              .col-xs-12
+                %small If free or you don't want to sell tickets online, just leave blank.
+          .col-xs-4
+        .row.form-row
+          .col-xs-4
             =f.label :flyer
           .col-xs-4
             =f.file_field :flyer

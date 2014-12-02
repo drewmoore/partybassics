@@ -64,11 +64,6 @@ class EventsController < ApplicationController
     end
   end
 
-  def get_tix
-    @event = Event.find(params[:id])
-    render "get_tix"
-  end
-
   private
 
   def get_current_event
@@ -94,7 +89,7 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:title, :time, :flyer, :facebook_id, :description, :venue, :city, :street, :zip)
+    params.require(:event).permit(:title, :time, :flyer, :facebook_id, :description, :venue, :city, :street, :zip, :price)
   end
 
 end

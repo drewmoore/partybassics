@@ -36,4 +36,8 @@ module EventsHelper
       return false
     end
   end
+
+  def price price
+    "$ " << price
+  end
 end

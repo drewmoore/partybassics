@@ -34,7 +34,8 @@ Rails.application.routes.draw do
   end
 
   get 'about-us' => 'welcome#about_us'
-  get 'events/:id/get-tix', to: 'events#get_tix'
+  resources :charges
+  get '/charges/new/:id', to: 'charges#new'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

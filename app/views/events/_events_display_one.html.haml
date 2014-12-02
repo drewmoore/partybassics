@@ -10,12 +10,17 @@
       %h2= @event.title
       %h4=@event.venue
       %h5=event_date(@event.date).strftime("%A, %B %d %Y")
+
       - if !@event.time.empty?
         %h5 #{@event.city}, #{event_time(@event.time)}
-      - if in_future?(@event)
-        %a{:href => "/events/#{@event.id}/get-tix", :target => "new"} <h5>Get Tickets</h5>
+
+      - if @event.price
+        - if in_future?(@event) and !@event.price.empty?
+          %a{:href => "/charges/new/#{@event.id}", :target => "new"} <h5>Get Tickets</h5>
+
       - if !@event.facebook_id.empty?
         %a{:href => "http://facebook.com/events/#{@event.facebook_id}", :target => "new"} Check it out on Facebook
+
       - if !@event.street.empty? and !@event.zip.empty?
         .event-map-container
           <iframe frameborder="0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA9PK12yeQsAsR4Mt40YYq-hAKCI_Ulinw&q=#{google_map_query(@event.street, @event.zip)}"></iframe>

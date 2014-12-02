@@ -7,6 +7,11 @@
     <title>Party Bassics</title>
   <% end %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+
+  <% if params[:controller] === "charges" %>
+    <script src="https://checkout.stripe.com/checkout.js"></script>
+  <% end %>
+
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= csrf_meta_tags %>
@@ -106,7 +111,7 @@
     </nav>
   <% end %>
 
-  <% if user_signed_in? %>
+  <% if user_signed_in? or params[:controller] === "action" %>
     <% if flash[:notice] %>
       <div class="row">
         <div class="col-xs-12">
@@ -121,6 +126,15 @@
         <div class="col-xs-12">
           <p class="alert">
             <%= flash[:alert] %>
+          </p>
+        </div>
+      </div>
+    <% end %>
+    <% if flash[:error] %>
+      <div class="row">
+        <div class="col-xs-12">
+          <p class="error">
+            <%= flash[:error] %>
           </p>
         </div>
       </div>

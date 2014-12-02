@@ -1,0 +1,40 @@
+.row
+  .col-xs-3
+  .col-xs-6.admin-text
+    =form_tag charges_path do
+      .row.form-row
+        .col-xs-12.event-edit-flyer
+          %h1 Get Tickets
+
+          - if File.exists? @event.flyer.versions[:portrait].path
+            =image_tag(asset_path(@event.flyer.versions[:portrait].display))
+          - elsif File.exists? @event.flyer.versions[:landscape].path
+            =image_tag(asset_path(@event.flyer.versions[:landscape].display))
+
+      .row.form-row
+        .col-xs-12
+          %h2#tickets-title= @event.title
+          %h5= event_date(@event.date).strftime("%a, %b %d")
+
+      .row.form-row
+        .col-xs-4
+          %label Price
+        .col-xs-4
+          %label#tickets-price= price(@event.price)
+        .col-xs-4
+      .row.form-row
+        .col-xs-4
+          %label How Many?
+        .col-xs-4
+          %select#tickets-quantity
+            - (1..10).each do |num|
+              %option{:value => num} #{num}
+        .col-xs-4
+      .row.form-row
+        .col-xs-4
+        .col-xs-4
+          %button#buy-tickets-button{ :data => { :key => @key, :event_id  => @event.id } } Buy That Shit, Yo!
+        .col-xs-4
+  .col-xs-3
+
+
