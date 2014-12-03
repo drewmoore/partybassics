@@ -1,12 +1,34 @@
 .row-form-row
-  .col-xs-3
-  .col-xs-6.admin-text.admin-top
+  .col-xs-1
+  .col-xs-10.admin-text
     %form#event-purchases
       %fieldset
-        %select#event-select
-          - @events.each do |event|
-            %option{:value => event.id} #{event_date(event.date).strftime("%_m / %e / %y")} - #{event.title}
+        .row.form-row
+          .col-xs-12
+            %select#event-select
+              %option{:value => "#", :disabled => true, :selected => true} --- Choose an Event ---
+              - @events.each do |event|
+                %option{:value => event.id} #{event_date(event.date).strftime("%_m / %e / %y")} - #{event.title}
+        .row.form-row.form-align-left
+          .col-xs-12
+            .inline-block-container
+              %label Email
+              %input#email-search-field{:type => "text"}
+              %button#email-search-button Filter
+              .row
+                .col-xs-12
+                  %small You can just put in part of an address, don't need the @ or .com.
+            .inline-block-container
+              %label Conf #
+              %input#conf-search-field{:type => "text"}
+              %button#conf-search-button Filter
+              .row
+                .col-xs-12
+                  %small Don't need the full number.
+            .inline-block-container
+              %label Clear Filters
+              %button#event-search-reset Reset
+  .col-xs-1
 
-  .col-xs-3
 .row
-  .col-xs-12.admin-text#event-purchases-content
+  .col-xs-12.admin-text.admin-top#event-purchases-content

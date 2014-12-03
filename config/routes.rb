@@ -24,6 +24,8 @@ Rails.application.routes.draw do
       post '/pages/remove-graphic', to: 'pages#remove_graphic'
       get '/purchases', to: 'purchases#index'
       get '/purchases/per-event/:id', to: 'purchases#event_purchases'
+      get '/purchases/per-event/:id/email/:email_search_string', to: 'purchases#event_purchases'
+      get '/purchases/per-event/:id/conf/:conf_search_string', to: 'purchases#event_purchases'
     end
     unauthenticated :user do
       root 'welcome#index', as: :unauthenticated_root

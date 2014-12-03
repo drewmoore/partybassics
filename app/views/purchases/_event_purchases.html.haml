@@ -6,9 +6,13 @@
           %th Email
           %th Confirmation #
           %th # of Tickets
+          %th Date Purchased
+          %th Amount Paid
         %tbody
-          - @event.purchases.each do |purchase|
+          - @purchases.order("email").each do |purchase|
             %tr
               %td=purchase.email
               %td=purchase.conf_num
               %td=purchase.quantity
+              %td=purchase.created_at.strftime("%_m / %e / %_y")
+              %td=number_to_currency(purchase.amount.to_i / 100)

@@ -25,6 +25,7 @@
       name: eventName,
       description: purchaseDescription,
       amount: purchaseAmount,
+      image: $('.event-edit-flyer > img').attr('src'),
       key: $('#buy-tickets-button').attr('data-key')
     });
     event.preventDefault();

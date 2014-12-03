@@ -84,6 +84,11 @@ a {
   margin: 0px auto;
 }
 
+.inline-block-container {
+  display: inline-block;
+  margin: 1em;
+}
+
 #folds-container {
   position: relative;
   z-index: -1;
@@ -604,6 +609,10 @@ div[class^="fold"] {
   }
 }
 
+.form-align-left {
+  text-align: left;
+}
+
 .submit-custom {
   margin: 1.5em auto 0em auto;
 }
@@ -662,6 +671,10 @@ form#event-purchases {
     max-width: 90%;
     text-align: left;
   }
+}
+
+.email-logo-image {
+  text-align: center;
 }
 
 
