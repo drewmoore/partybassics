@@ -18,8 +18,18 @@ class ChargesController < ApplicationController
         :currency    => 'usd'
       )
 
-      ChargeMailer.purchase_confirmation(@email, @event, @quantity, @amount, @lastfour).deliver
+      @purchase = Purchase.new(quantity: @quantity, email: @email, amount: @amount, lastfour: @lastfour)
+      if @purchase.save
+        @purchase.conf_num = @purchase.id.hash
+        @purchase.save
+        @event.purchases << @purchase
 
+        ChargeMailer.purchase_confirmation(@email, @event, @quantity, @amount, @lastfour).deliver
+
+      else
+        flash[:error] = "The purchase could not be saved."
+        redirect_to "/charges/new/#{@event.id}"
+      end
     rescue Stripe::CardError => e
       flash[:error] = e.message
       redirect_to "/charges/new/#{@event.id}"

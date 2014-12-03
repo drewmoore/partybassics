@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   def index
     @events = Event.all
+    @events.order! 'created_at DESC'
   end
 
   def new
@@ -89,7 +90,7 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:title, :time, :flyer, :facebook_id, :description, :venue, :city, :street, :zip, :price)
+    params.require(:event).permit(:title, :time, :flyer, :facebook_id, :description, :venue, :city, :street, :zip, :price, :ticket_limit)
   end
 
 end

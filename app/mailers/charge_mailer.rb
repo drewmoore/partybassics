@@ -1,5 +1,5 @@
 class ChargeMailer < ActionMailer::Base
-  default from: "partybassics@example.com"
+  default from: "partybassics@partybassics.com"
   layout 'email'
   add_template_helper(EventsHelper)
 

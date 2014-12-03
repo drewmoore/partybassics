@@ -84,6 +84,16 @@
           .col-xs-4
         .row.form-row
           .col-xs-4
+            =f.label :ticket_limit do
+              Number of Tickets to Sell
+          .col-xs-4
+            =f.text_field :ticket_limit
+            .row
+              .col-xs-12
+                %small If free or you don't want to sell tickets online, just leave blank.
+          .col-xs-4
+        .row.form-row
+          .col-xs-4
             =f.label :flyer do
               Flyer <small class="asterisk"> *</small>
           .col-xs-4

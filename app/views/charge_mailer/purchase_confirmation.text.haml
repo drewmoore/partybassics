@@ -1,1 +1,10 @@
-Thank you for your purchase of #{@event.title}.
+Your Ticket Confirmation
+========================
+
+Event: #{@event.title}
+Venue: #{@event.venue}
+Date: #{event_date(@event.date).strftime("%A, %B %d")}
+Number of Tickets: #{@quantity} @ #{number_to_currency(@event.price.to_f)}
+Amount Paid: #{number_to_currency(@amount.to_f / 100.00)}
+Card Ending in: #{@lastfour}
+Cardholder's Email: #{@email}
