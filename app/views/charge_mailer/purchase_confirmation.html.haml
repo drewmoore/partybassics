@@ -2,11 +2,12 @@
   .col-xs-3
   .col-xs-6.admin-text
     %h1 Your Ticket Confirmation
+    %h4 Confirmation #: #{@purchase.conf_num}
     %h4 Event: #{@event.title}
     %h4 Venue: #{@event.venue}
     %h4 Date: #{event_date(@event.date).strftime("%A, %B %d")}
-    %h4 Number of Tickets: #{@quantity} @ #{number_to_currency(@event.price.to_f)}
-    %h4 Amount Paid: #{number_to_currency(@amount.to_f / 100.00)}
-    %h4 Card Ending in: #{@lastfour}
-    %h4 Cardholder's Email: #{@email}
+    %h4 Number of Tickets: #{@purchase.quantity} @ #{number_to_currency(@event.price.to_f)}
+    %h4 Amount Paid: #{number_to_currency(@purchase.amount.to_f / 100.00)}
+    %h4 Card Ending in: #{@purchase.lastfour}
+    %h4 Cardholder's Email: #{@purchase.email}
   .col-xs-3

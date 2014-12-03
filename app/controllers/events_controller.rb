@@ -65,6 +65,10 @@ class EventsController < ApplicationController
     end
   end
 
+  def sold_out
+    @event = Event.find(params[:id])
+  end
+
   private
 
   def get_current_event

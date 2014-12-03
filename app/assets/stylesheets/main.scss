@@ -56,6 +56,11 @@ body {
   background-color: black;
 }
 
+table {
+  background-color: rgba(240, 240, 240, .9);
+  font-size: 120%;
+}
+
 h1 {
   color: $pink;
   font-family: "Audiowide";
@@ -647,6 +652,15 @@ div[class^="fold"] {
     min-width: 20%;
     max-width: 20%;
     margin: 0px auto;
+  }
+}
+
+form#event-purchases {
+  text-align: center;
+  #event-select {
+    min-width: 90%;
+    max-width: 90%;
+    text-align: left;
   }
 }
 

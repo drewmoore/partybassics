@@ -22,6 +22,8 @@ Rails.application.routes.draw do
       post '/pages/remove-content', to: 'pages#remove_content'
       post '/pages/add-graphic', to: 'pages#add_graphic'
       post '/pages/remove-graphic', to: 'pages#remove_graphic'
+      get '/purchases', to: 'purchases#index'
+      get '/purchases/per-event/:id', to: 'purchases#event_purchases'
     end
     unauthenticated :user do
       root 'welcome#index', as: :unauthenticated_root
@@ -36,6 +38,7 @@ Rails.application.routes.draw do
   get 'about-us' => 'welcome#about_us'
   resources :charges
   get '/charges/new/:id', to: 'charges#new'
+  get '/events/sold-out/:id', to: 'events#sold_out'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

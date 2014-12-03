@@ -1,0 +1,14 @@
+.row
+  .col-xs-12
+    .table-responsive
+      %table.table
+        %thead
+          %th Email
+          %th Confirmation #
+          %th # of Tickets
+        %tbody
+          - @event.purchases.each do |purchase|
+            %tr
+              %td=purchase.email
+              %td=purchase.conf_num
+              %td=purchase.quantity

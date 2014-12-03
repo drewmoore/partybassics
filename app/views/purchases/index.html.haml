@@ -1,0 +1,12 @@
+.row-form-row
+  .col-xs-3
+  .col-xs-6.admin-text.admin-top
+    %form#event-purchases
+      %fieldset
+        %select#event-select
+          - @events.each do |event|
+            %option{:value => event.id} #{event_date(event.date).strftime("%_m / %e / %y")} - #{event.title}
+
+  .col-xs-3
+.row
+  .col-xs-12.admin-text#event-purchases-content

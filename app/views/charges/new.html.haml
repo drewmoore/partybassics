@@ -27,13 +27,18 @@
           %label How Many?
         .col-xs-4
           %select#tickets-quantity
-            - (1..10).each do |num|
+            - ticket_diff = @event.ticket_limit.to_i - @event.tickets_sold.to_i
+            - if ticket_diff >= 10
+              - range = (1..10)
+            - else
+              - range = (1..ticket_diff)
+            - range.each do |num|
               %option{:value => num} #{num}
         .col-xs-4
       .row.form-row
         .col-xs-4
         .col-xs-4
-          %button#buy-tickets-button{ :data => { :key => @key, :event_id  => @event.id } } Buy That Shit, Yo!
+          %button#buy-tickets-button{ :data => { :key => @key, :event_id  => @event.id } } Buy Your Tickets!
         .col-xs-4
   .col-xs-3
 

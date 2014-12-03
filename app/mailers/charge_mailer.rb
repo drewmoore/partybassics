@@ -3,12 +3,9 @@ class ChargeMailer < ActionMailer::Base
   layout 'email'
   add_template_helper(EventsHelper)
 
-  def purchase_confirmation(email, event, quantity, amount, lastfour)
-    @email = email
+  def purchase_confirmation(purchase, event)
+    @purchase = purchase
     @event = event
-    @quantity = quantity
-    @amount = amount
-    @lastfour = lastfour
-    mail(to: @email, subject: "Ticket Confirmation from Party Bassics")
+    mail(to: @purchase.email, subject: "Ticket Confirmation from Party Bassics")
   end
 end
