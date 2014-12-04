@@ -9,14 +9,49 @@
   function initialize(){
     initializeEventHandlers();
     positionHeadsOneColumnCenter();
+    if($('#from-controller').val() === 'welcome'){
+      window.onpopstate = onPop;
+      saveState('initialize');
+    }
   }
 
   function initializeEventHandlers() {
-    $('.three-column-button').click(getWelcomeAbout);
-    $('.panorama-column-button').click(getEventsDisplay);
+    $('.three-column-button').click(threeColumnButtonClick);
+    $('.panorama-column-button').click(panoramaColumnButtonClick);
     $('.content-footer').mouseenter(tryptGlow);
     $('.content-footer').mouseleave(tryptFade);
     $('#facebook-event').click(getFacebookEvent);
+  }
+
+  function saveState(caller){
+    if($('#from-controller').val() === 'welcome'){
+      window.history.pushState(caller);
+    }
+  }
+
+  function originalState(){
+    window.location.reload();
+  }
+
+  function onPop(event){
+    var pageStates = {
+      initialize:originalState,
+      getWelcomeAbout:getWelcomeAbout,
+      getEventsDisplay:getEventsDisplay,
+      displayEvent:displayEvent
+    };
+    // Only apply if the event state is a function relevant to the customer interface.
+    if(event && pageStates[event.state]){
+      $('#content-body').empty();
+      pageStates[event.state]();
+    } else if(history.state !== 'initialize'){
+      window.history.back();
+    }
+  }
+
+  function threeColumnButtonClick(){
+    saveState('getWelcomeAbout');
+    getWelcomeAbout();
   }
 
   function getWelcomeAbout(){
@@ -30,6 +65,11 @@
   function receiveWelcomeAbout(){
     sizeThaEvent();
     tryptFade();
+  }
+
+  function panoramaColumnButtonClick(){
+    saveState('getEventsDisplay');
+    getEventsDisplay();
   }
 
   function getEventsDisplay(){
@@ -82,6 +122,7 @@
     }});
     $(window).unbind('resize');
     $(window).bind('resize', sizeThaEvent);
+    saveState('displayEvent');
   }
 
 
