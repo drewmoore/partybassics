@@ -17,6 +17,8 @@
 //= require twitter/bootstrap
 //= require facebook
 //= require main
+//= require pages
+//= require purchases
 //= require_tree .
 //= require turbolinks
 //= require jquery.turbolinks
