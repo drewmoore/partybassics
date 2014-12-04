@@ -3,7 +3,9 @@
   .col-xs-6.admin-text
     .row
       .col-xs-12.email-logo-image
-        =image_tag("logo-dark-email.png", alt: "")
+
+        //=image_tag(attachments["logo-dark-email.png"].url, alt: "")
+
     %h1 Your Ticket Confirmation
     %h4 Confirmation #: #{@purchase.conf_num}
     %h4 Event: #{@event.title}
