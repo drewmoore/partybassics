@@ -13,9 +13,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.scrollTo.min.js
+//= require lodash
 //= require twitter/bootstrap
+//= require facebook
+//= require main
+//= require_tree .
 //= require turbolinks
 //= require jquery.turbolinks
-//= require_tree .
-//= require lodash
-//= require facebook
