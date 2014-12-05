@@ -22,6 +22,7 @@
   }
 
   function searchByEmail(event){
+    event.preventDefault();
     var $self = $(this);
     var eventId = $self.attr('data-event-id');
     var searchString = $('#email-search-field').val();
@@ -29,10 +30,10 @@
       var url = '/purchases/per-event/' + eventId.toString() + '/email/' + searchString;
       $.ajax({url: url, type: 'get', success: function(){}});
     }
-    event.preventDefault();
   }
 
   function searchByConf(event){
+    event.preventDefault();
     var $self = $(this);
     var eventId = $self.attr('data-event-id');
     var searchString = $('#conf-search-field').val();
@@ -40,10 +41,10 @@
       var url = '/purchases/per-event/' + eventId.toString() + '/conf/' + searchString;
       $.ajax({url: url, type: 'get', success: function(){}});
     }
-    event.preventDefault();
   }
 
   function searchByLastFour(event){
+    event.preventDefault();
     var $self = $(this);
     var eventId = $self.attr('data-event-id');
     var searchString = $('#lastfour-search-field').val();
@@ -51,14 +52,13 @@
       var url = '/purchases/per-event/' + eventId.toString() + '/lastfour/' + searchString;
       $.ajax({url: url, type: 'get', success: function(){}});
     }
-    event.preventDefault();
   }
 
   function searchReset(event){
+    event.preventDefault();
     $('#email-search-field').val('');
     $('#conf-search-field').val('');
     selectEvent();
-    event.preventDefault();
   }
 
 })();

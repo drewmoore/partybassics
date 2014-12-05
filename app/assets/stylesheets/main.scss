@@ -2,6 +2,7 @@ $yellow: rgba(200, 175, 0, .9);
 $pink: rgba(230, 0, 90, .9);
 $panel-grey: rgba(10, 10, 10, .7);
 $veil-grey: rgba(10, 10, 10, .5);
+$light-grey: rgba(150, 150, 150, .9);
 $blue-cloud: rgba(66, 139, 202, .2);
 $blue-bright: #428bca;
 $white: rgba(175, 175, 175, .8);
@@ -59,6 +60,10 @@ body {
 table {
   background-color: rgba(240, 240, 240, .9);
   font-size: 120%;
+}
+
+button, input[type="submit"] {
+  background-color: $light-grey;
 }
 
 h1 {

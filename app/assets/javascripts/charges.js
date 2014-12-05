@@ -15,6 +15,7 @@
   }
 
   function buyTickets(event){
+    event.preventDefault();
     // Open Checkout with further options
     var eventName = $('#tickets-title').text();
     var eventQuantity = $('#tickets-quantity').val();
@@ -28,7 +29,6 @@
       image: $('.event-edit-flyer > img').attr('src'),
       key: $('#buy-tickets-button').attr('data-key')
     });
-    event.preventDefault();
   }
 
   function cardValidated(token){

@@ -5,12 +5,7 @@
       .row.form-row
         .col-xs-12.event-edit-flyer
           %h1 Get Tickets
-
-          - if File.exists? @event.flyer.versions[:portrait].path
-            =image_tag(asset_path(@event.flyer.versions[:portrait].display))
-          - elsif File.exists? @event.flyer.versions[:landscape].path
-            =image_tag(asset_path(@event.flyer.versions[:landscape].display))
-
+          =image_tag(flyer(@event, 'display'))
       .row.form-row
         .col-xs-12
           %h2#tickets-title= @event.title

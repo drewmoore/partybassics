@@ -7,11 +7,17 @@ class WelcomeController < ApplicationController
 
   def about_us
     url = "https://api.instagram.com/v1/users/1125041972/media/recent/?count=10&client_id=#{ENV["INSTA_CLIENT"]}&redirect_uri=http://localhost:3000&response_type=code"
-    response = Unirest::get url
     @pictures = []
+    begin
+      response = Unirest::get url
 
-    response.body["data"].each do |datum|
-      @pictures << datum["images"]["thumbnail"]["url"]
+      response.body["data"].each do |datum|
+        @pictures << datum["images"]["thumbnail"]["url"]
+      end
+
+    rescue
+      @pictures = []
+
     end
 
     respond_to do |format|

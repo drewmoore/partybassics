@@ -25,7 +25,7 @@
 
   function saveState(caller){
     if($('#from-controller').val() === 'welcome'){
-      window.history.pushState(caller);
+      window.history.pushState(caller, '', '');
     }
   }
 
@@ -285,6 +285,7 @@
   }
 
   function getFacebookEvent(event){
+    event.preventDefault();
     var facebookId = $('#event_facebook_id').val();
     FB.login(function(response){
       if(response.status === 'connected'){
@@ -311,7 +312,6 @@
         });
       }
     });
-    event.preventDefault();
   }
 
   function convertToMonthString(month){

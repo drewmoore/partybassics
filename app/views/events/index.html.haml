@@ -11,7 +11,7 @@
             - if !event.time.empty?
               %h5=event_time(event.time)
           .col-xs-12.events-index-cell-flyer
-            =image_tag(asset_path(event.flyer))
+            =image_tag(flyer(event, 'display'))
         .row
           .col-xs-12.events-index-cell-buttons
             = button_to "Edit", edit_event_path(event.id), :method => :get
