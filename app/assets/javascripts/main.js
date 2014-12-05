@@ -104,10 +104,11 @@
     positionHeadsThreeColumns();
     var $self = $(this);
     var $cell = $self.closest('.event-cell');
+    var url;
     if(stateData){
-      var url = '/events/display-one/' + stateData.id;
+      url = '/events/display-one/' + stateData.id;
     } else {
-      var url = '/events/display-one/' + $cell.attr('data-id');
+      url = '/events/display-one/' + $cell.attr('data-id');
       saveState({caller: 'displayEvent', data: {id: $cell.attr('data-id')}});
     }
     $.ajax({url:url, type:'get', success: function(){
