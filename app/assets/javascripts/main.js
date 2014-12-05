@@ -11,7 +11,7 @@
     positionHeadsOneColumnCenter();
     if($('#from-controller').val() === 'welcome'){
       window.onpopstate = onPop;
-      saveState('initialize');
+      saveState({caller: 'initialize'});
     }
   }
 
@@ -23,9 +23,9 @@
     $('#facebook-event').click(getFacebookEvent);
   }
 
-  function saveState(caller){
+  function saveState(state){
     if($('#from-controller').val() === 'welcome'){
-      window.history.pushState(caller, '', '');
+      window.history.pushState(state, '', '');
     }
   }
 
@@ -41,21 +41,24 @@
       displayEvent:displayEvent
     };
     // Only apply if the event state is a function relevant to the customer interface.
-    if(event && pageStates[event.state]){
-      $('#content-body').empty();
-      pageStates[event.state]();
-    } else if(history.state !== 'initialize'){
+    if(event && pageStates[event.state.caller]){
+      if(event.state.data){
+        pageStates[event.state.caller](event, event.state.data);
+      } else {
+        pageStates[event.state.caller]();
+      }
+    } else if(history.state.caller !== 'initialize'){
       window.history.back();
     }
   }
 
   function threeColumnButtonClick(){
-    saveState('getWelcomeAbout');
+    saveState({caller: 'getWelcomeAbout'});
+    $('#content-body').empty();
     getWelcomeAbout();
   }
 
   function getWelcomeAbout(){
-    $('#content-body').empty();
     tryptGlow();
     positionHeadsThreeColumns();
     $.ajax({url: '/about-us', type: 'get', success: receiveWelcomeAbout});
@@ -68,7 +71,8 @@
   }
 
   function panoramaColumnButtonClick(){
-    saveState('getEventsDisplay');
+    saveState({caller: 'getEventsDisplay'});
+    $('#content-body').empty();
     getEventsDisplay();
   }
 
@@ -93,6 +97,27 @@
     });
   }
 
+  function displayEvent(event, stateData){
+    // receives HTML from events#display_one and its partial
+    $('#content-body').empty();
+    tryptGlow();
+    positionHeadsThreeColumns();
+    var $self = $(this);
+    var $cell = $self.closest('.event-cell');
+    if(stateData){
+      var url = '/events/display-one/' + stateData.id;
+    } else {
+      var url = '/events/display-one/' + $cell.attr('data-id');
+      saveState({caller: 'displayEvent', data: {id: $cell.attr('data-id')}});
+    }
+    $.ajax({url:url, type:'get', success: function(){
+      sizeThaEvent();
+      tryptFade();
+    }});
+    $(window).unbind('resize');
+    $(window).bind('resize', sizeThaEvent);
+  }
+
   function scrollToCurrent(callback){
     var $cells = $('.event-cell');
     var currentId = $cells.attr('data-current');
@@ -107,24 +132,6 @@
     var scrollTime = 500;
     $('#events-scroll-window').scrollTo(position, 0, {duration: scrollTime, onAfter: callback});
   }
-
-  function displayEvent(){
-    // receives HTML from events#display_one and its partial
-    $('#content-body').empty();
-    tryptGlow();
-    positionHeadsThreeColumns();
-    var $self = $(this);
-    var $cell = $self.closest('.event-cell');
-    var url = '/events/display-one/' + $cell.attr('data-id');
-    $.ajax({url:url, type:'get', success: function(){
-      sizeThaEvent();
-      tryptFade();
-    }});
-    $(window).unbind('resize');
-    $(window).bind('resize', sizeThaEvent);
-    saveState('displayEvent');
-  }
-
 
   function positionHeadsOneColumnCenter() {
     $('div[class^="fold"]').css('left', '33%');
