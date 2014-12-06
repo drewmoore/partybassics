@@ -1,3 +1,6 @@
+- if !@page.title.empty?
+  %input#partial-title{:type => "hidden", :value => "#{@page.title}"}
+  <script>document.title = $('#partial-title').val()</script>
 #events-display-panel
   #events-arrow-left-container.arrow-container
     #events-arrow-left

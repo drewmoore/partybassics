@@ -20,7 +20,7 @@
 
 <div class="container-fluid">
 
-  <% if user_signed_in? %>
+  <% if user_signed_in? and params[:controller] != "welcome" %>
     <nav class="navbar navbar-default" role="navigation">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -61,16 +61,6 @@
 
               <% if current_user.role == "admin" %>
                 <li><a href="/pages/new">Create New</a></li>
-              <% end %>
-
-              <li class="divider"></li>
-              <li><a href="#"><strong>View:</strong></a></li>
-              <% if @pages %>
-                <% @pages.each do |page| %>
-                  <li>
-                    <%= link_to("#{page.title} | #{page.controller}##{page.action}", :controller => page.controller, :action => page.action) %>
-                  </li>
-                <% end %>
               <% end %>
             </ul>
           </li>

@@ -1,21 +1,38 @@
+- if !@page.title.empty?
+  %input#partial-title{:type => "hidden", :value => "#{@page.title}"}
+  <script>document.title = $('#partial-title').val()</script>
 #event-display-one
   .event-third
     .event-content-left.about-panel
-      %h2 Party With Us
+      - identifier = "instagram-panel-heading"
+      - text = @contents[identifier].text
+      %h2{:class => identifier}= text
       - @pictures.each do |pic|
         =image_tag(pic)
   .event-third
     .event-content-middle.about-panel
-      %h2 We Are Party Bassics
-      %p Today, Electric Forest announced ticket information and on sale dates for the 5th annual music and camping festival at the legendary Double JJ Ranch in Rothbury, Michigan. The festival, which will take place on June 25-28, 2015, has been hailed as one of the "20 legendary world festivals to see in your lifetime" (Distractify). Electric Forest 2015 promises to deliver the ultimate festival experience with its unparalleled integration of music, art and community.
+      - identifier = "main-info-panel-heading"
+      - text = @contents[identifier].text
+      %h2{:class => identifier}= text
+      - identifier = "main-info-panel-text"
+      - text = @contents[identifier].text
+      %p{:class => identifier}= text
   .event-third
     .event-content-right.about-panel
-      %h2 Contact Us
+      - identifier = "contact-info-panel-heading"
+      - text = @contents[identifier].text
+      %h2{:class => identifier}= text
       .about-contact
-        %h4 Professional
-        %a{:href => "mailto:partybassics@gmail.com", :target => "new"} <h5>partybassics@gmail.com</h5>
+        - identifier = "contact-info-content-heading"
+        - text = @contents[identifier].text
+        %h4{:class => identifier}= text
+        - identifier = "contact-info-content-main-email"
+        - text = @contents[identifier].text
+        %a{:href => "mailto:#{text}", :target => "new"} <h5>#{text}</h5>
       .about-contact
-        %h4 Social
+        - identifier = "social-info-content-heading"
+        - text = @contents[identifier].text
+        %h4{:class => identifier}= text
         %a{:href => "https://www.facebook.com/partybassicsusa", :target => "new"} <h5>facebook.com/partybassicsusa</h5>
         %a{:href => "https://www.facebook.com/groups/partybassics/", :target => "new"} <h5>facebook.com/groups/partybassics</h5>
         %a{:href => "https://twitter.com/partybassics", :target => "new"} <h5>@partybassics</h5>

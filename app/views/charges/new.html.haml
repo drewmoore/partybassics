@@ -4,7 +4,9 @@
     =form_tag charges_path do
       .row.form-row
         .col-xs-12.event-edit-flyer
-          %h1 Get Tickets
+          - identifier = "charges-new-main-heading"
+          - text = @contents[identifier].text
+          %h1{:class => "identifier"}= text
           =image_tag(flyer(@event, 'display'))
       .row.form-row
         .col-xs-12
@@ -13,13 +15,17 @@
 
       .row.form-row
         .col-xs-4
-          %label Price
+          - identifier = "charges-new-price-label"
+          - text = @contents[identifier].text
+          %label{:class => "identifier"}= text
         .col-xs-4
           %label#tickets-price= price(@event.price)
         .col-xs-4
       .row.form-row
         .col-xs-4
-          %label How Many?
+          - identifier = "charges-new-quantity-label"
+          - text = @contents[identifier].text
+          %label{:class => "identifier"}= text
         .col-xs-4
           %select#tickets-quantity
             - ticket_diff = @event.ticket_limit.to_i - @event.tickets_sold.to_i
@@ -33,7 +39,9 @@
       .row.form-row
         .col-xs-4
         .col-xs-4
-          %button#buy-tickets-button{ :data => { :key => @key, :event_id  => @event.id } } Buy Your Tickets!
+          - identifier = "charges-new-purchase-button"
+          - text = @contents[identifier].text
+          %button#buy-tickets-button{ :data => { :key => @key, :event_id  => @event.id }, :class => identifier }= text
         .col-xs-4
   .col-xs-3
 

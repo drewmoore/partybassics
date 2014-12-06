@@ -17,29 +17,47 @@
     #content-container.full-screen
       .content-panel.content-heading
         .logo
-          .logo-image{:style => "background-image: url(#{asset_path('logo-dark.png')})"}
-        %h1 Nashville's Premier Event Promotions
+          - identifier = "logo-image"
+          - image = @graphics[identifier].image
+          %div{:class => identifier, :style => "background-image: url(#{asset_path(image)})"}
+        - identifier = "heading-tagline"
+        - text = @contents[identifier].text
+        %h1{:class => identifier}= text
         .content-heading-controls
           .left-half
-            %button.three-column-button About / Contact
+            - identifier = "three-column-button"
+            - text = @contents[identifier].text
+            %button{:class => identifier}= text
           .right-half
-            %button.panorama-column-button Events / Tix
+            - identifier = "panorama-column-button"
+            - text = @contents[identifier].text
+            %button{:class => identifier}= text
 
       #content-body
 
       .content-panel.content-footer
         .row
           .col-xs-4
-            %small Follow Us on Social Media:
+            - identifier = "social-media-prompt"
+            - text = @contents[identifier].text
+            %small{:class => identifier}= text
             <div class="fb-like" data-layout="button" data-share="true" data-width="150" data-show-faces="false" data-href="https://www.facebook.com/partybassicsusa"></div>
           .col-xs-4
-            %small Join FB Group:
+            - identifier = "facebook-group-prompt"
+            - text = @contents[identifier].text
+            %small{:class => identifier}= text
             <div class="fb-like" data-layout="button" data-share="true" data-width="150" data-show-faces="false" data-href="https://www.facebook.com/groups/partybassics/"></div>
           .col-xs-4
-            %small Like this Website:
+            - identifier = "like-website-prompt"
+            - text = @contents[identifier].text
+            %small{:class => identifier}= text
             <div class="fb-like" data-layout="button" data-share="true" data-width="150" data-show-faces="false" data-href="http://partybassics.andrewwilliammoore.com"></div>
-            %small.admin-link <a href="users/sign_in" target="new">Admin</a>
+            - identifier = "admin-link"
+            - text = @contents[identifier].text
+            %small{:class => identifier} <a href="users/sign_in" target="new">#{text}</a>
         .row
           .col-xs-12
-            %small.creator Website by <a href="http://andrewwilliammoore.com" target="new">Drew Moore</a>
+            - identifier = "website-author-link"
+            - text = @contents[identifier].text
+            %small.creator{:class => identifier}= text.html_safe
 

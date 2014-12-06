@@ -1,9 +1,13 @@
 .row
   .col-xs-3
   .col-xs-6.admin-text.admin-top
-    %h1 Thank You
+    - identifier = "charges-receipt-page-heading"
+    - text = @contents[identifier].text
+    %h1{:class => "identifier"}= text
     %h5 You have just purchased #{@quantity} #{sin_plu(@quantity, "ticket")} to #{@event.title} for #{number_to_currency(@amount.to_f / 100.00) } on card ending in #{@lastfour}.
     %h5 Your purchase confirmation #: #{@purchase.conf_num}
     %p A confirmation email has just been sent to #{@email}. We'll see you on #{event_date(@event.date).strftime("%A, %B %d")}#{date_suffix(@event.date)}!
-    <a href="/"><h5>Go Back to the Bassics</h5></a>
+    - identifier = "charges-receipt-link-back"
+    - text = @contents[identifier].text
+    <a href="/"><h5 class="#{identifier}">#{text}</h5></a>
   .col-xs-3

@@ -1,3 +1,6 @@
+- if !@page.title.empty?
+  %input#partial-title{:type => "hidden", :value => "#{@page.title}"}
+  <script>document.title = $('#partial-title').val()</script>
 #event-display-one
   .event-third
     .event-poster-frame
@@ -16,10 +19,14 @@
 
       - if @event.price
         - if in_future?(@event) and !@event.price.empty?
-          %a{:href => "/charges/new/#{@event.id}", :target => "new"} <h5>Get Tickets</h5>
+          - identifier = "event-display-ticket-link"
+          - text = @contents[identifier].text
+          %a{:href => "/charges/new/#{@event.id}", :target => "new", :class => identifier} <h5>#{text}</h5>
 
       - if !@event.facebook_id.empty?
-        %a{:href => "http://facebook.com/events/#{@event.facebook_id}", :target => "new"} Check it out on Facebook
+        - identifier = "event-display-facebook-link"
+        - text = @contents[identifier].text
+        %a{:href => "http://facebook.com/events/#{@event.facebook_id}", :target => "new", :class => identifier}= text
 
       - if !@event.street.empty? and !@event.zip.empty?
         .event-map-container

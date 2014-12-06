@@ -21,6 +21,9 @@ class ApplicationController < ActionController::Base
     if session
       @pages = Page.all
     end
+    @page = Page.find_by(controller: params[:controller], action: params[:action])
+    @contents = get_contents @page
+    @graphics = get_graphics @page
   end
 
   private
