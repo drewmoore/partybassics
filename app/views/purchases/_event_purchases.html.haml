@@ -16,5 +16,5 @@
               %td=purchase.conf_num
               %td=purchase.lastfour
               %td=purchase.quantity
-              %td=purchase.created_at.strftime("%_m / %e / %_y")
+              %td=purchase.created_at.getlocal.strftime("%_m / %e / %_y")
               %td=number_to_currency(purchase.amount.to_i / 100)
