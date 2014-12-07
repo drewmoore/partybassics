@@ -1,20 +1,13 @@
-.row
-  .col-xs-3
-  .col-xs-6.admin-text
-    .row
-      .col-xs-12.email-logo-image
-        - identifier = "email-logo-image"
-        - image = @graphics[identifier].image.file.file
-        =image_tag(attachments[image].url, alt: "")
+- identifier = "email-ticket-confirmation-heading"
+- text = @contents[identifier].text
+%h1{:class => identifier}= text
 
-    %h1 Your Ticket Confirmation
-    %h4 Confirmation #: #{@purchase.conf_num}
-    %h4 Event: #{@event.title}
-    %h4 Venue: #{@event.venue}
-    %h4 Date: #{event_date(@event.date).strftime("%A, %B %d")}
-    %h4 Number of Tickets: #{@purchase.quantity} @ #{number_to_currency(@event.price.to_f)}
-    %h4 Amount Paid: #{number_to_currency(@purchase.amount.to_f / 100.00)}
-    %h4 Card Ending in: #{@purchase.lastfour}
-    %h4 Cardholder's Email: #{@purchase.email}
-    %h4 Date of Purchase: #{@purchase.created_at.getlocal.strftime("%m/%d/%y,%l:%M %P")}
-  .col-xs-3
+%h4 Confirmation #: #{@purchase.conf_num}
+%h4 Event: #{@event.title}
+%h4 Venue: #{@event.venue}
+%h4 Date: #{event_date(@event.date).strftime("%A, %B %d")}
+%h4 Number of Tickets: #{@purchase.quantity} @ #{number_to_currency(@event.price.to_f)}
+%h4 Amount Paid: #{number_to_currency(@purchase.amount.to_f / 100.00)}
+%h4 Card Ending in: #{@purchase.lastfour}
+%h4 Cardholder's Email: #{@purchase.email}
+%h4 Date of Purchase: #{@purchase.created_at.getlocal.strftime("%m/%d/%y,%l:%M %P")}

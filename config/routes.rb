@@ -27,6 +27,8 @@ Rails.application.routes.draw do
       get '/purchases/per-event/:id/email/:email_search_string', to: 'purchases#event_purchases'
       get '/purchases/per-event/:id/conf/:conf_search_string', to: 'purchases#event_purchases'
       get '/purchases/per-event/:id/lastfour/:lastfour_search_string', to: 'purchases#event_purchases'
+      get '/emails/new', to: 'emails#new'
+      post '/emails/create', to: 'emails#create'
     end
     unauthenticated :user do
       root 'welcome#index', as: :unauthenticated_root

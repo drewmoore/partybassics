@@ -7,4 +7,17 @@
     =stylesheet_link_tag 'main'
   %body
     .container-fluid
-      =yield
+      .row
+        .col-xs-3
+        .col-xs-6.admin-text
+          .row
+            .col-xs-12.email-logo-image
+              - identifier = "email-logo-image"
+              - image = @graphics[identifier].image.file.file
+              =image_tag(attachments[image].url, alt: "")
+          .row
+            .col-xs-12
+
+              =yield
+
+        .col-xs-3

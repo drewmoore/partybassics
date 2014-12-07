@@ -11,4 +11,12 @@ class Page < ActiveRecord::Base
     return graphics
   end
 
+  def get_contents
+    contents = {}
+    self.contents.each do |c|
+      contents[c.identifier] =c
+    end
+    return contents
+  end
+
 end
