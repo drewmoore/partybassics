@@ -1,0 +1,33 @@
+%h1= @event.title
+%h4=@event.venue
+%h5=event_date(@event.date).strftime("%A, %B %d %Y")
+- if !@event.time.empty? and !@event.city.empty?
+  %h5 #{@event.city}, #{event_time(@event.time)}
+
+%p= @text
+
+%div
+  - if @event.price
+    - if in_future?(@event) and !@event.price.empty?
+      - identifier = "event-display-ticket-link"
+      - text = @contents[identifier].text
+      %a{:href => "http://partybassics.com/charges/new/#{@event.id}", :target => "new", :class => identifier} <h5>#{text}</h5>
+
+  - if !@event.facebook_id.empty?
+    - identifier = "event-display-facebook-link"
+    - text = @contents[identifier].text
+    %a{:href => "http://facebook.com/events/#{@event.facebook_id}", :target => "new", :class => identifier} <h5>#{text}</h5>
+
+%div.email-two-panel
+  .inline-block-container.email-left
+    %p= @event.description
+
+  .inline-block-container.email-right
+    =image_tag(attachments["flyer.jpg"].url, alt: "")
+
+%div.email-two-panel
+  .inline-block-container.email-left
+    %small.creator Webservices by <a href="http://andrewwilliammoore.com" target="new">Drew Moore</a>
+
+  .inline-block-container.email-right
+    %small.creator <a href="http://partybassics.com/emails/unsubscribe/#{@contact}" target="new">Unsubscribe Me</a>

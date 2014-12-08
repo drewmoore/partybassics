@@ -1,0 +1,19 @@
+.row
+  .col-xs-3
+  .col-xs-6.admin-text.admin-top
+    =form_for @content do |f|
+      %fieldset
+        %legend Change Your Public Email
+        .row.form-row
+          .col-xs-4
+            =f.tag :text do
+              <label>Email Address</label>
+          .col-xs-4
+            =f.text_field :text
+          .col-xs-4
+        .row.form-row
+          .col-xs-4
+          .col-xs-4
+            =submit_tag "Send It!"
+          .col-xs-4
+  .col-xs-3

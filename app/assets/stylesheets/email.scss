@@ -1,0 +1,22 @@
+h4 {
+  text-align: center;
+}
+
+div {
+  vertical-align: top;
+}
+
+.email-two-panel {
+  text-align: center;
+  min-width: 100%;
+  max-width: 100%;
+  div {
+    min-width: 40%;
+  }
+  .email-left {
+    text-align: left;
+  }
+  .email-right {
+    text-align: center;
+  }
+}

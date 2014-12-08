@@ -1,0 +1,38 @@
+.row
+  .col-xs-3
+  .col-xs-6.admin-text.admin-top
+    =form_tag(controller: "emails", action: "event") do
+      %fieldset
+        %legend Promote an Event
+        .row.form-row
+          .col-xs-4
+            =label_tag(:event_id, "Which Event?")
+          .col-xs-4
+            - options = []
+            - @events.order(:date).each do |event|
+              - if in_future? event
+                - options << ["#{event.title} - #{event_date(event.date).strftime('%_m/%_d/%_y')}", event.id]
+            =select_tag(:event_id, options_for_select(options))
+          .col-xs-4
+        .row.form-row
+          .col-xs-4
+            =label_tag(:subject, "Subject")
+          .col-xs-4
+            =text_field_tag :subject
+          .col-xs-4
+        .row.form-row
+          .col-xs-4
+            =label_tag(:text, "Anything Extra To Say")
+          .col-xs-4
+            =text_area_tag :text
+            <small>The description and everything saved about your event will be included automatically.</small>
+          .col-xs-4
+        .row.form-row
+          .col-xs-4
+          .col-xs-4
+            =submit_tag "Send It!"
+            .row
+              .col-xs-12
+                %small This could take a little while to process all the flyer images and send them out...
+          .col-xs-4
+  .col-xs-3

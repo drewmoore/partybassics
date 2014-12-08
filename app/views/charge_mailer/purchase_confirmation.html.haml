@@ -10,4 +10,4 @@
 %h4 Amount Paid: #{number_to_currency(@purchase.amount.to_f / 100.00)}
 %h4 Card Ending in: #{@purchase.lastfour}
 %h4 Cardholder's Email: #{@purchase.email}
-%h4 Date of Purchase: #{@purchase.created_at.getlocal.strftime("%m/%d/%y,%l:%M %P")}
+%h4 Date of Purchase: #{@purchase.created_at.getlocal.strftime("%m/%d/%y, %l:%M %P")}
