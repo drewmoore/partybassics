@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_action :get_pages
+  before_action :get_pages, :get_blank_contact
   layout :layout_by_resource
   before_filter :update_sanitized_params, if: :devise_controller?
 
@@ -24,6 +24,10 @@ class ApplicationController < ActionController::Base
     @page = Page.find_by(controller: params[:controller], action: params[:action])
     @contents = get_contents @page
     @graphics = get_graphics @page
+  end
+
+  def get_blank_contact
+    @contact = Contact.new
   end
 
   private

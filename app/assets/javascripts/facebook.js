@@ -1,10 +1,5 @@
-var FBuser = {};
-
 // This is called with the results from from FB.getLoginStatus().
 function statusChangeCallback(response) {
-  console.log('statusChangeCallback');
-  console.log(response);
-
   // The response object is returned with a status field that lets the
   // app know the current login status of the person.
   // Full docs on the response object can be found in the documentation
@@ -72,12 +67,20 @@ FB.getLoginStatus(function(response) {
 // Here we run a very simple test of the Graph API after login is
 // successful.  See statusChangeCallback() for when this call is made.
 function testAPI() {
-  console.log('Welcome!  Fetching your information.... ');
   FB.api('/me', function(response) {
-    console.log('Successful login for: ' + response.name);
-    FBuser = response;
-    //document.getElementById('status').innerHTML =
-    //  'Thanks for logging in, ' + response.name + '!';
+    populateContactForm(response);
   });
+}
+
+function populateContactForm(response){
+  var $form = $('#new_contact');
+  $('#contact_email').val(response.email);
+  $('#contact_facebook_id').val(response.id);
+  $('#contact_facebook_link').val(response.link);
+  $('#contact_gender').val(response.gender);
+  $('#contact_first_name').val(response.first_name);
+  $('#contact_last_name').val(response.last_name);
+  $('#contact_full_name').val(response.name);
+  $form.submit();
 }
 

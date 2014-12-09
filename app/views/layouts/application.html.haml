@@ -124,4 +124,15 @@
               %p.error
                 = flash[:error]
       %input#from-controller{:type => "hidden", :value => params[:controller]}/
+
+      =form_for @contact, url: {controller: "contacts", action: "create"}, remote: true  do |f|
+        =f.hidden_field :email
+        =f.hidden_field :facebook_id
+        =f.hidden_field :facebook_link
+        =f.hidden_field :gender
+        =f.hidden_field :first_name
+        =f.hidden_field :last_name
+        =f.hidden_field :full_name
+
+
       = yield

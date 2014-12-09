@@ -15,6 +15,9 @@ class ChargesController < ApplicationController
     @email = params[:email]
     @amount = params[:amount]
     @lastfour = params[:lastfour]
+
+    Contact.create(email: @email)
+
     ticket_diff = @event.ticket_limit.to_i - @event.tickets_sold.to_i
     if @quantity.to_i <= ticket_diff
       begin

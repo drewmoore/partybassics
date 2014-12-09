@@ -47,6 +47,7 @@ Rails.application.routes.draw do
   resources :charges
   get '/charges/new/:id', to: 'charges#new'
   get '/events/sold-out/:id', to: 'events#sold_out'
+  post '/contacts/create', to: 'contacts#create'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -11,7 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141203012726) do
+ActiveRecord::Schema.define(version: 20141209064645) do
+
+  create_table "contacts", force: true do |t|
+    t.string   "email",             default: ""
+    t.string   "facebook_id",       default: ""
+    t.string   "facebook_link",     default: ""
+    t.string   "gender",            default: ""
+    t.integer  "tickets_purchased", default: 0
+    t.string   "first_name",        default: ""
+    t.string   "last_name",         default: ""
+    t.string   "full_name",         default: ""
+    t.boolean  "unsubscribed",      default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "contents", force: true do |t|
     t.datetime "created_at"
