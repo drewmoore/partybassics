@@ -1,5 +1,8 @@
 .row
   .col-xs-3
   .col-xs-6.admin-text.admin-top
-    %p <strong>#{@contact.email}</strong> has been unsubscribed.
+    - if @contact.unsubscribed === true
+      %p <strong>#{@contact.email}</strong> has been unsubscribed.
+    - else
+      %p You haven't changed your preferences.
   .col-xs-3

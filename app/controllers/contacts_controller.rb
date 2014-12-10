@@ -10,6 +10,22 @@ class ContactsController < ApplicationController
     render nothing:true
   end
 
+  def subscribe
+    @contact = Contact.new
+  end
+
+  def subscribe_this
+    @email = contact_params[:email]
+    pre = Contact.find_by("email LIKE ?", contact_params[:email])
+    if pre
+      attribute = {unsubscribed: false}
+      pre.update_attributes(attribute)
+    else
+      @contact = Contact.new(contact_params)
+      @contact.save
+    end
+  end
+
   def unsubscribe
     @contact = Contact.find(params[:id])
   end

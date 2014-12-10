@@ -56,8 +56,14 @@
             - text = @contents[identifier].text
             %small{:class => identifier} <a href="users/sign_in" target="new">#{text}</a>
         .row
-          .col-xs-12
+          .col-xs-3
+          .col-xs-3
+            - identifier = "email-list-subscribe-link"
+            - text = @contents[identifier].text
+            %small.creator{:class => identifier}= text.html_safe
+          .col-xs-3
             - identifier = "website-author-link"
             - text = @contents[identifier].text
             %small.creator{:class => identifier}= text.html_safe
+          .col-xs-3
 
