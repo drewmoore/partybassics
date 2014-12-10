@@ -10,9 +10,18 @@ class ContactsController < ApplicationController
     render nothing:true
   end
 
+  def unsubscribe
+    @contact = Contact.find(params[:id])
+  end
+
+  def update
+    @contact = Contact.find(params[:id])
+    @contact.update_attributes(contact_params)
+  end
+
   private
 
   def contact_params
-    params.require(:contact).permit(:email, :facebook_id, :facebook_link, :gender, :first_name, :last_name, :full_name)
+    params.require(:contact).permit(:email, :facebook_id, :facebook_link, :gender, :first_name, :last_name, :full_name, :unsubscribed)
   end
 end

@@ -48,6 +48,8 @@ Rails.application.routes.draw do
   get '/charges/new/:id', to: 'charges#new'
   get '/events/sold-out/:id', to: 'events#sold_out'
   post '/contacts/create', to: 'contacts#create'
+  get '/contacts/unsubscribe/:id', to: 'contacts#unsubscribe'
+  patch '/contacts/update/:id', to: 'contacts#update'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

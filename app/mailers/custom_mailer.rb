@@ -3,10 +3,11 @@ class CustomMailer < ActionMailer::Base
   helper 'events'
   layout 'email'
 
-  def mass_email(subject, text, to)
+  def mass_email(subject, text, contact)
     @layout = Page.find_by("controller LIKE ? and action LIKE ?", "mailers", "template")
     @subject = subject || @layout.title
     @text = text || ""
+    @contact = contact
     @layout_contents = @layout.get_contents
     @graphics = @layout.get_graphics
     @layout.graphics.each do |graphic|
@@ -14,7 +15,7 @@ class CustomMailer < ActionMailer::Base
       attachments.inline[graphic.image.file.file] = File.read image_file
     end
     main_email = @layout_contents["contact-info-content-main-email"].text
-    mail(subject: @subject, to: to, from: main_email).deliver
+    mail(subject: @subject, to: @contact.email, from: main_email).deliver
   end
 
   def send_event(event, subject, text, contact)
@@ -23,6 +24,7 @@ class CustomMailer < ActionMailer::Base
     @page = Page.find_by("controller LIKE ? and action LIKE ?", "mailers", "send_event")
     @subject = subject || @layout.title
     @text = text || ""
+    @contact = contact
     @layout_contents = @layout.get_contents
     @contents = @page.get_contents
     @graphics = @layout.get_graphics
@@ -37,8 +39,7 @@ class CustomMailer < ActionMailer::Base
       image_file = @event.flyer.versions[:landscape].display.current_path.to_s
       attachments.inline["flyer.jpg"] = File.read image_file
     end
-    @contact = contact
     main_email = @layout_contents["contact-info-content-main-email"].text
-    mail(subject: @subject, to: @contact, from: main_email).deliver
+    mail(subject: @subject, to: @contact.email, from: main_email).deliver
   end
 end

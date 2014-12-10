@@ -7,7 +7,7 @@ class EmailsController < ApplicationController
   def create
     @subject = params[:subject]
     @text = params[:text]
-    list = ["drew@noiseshift.com", "fireisborn@noiseshift.com", "teloaster@yahoo.com"]
+    list = Contact.where("unsubscribed LIKE ?", false)
     list.each do |contact|
       CustomMailer.mass_email(@subject, @text, contact)
     end
@@ -27,7 +27,7 @@ class EmailsController < ApplicationController
     @event = Event.find(params[:event_id])
     @subject = params[:subject]
     @text = params[:text]
-    list = ["drew@noiseshift.com", "fireisborn@noiseshift.com", "teloaster@yahoo.com"]
+    list = Contact.where("unsubscribed LIKE ?", false)
     list.each do |contact|
       CustomMailer.send_event(@event, @subject, @text, contact)
     end
