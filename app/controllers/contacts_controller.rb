@@ -1,6 +1,12 @@
 class ContactsController < ApplicationController
   def create
-    @contact = Contact.create(contact_params)
+    pre = Contact.find_by("email LIKE ?", contact_params[:email])
+    if pre
+      pre.update_attributes(contact_params)
+    else
+      @contact = Contact.new(contact_params)
+      @contact.save
+    end
     render nothing:true
   end
 

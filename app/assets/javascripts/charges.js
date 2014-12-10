@@ -32,7 +32,7 @@
   }
 
   function cardValidated(token){
-    var $form = $('form');
+    var $form = $('#new-charge');
     var eventQuantity = $('#tickets-quantity').val();
     var eventPrice = $('#tickets-price').text();
     var purchaseAmount = (parseFloat(eventQuantity) * parseFloat(eventPrice.split('$')[1])) * 100;

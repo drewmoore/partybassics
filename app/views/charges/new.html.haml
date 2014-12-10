@@ -1,7 +1,7 @@
 .row
   .col-xs-3
   .col-xs-6.admin-text.admin-top
-    =form_tag charges_path do
+    =form_tag charges_path, :id => "new-charge" do
       .row.form-row
         .col-xs-12.event-edit-flyer
           - identifier = "charges-new-main-heading"
