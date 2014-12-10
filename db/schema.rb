@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141209064645) do
+ActiveRecord::Schema.define(version: 20141210214810) do
 
   create_table "contacts", force: true do |t|
     t.string   "email",             default: ""
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20141209064645) do
     t.boolean  "unsubscribed",      default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "unfacebooked",      default: false
   end
 
   create_table "contents", force: true do |t|

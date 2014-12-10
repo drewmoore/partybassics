@@ -69,6 +69,10 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
+  def fb_promote
+    @contacts = Contact.where("unfacebooked LIKE ?", false)
+  end
+
   private
 
   def get_current_event

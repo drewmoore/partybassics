@@ -10,6 +10,7 @@ class CreateContacts < ActiveRecord::Migration
       t.string :last_name, default: ""
       t.string :full_name, default: ""
       t.boolean :unsubscribed, default: false
+      t.boolean :unfacebooked, default: false
 
       t.timestamps
     end

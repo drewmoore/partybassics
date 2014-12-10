@@ -1,0 +1,11 @@
+.row.form-row
+  .col-xs-12.admin-text.admin-top
+    .row.form-row
+      .col-xs-3
+      .col-xs-6.admin-text
+        %ul
+          - @contacts.each do |contact|
+            %li
+              %a.fb-contact-link{:href => "#{contact.facebook_link}", :target => "new"} #{contact.full_name}
+      .col-xs-3
+

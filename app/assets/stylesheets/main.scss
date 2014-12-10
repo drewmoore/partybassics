@@ -688,6 +688,12 @@ form#event-purchases {
   }
 }
 
+.fb-contact-link {
+  &:visited {
+    color: $pink;
+  }
+}
+
 
 
 

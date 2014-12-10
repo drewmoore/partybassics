@@ -39,6 +39,11 @@
                     %a{:href => "/events"} Edit
                   %li
                     %a{:href => "/events/new"} Create New
+                  %li
+                    %a{:href => "#"}
+                      %strong Promote:
+                  %li
+                    %a{:href => "/emails/event"} New Event Email
               %li.dropdown
                 %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
                   Purchases
@@ -90,6 +95,13 @@
                     %a{:href => "/emails/event"} New Event Email
                   %li
                     %a{:href => "/emails/change"} Change Public Address
+              %li.dropdown
+                %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                  Facebook
+                  %span.caret
+                %ul.dropdown-menu{:role => "menu"}
+                  %li
+                    %a{:href => "/events/fb-promote"} Contacts
             %ul.nav.navbar-nav.navbar-right
               %li.dropdown
                 %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       root :to => 'welcome#index'
       get 'events/display' => 'events#display'
       get 'events/display-one/:id', to: 'events#display_one'
+      get 'events/fb-promote', to: 'events#fb_promote'
       resources :pages
       resources :contents
       resources :graphics

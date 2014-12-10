@@ -3,6 +3,12 @@
   .col-xs-6.admin-text.admin-top
     - if @contact.unsubscribed === true
       %p <strong>#{@contact.email}</strong> has been unsubscribed.
+
+      %hr
+      %p Wait! I made a mistake. Take me back...
+      - identifier = "email-list-subscribe-link"
+      - text = @contents[identifier].text
+      %small.creator{:class => identifier}= text.html_safe
     - else
       %p You haven't changed your preferences.
   .col-xs-3
