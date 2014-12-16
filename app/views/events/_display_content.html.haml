@@ -14,5 +14,5 @@
 - if !@event.facebook_id.empty?
   - identifier = "event-display-facebook-link"
   - text = @contents[identifier].text
-  %a{:href => "http://facebook.com/events/#{@event.facebook_id}", :target => "new", :class => identifier}= text
+  %a{:href => "//facebook.com/events/#{@event.facebook_id}", :target => "new", :class => identifier}= text
 
