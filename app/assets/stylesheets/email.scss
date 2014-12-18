@@ -15,8 +15,12 @@ div {
   }
   .email-left {
     text-align: left;
+    min-width: 40%;
+    max-width: 40%;
   }
   .email-right {
     text-align: center;
+    min-width: 40%;
+    max-width: 40%;
   }
 }

@@ -4,6 +4,7 @@ class ChargeMailer < ActionMailer::Base
 
   def purchase_confirmation(purchase, event)
     @purchase = purchase
+    @contact = Contact.find_by("id", @purchase.email) || Contact.create(email: @purchase.email)
     @event = event
     @layout = Page.find_by("controller LIKE ? and action LIKE ?", "mailers", "template")
     @page = Page.find_by("controller LIKE ? and action LIKE ?", "charge_mailers", "purchase_confirmation")

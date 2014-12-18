@@ -1,22 +1,25 @@
 %h1= @event.title
-%h4=@event.venue
-%h5=event_date(@event.date).strftime("%A, %B %d %Y")
-- if !@event.time.empty? and !@event.city.empty?
-  %h5 #{@event.city}, #{event_time(@event.time)}
 
-%p= @text
+%div.email-two-panel
+  .inline-block-container.email-left
+    %p= @text
 
-%div
-  - if @event.price
-    - if in_future?(@event) and !@event.price.empty?
-      - identifier = "event-display-ticket-link"
+  .inline-block-container.email-right
+    %h4=@event.venue
+    %h5=event_date(@event.date).strftime("%A, %B %d %Y")
+    - if !@event.time.empty? and !@event.city.empty?
+      %h5 #{@event.city}, #{event_time(@event.time)}
+
+    - if @event.price
+      - if in_future?(@event) and !@event.price.empty?
+        - identifier = "event-display-ticket-link"
+        - text = @contents[identifier].text
+        %a{:href => "https://partybassics.com/charges/new/#{@event.id}", :target => "new", :class => identifier} <h5>#{text}</h5>
+
+    - if !@event.facebook_id.empty?
+      - identifier = "event-display-facebook-link"
       - text = @contents[identifier].text
-      %a{:href => "//partybassics.com/charges/new/#{@event.id}", :target => "new", :class => identifier} <h5>#{text}</h5>
-
-  - if !@event.facebook_id.empty?
-    - identifier = "event-display-facebook-link"
-    - text = @contents[identifier].text
-    %a{:href => "//facebook.com/events/#{@event.facebook_id}", :target => "new", :class => identifier} <h5>#{text}</h5>
+      %a{:href => "https://facebook.com/events/#{@event.facebook_id}", :target => "new", :class => identifier} <h5>#{text}</h5>
 
 %div.email-two-panel
   .inline-block-container.email-left

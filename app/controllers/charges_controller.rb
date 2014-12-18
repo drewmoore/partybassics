@@ -17,6 +17,9 @@ class ChargesController < ApplicationController
     @lastfour = params[:lastfour]
 
     Contact.create(email: @email)
+    @contact = Contact.find_by("email LIKE ?", @email)
+    @contact.tickets_purchased += @quantity.to_i 
+    @contact.save
 
     ticket_diff = @event.ticket_limit.to_i - @event.tickets_sold.to_i
     if @quantity.to_i <= ticket_diff
