@@ -94,6 +94,10 @@ a {
   margin: 1em;
 }
 
+.text-center {
+  text-align: center;
+}
+
 #folds-container {
   position: relative;
   z-index: -1;
@@ -157,6 +161,11 @@ a {
   height: 100%;
   min-height: 100%;
   width: 33%;
+}
+
+.site-container-container {
+  height: 97%;
+  min-height: 97%;
 }
 
 .site-container {
@@ -228,6 +237,107 @@ div[class^="fold"] {
   border-radius: 30px;
 }
 
+.ticket-panel-container {
+  position: relative;
+  min-height: 98%;
+  max-height: 98%;
+  height: 98%;
+  margin: 0.5% auto 0px auto;
+  overflow: auto;
+  text-align: center;
+}
+
+.ticket-panel {
+  position: absolute;
+  min-height: 96%;
+  height: 96%;
+  min-width: 98%;
+  width: 98%;
+  text-align: left;
+  overflow: auto;
+  .form-row {
+    margin: 2em auto;
+  }
+  h2, h4, h5 {
+    text-align: center;
+    margin: 3% auto;
+  }
+  h2 {
+    font-size: 130%;
+    font-weight: 500;
+    font-family: "Audiowide";
+    color: $blue-bright;
+    text-shadow: 0px 0px 20px rgba(250, 250, 75, .9);
+  }
+  label {
+    font-size: 120%;
+    font-weight: 600;
+    font-family: "Oswald-Regular";
+    color: $white;
+  }
+  h5 {
+    font-size: 100%;
+    font-weight: 600;
+    color: $white;
+    font-family: "Oswald-Regular";
+  }
+  p {
+    color: $white;
+    font-size: 100%;
+    font-weight: 400;
+    font-family: "Oswald-Regular";
+  }
+  a, a > h5 {
+    font-family: "Audiowide";
+    color: $yellow;
+    text-align: left;
+  }
+  #tickets-quantity {
+    width: 100%;
+  }
+}
+
+.ticket-panel-row {
+  min-height: 30%;
+  width: 95%;
+  position: relative;
+}
+
+.ticket-panel-col {
+  min-height: 100%;
+  position: relative;
+}
+
+.ticket-panel-poster-frame {
+  position: absolute;
+  min-height: 98%;
+  max-height: 98%;
+  height: 98%;
+  min-width: 98%;
+  max-width: 98%;
+  width: 98%;
+}
+
+.ticket-panel-poster {
+  position: absolute;
+  min-width: 98%;
+  max-width: 98%;
+  min-height: 92%;
+  max-height: 92%;
+  height: 98%;
+  background-position: center;
+  background-repeat: no-repeat;
+  &.portrait {
+    background-size: 35% 100%;
+    background-position: center;
+  }
+  &.landscape {
+    background-size: 49% 94%;
+    background-position: center;
+  }
+
+}
+
 .content-heading {
   position: relative;
   min-width: 80%;
@@ -293,7 +403,7 @@ div[class^="fold"] {
   right: 0;
 }
 
-.panorama-column-button, .three-column-button {
+.panorama-column-button, .three-column-button, #buy-tickets-button {
   min-width: 60%;
   max-width: 60%;
   font-family: "Audiowide";
@@ -316,11 +426,18 @@ div[class^="fold"] {
   }
 }
 
+#buy-tickets-button {
+  min-width: 75%;
+  max-width: 75%;
+  width: 75%;
+}
+
+
 #content-body {
   min-width: 100%;
   max-width: 100%;
-  min-height: 68%;
-  max-height: 70%;
+  min-height: 65%;
+  max-height: 68%;
   margin: 0px auto;
   text-align: left;
   position: absolute;
@@ -565,6 +682,7 @@ div[class^="fold"] {
   }
   .event-map-container {
     text-align: center;
+    overflow: hidden;
     iframe {
       width: 80%;
       height: 40%;

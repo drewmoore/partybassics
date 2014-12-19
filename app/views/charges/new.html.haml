@@ -1,48 +1,57 @@
-.row
-  .col-xs-3
-  .col-xs-6.admin-text.admin-top
-    =form_tag charges_path, :id => "new-charge" do
-      .row.form-row
-        .col-xs-12.event-edit-flyer
-          - identifier = "charges-new-main-heading"
-          - text = @contents[identifier].text
-          %h1{:class => "identifier"}= text
-          =image_tag(flyer(@event, 'display'))
-      .row.form-row
-        .col-xs-12
-          %h2#tickets-title= @event.title
-          %h5= event_date(@event.date).strftime("%a, %b %d")
+.row.site-container-container.full-screen
+  .col-xs-12.site-container.full-screen
+    =render partial: 'welcome/heads_backdrop'
 
-      .row.form-row
-        .col-xs-4
-          - identifier = "charges-new-price-label"
-          - text = @contents[identifier].text
-          %label{:class => "identifier"}= text
-        .col-xs-4
-          %label#tickets-price= price(@event.price)
-        .col-xs-4
-      .row.form-row
-        .col-xs-4
-          - identifier = "charges-new-quantity-label"
-          - text = @contents[identifier].text
-          %label{:class => "identifier"}= text
-        .col-xs-4
-          %select#tickets-quantity
-            - ticket_diff = @event.ticket_limit.to_i - @event.tickets_sold.to_i
-            - if ticket_diff >= 10
-              - range = (1..10)
-            - else
-              - range = (1..ticket_diff)
-            - range.each do |num|
-              %option{:value => num} #{num}
-        .col-xs-4
-      .row.form-row
-        .col-xs-4
-        .col-xs-4
-          - identifier = "charges-new-purchase-button"
-          - text = @contents[identifier].text
-          %button#buy-tickets-button{ :data => { :key => @key, :event_id  => @event.id }, :class => identifier }= text
-        .col-xs-4
-  .col-xs-3
+    #content-container.full-screen
+      .row.full-screen
+        .col-xs-3
+        .col-xs-6.content-panel.ticket-panel-container
+          .ticket-panel
+            .row.form-row
+              .col-xs-12
+                - identifier = "charges-new-main-heading"
+                - text = @contents[identifier].text
+                %h1{:class => "identifier"}= text
+            .row.form-row.ticket-panel-row
+              .ticket-panel-poster-frame
+                - if File.exists? @event.flyer.versions[:portrait].path
+                  .ticket-panel-poster.portrait{:style => "background-image: url(#{asset_path(@event.flyer.versions[:portrait])})"}
+                - elsif File.exists? @event.flyer.versions[:landscape].path
+                  .ticket-panel-poster.landscape{:style => "background-image: url(#{asset_path(@event.flyer.versions[:landscape])})"}
+            .row.form-row
+              .col-xs-12
+                %h1#tickets-title= @event.title
+            .row.form-row
+              .col-xs-12
+                %h2= event_date(@event.date).strftime("%a, %b %d")
+
+            =form_tag charges_path, :id => "new-charge" do
+              .row.form-row
+                .col-xs-4
+                  - identifier = "charges-new-price-label"
+                  - text = @contents[identifier].text
+                  %label{:class => "identifier"}= text
+                .col-xs-8
+                  %label#tickets-price= price(@event.price)
+              .row.form-row
+                .col-xs-4
+                  - identifier = "charges-new-quantity-label"
+                  - text = @contents[identifier].text
+                  %label{:class => "identifier"}= text
+                .col-xs-8
+                  %select#tickets-quantity
+                    - ticket_diff = @event.ticket_limit.to_i - @event.tickets_sold.to_i
+                    - if ticket_diff >= 10
+                      - range = (1..10)
+                    - else
+                      - range = (1..ticket_diff)
+                    - range.each do |num|
+                      %option{:value => num} #{num}
+              .row.form-row
+                .col-xs-12.text-center
+                  - identifier = "charges-new-purchase-button"
+                  - text = @contents[identifier].text
+                  %button#buy-tickets-button{ :data => { :key => @key, :event_id  => @event.id }, :class => identifier }= text
+        .col-xs-3
 
 

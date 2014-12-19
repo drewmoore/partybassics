@@ -1,0 +1,4 @@
+- if File.exists? @event.flyer.versions[:portrait].path
+  .event-poster.portrait{:style => "background-image: url(#{asset_path(@event.flyer.versions[:portrait])})"}
+- elsif File.exists? @event.flyer.versions[:landscape].path
+  .event-poster.landscape{:style => "background-image: url(#{asset_path(@event.flyer.versions[:landscape])})"}

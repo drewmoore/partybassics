@@ -15,6 +15,7 @@
   }
 
   function buyTickets(event){
+    tryptGlow();
     event.preventDefault();
     // Open Checkout with further options
     var eventName = $('#tickets-title').text();
@@ -44,6 +45,10 @@
     $form.append($('<input type="hidden" name="event-id" />').val(eventId));
     $form.append($('<input type="hidden" name="quantity" />').val(eventQuantity));
     $form.submit();
+  }
+
+  function tryptGlow(){
+    $('[class^="trypt-bright"]').animate({'opacity': '1'}, 1500);
   }
 
 })();
