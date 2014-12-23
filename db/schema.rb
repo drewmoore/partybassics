@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141210214810) do
+ActiveRecord::Schema.define(version: 20141222065156) do
 
   create_table "contacts", force: true do |t|
     t.string   "email",             default: ""
@@ -26,6 +26,11 @@ ActiveRecord::Schema.define(version: 20141210214810) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "unfacebooked",      default: false
+  end
+
+  create_table "contacts_visitors", id: false, force: true do |t|
+    t.integer "contact_id", null: false
+    t.integer "visitor_id", null: false
   end
 
   create_table "contents", force: true do |t|
@@ -111,5 +116,15 @@ ActiveRecord::Schema.define(version: 20141210214810) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+
+  create_table "visitors", force: true do |t|
+    t.string   "ip"
+    t.integer  "visits",     default: 1
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "contact_id"
+  end
+
+  add_index "visitors", ["contact_id"], name: "index_visitors_on_contact_id"
 
 end

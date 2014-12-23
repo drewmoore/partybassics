@@ -1,0 +1,52 @@
+.row
+  .col-xs-3
+  .col-xs-6.admin-text.admin-top
+    %form
+      %fieldset
+        %legend Your Site's Stats
+        .row.form-row
+          .col-xs-6
+            %label Total # of Site Visits
+            .row
+              .col-xs-12
+                %small How many times your homepage has been loaded
+          .col-xs-6
+            %label= @total_visits
+        .row.form-row
+          .col-xs-6
+            %label # of Unique Visitors
+            .row
+              .col-xs-12
+                %small An estimate of how many actual people have used the site.
+          .col-xs-6
+            %label= @unique_visitors
+        .row.form-row
+          .col-xs-6
+            %label # of Contacts
+            .row
+              .col-xs-12
+                %small How many people have registered their email or Facebook-liked.
+          .col-xs-6
+            %label= @num_contacts
+            .row
+              .col-xs-6
+                %small Email Only:
+              .col-xs-6
+                %small= @num_email
+        .row.form-row
+          .col-xs-6
+            %label # of Purchases
+            .row
+              .col-xs-12
+                %small How many tickets have been sold.
+          .col-xs-6
+            %label= @num_purchases
+        .row.form-row
+          .col-xs-6
+            %label # of Paying Customers
+            .row
+              .col-xs-12
+                %small How many people have bought at least one ticket.
+          .col-xs-6
+            %label= @num_paying
+  .col-xs-3

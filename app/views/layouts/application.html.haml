@@ -86,22 +86,30 @@
                       %a{:href => "/graphics/new"} Create New
               %li.dropdown
                 %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                  Email
+                  Communicate
                   %span.caret
                 %ul.dropdown-menu{:role => "menu"}
+                  %li
+                    %a{:href => "#"}
+                      %strong Email:
                   %li
                     %a{:href => "/emails/new"} New Mass Email
                   %li
                     %a{:href => "/emails/event"} New Event Email
                   %li
                     %a{:href => "/emails/change"} Change Public Address
+                  %li
+                    %a{:href => "#"}
+                      %strong Facebook:
+                  %li
+                    %a{:href => "/events/fb-promote"} Your Likes
               %li.dropdown
                 %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                  Facebook
+                  Metrics
                   %span.caret
                 %ul.dropdown-menu{:role => "menu"}
                   %li
-                    %a{:href => "/events/fb-promote"} Contacts
+                    %a{:href => "/contacts/metrics"} Visitor Stats
             %ul.nav.navbar-nav.navbar-right
               %li.dropdown
                 %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
@@ -145,6 +153,8 @@
         =f.hidden_field :first_name
         =f.hidden_field :last_name
         =f.hidden_field :full_name
+        - if @visitor
+          =f.hidden_field :visitor_id, :value => "#{@visitor.id}"
 
 
       = yield

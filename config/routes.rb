@@ -33,6 +33,7 @@ Rails.application.routes.draw do
       get '/emails/event', to: 'emails#event'
       post '/emails/create', to: 'emails#create'
       post '/emails/event', to: 'emails#send_event'
+      get '/contacts/metrics', to: 'contacts#metrics'
     end
     unauthenticated :user do
       root 'welcome#index', as: :unauthenticated_root

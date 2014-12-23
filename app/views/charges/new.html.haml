@@ -7,11 +7,6 @@
         .col-xs-3
         .col-xs-6.content-panel.ticket-panel-container
           .ticket-panel
-            .row.form-row
-              .col-xs-12
-                - identifier = "charges-new-main-heading"
-                - text = @contents[identifier].text
-                %h1{:class => "identifier"}= text
             .row.form-row.ticket-panel-row
               .ticket-panel-poster-frame
                 - if File.exists? @event.flyer.versions[:portrait].path
