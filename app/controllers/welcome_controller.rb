@@ -17,4 +17,7 @@ class WelcomeController < ApplicationController
       format.js
     end
   end
+
+  def privacy
+  end
 end
