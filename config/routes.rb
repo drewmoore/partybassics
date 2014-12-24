@@ -14,6 +14,9 @@ Rails.application.routes.draw do
       get 'events/display' => 'events#display'
       get 'events/display-one/:id', to: 'events#display_one'
       get 'events/fb-promote', to: 'events#fb_promote'
+      get 'events/archive', to: 'events#archive'
+      post 'events/:id/hide', to: 'events#hide'
+      post 'events/:id/show', to: 'events#show'
       resources :pages
       resources :contents
       resources :graphics

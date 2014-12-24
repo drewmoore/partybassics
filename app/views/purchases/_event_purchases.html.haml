@@ -1,4 +1,17 @@
 .row
+  .col-xs-2
+    %h5 Tickets Sold:
+  .col-xs-2
+    %strong #{@event.tickets_sold || 0}  ( #{@ticket_percentage} % )
+  .col-xs-2
+    %h5 Max Tickets:
+  .col-xs-2
+    %strong= @event.ticket_limit
+  .col-xs-2
+    %h5 Current Sales:
+  .col-xs-2
+    %strong $ #{@current_sales}
+.row
   .col-xs-12
     .table-responsive
       %table.table

@@ -6,6 +6,8 @@ class PurchasesController < ApplicationController
 
   def event_purchases
     @event = Event.find(params[:id])
+    @ticket_percentage = percent(@event.tickets_sold, @event.ticket_limit)
+    @current_sales = @event.tickets_sold.to_f * @event.price.to_f
     @email_search_string = params[:email_search_string]
     @conf_search_string = params[:conf_search_string]
     @lastfour_search_string = params[:lastfour_search_string]

@@ -12,7 +12,12 @@
               %h5=event_time(event.time)
           .col-xs-12.events-index-cell-flyer
             =image_tag(flyer(event, 'display'))
+            - if event.hide === true
+              .events-index-cell-flyer-expired
         .row
           .col-xs-12.events-index-cell-buttons
-            = button_to "Edit", edit_event_path(event.id), :method => :get
-            = button_to "Delete", event, data: {confirm: "Are you sure you want to delete the event '#{event.title}' on #{event_date(event.date).strftime("%b %d %y")}?"}, :method => :delete
+            - if event.hide === false
+              = button_to "Edit", edit_event_path(event.id), :method => :get
+              = button_to "Stash Away", "/events/#{event.id}/hide", data: { confirm: "Are you finished with '#{event.title}' on #{event_date(event.date).strftime("%b %d %y")}?" }, :method => :post
+            - else
+              = button_to "Resurrect", "/events/#{event.id}/show", data: { confirm: "Do you want '#{event.title}' on #{event_date(event.date).strftime("%b %d %y")} to be seen by the public?" }, :method => :post

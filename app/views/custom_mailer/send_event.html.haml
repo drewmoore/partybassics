@@ -23,7 +23,7 @@
 
 %div.email-two-panel
   .inline-block-container.email-left
-    %p= @event.description
+    %p= simple_format(@event.description)
 
   .inline-block-container.email-right
     =image_tag(attachments["flyer.jpg"].url, alt: "")

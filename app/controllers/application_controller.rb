@@ -44,6 +44,24 @@ class ApplicationController < ActionController::Base
     return @visitor
   end
 
+  def avg(top, bottom)
+    if bottom.to_f > 0
+      return ((top.to_f / bottom.to_f) * 100).to_i.to_f / 100.0
+    else
+      return 0
+    end
+  end
+
+  def percent(part, collection)
+    part = part.to_f
+    collection = collection.to_f
+    if collection > 0
+      return ((part / collection) * 100).round
+    else
+      return 0
+    end
+  end
+
   private
 
   def get_contents page

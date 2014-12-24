@@ -11,6 +11,10 @@
     - text = @contents[identifier].text
     %a{:href => "/charges/new/#{@event.id}", :target => "new", :class => identifier} <h5>#{text}</h5>
 
+- if !@event.eventbrite_link.empty?
+  - if in_future?(@event)
+    %a{:href => "//#{@event.eventbrite_link}", :target => "_blank"} <h5>Get Tickets on Eventbrite</h5>
+
 - if !@event.facebook_id.empty?
   - identifier = "event-display-facebook-link"
   - text = @contents[identifier].text
