@@ -53,6 +53,8 @@ FB.getLoginStatus(function(response) {
   statusChangeCallback(response);
 });
 
+FB.Event.subscribe('edge.create', like_callback);
+
 };
 
 // Load the SDK asynchronously
@@ -69,6 +71,14 @@ FB.getLoginStatus(function(response) {
 function testAPI() {
   FB.api('/me', function(response) {
     populateContactForm(response);
+  });
+}
+
+function like_callback(url, element){
+  FB.login(function(){
+    checkLoginState();
+  }, {
+  scope: 'email, public_profile'
   });
 }
 
