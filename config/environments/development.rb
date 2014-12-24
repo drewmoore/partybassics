@@ -39,12 +39,12 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address: "smtp.mailgun.org",
-    domain: ENV["MAILGUN_DOMAIN"],
+    domain: ENV["MAILGUN_PARTYBASSICS_DOMAIN"],
     authentication: "plain",
     enable_starttls_auto: false,
     openssl_verify_mode: 'none',
-    user_name: ENV["MAILGUN_USERNAME"],
-    password: ENV["MAILGUN_PASSWORD"],
+    user_name: ENV["MAILGUN_PARTYBASSICS_USERNAME"],
+    password: ENV["MAILGUN_PARTYBASSICS_PASSWORD"],
     port: 587
   }
 end
