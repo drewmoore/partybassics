@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_action :get_pages, :get_blank_contact
+  before_action :get_pages, :get_blank_contact, :set_visitor
   layout :layout_by_resource
   before_filter :update_sanitized_params, if: :devise_controller?
 
@@ -28,6 +28,38 @@ class ApplicationController < ActionController::Base
 
   def get_blank_contact
     @contact = Contact.new
+  end
+
+  def set_visitor
+    ip = request.env["HTTP_X_FORWARDED_FOR"]
+    @visitor = Visitor.find_by("ip LIKE ?", ip)
+    if @visitor
+      if params[:controller] === "welcome" and params[:action] === "index"
+        @visitor.visits += 1
+        @visitor.save
+      end
+    else
+      @visitor = Visitor.create(ip: ip)
+    end
+    return @visitor
+  end
+
+  def avg(top, bottom)
+    if bottom.to_f > 0
+      return ((top.to_f / bottom.to_f) * 100).to_i.to_f / 100.0
+    else
+      return 0
+    end
+  end
+
+  def percent(part, collection)
+    part = part.to_f
+    collection = collection.to_f
+    if collection > 0
+      return ((part / collection) * 100).round
+    else
+      return 0
+    end
   end
 
   private

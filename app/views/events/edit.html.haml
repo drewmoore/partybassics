@@ -28,9 +28,17 @@
             =f.text_field :facebook_id
             .row
               .col-xs-12
-            <small>Ex: "https://www.facebook.com/events/<small class="asterisk">1513721735555120</small>/?...."</small>
+                <small>Ex: "https://www.facebook.com/events/<small class="asterisk">1513721735555120</small>/?...."</small>
           .col-xs-4
             %button#facebook-event Get Info from Facebook
+        .row.form-row
+          .col-xs-4
+            =f.label :eventbrite_link
+          .col-xs-8
+            =f.text_field :eventbrite_link
+            .row
+              .col-xs-12
+                %small If you want to sell tickets on Eventbrite. You can use both if you want, though your stats won't track Eventbrite. To only sell tickets on Eventbrite, just leave 'price' and 'tickets to sell' blank.
         .row.form-row
           .col-xs-4
             =f.label :date

@@ -81,6 +81,8 @@ function populateContactForm(response){
   $('#contact_first_name').val(response.first_name);
   $('#contact_last_name').val(response.last_name);
   $('#contact_full_name').val(response.name);
-  $form.submit();
+  $.ajax({type:'post', url:'/contacts/create', data:$form.serialize(), success: function(data){
+    return true;
+  }});
 }
 

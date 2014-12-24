@@ -750,11 +750,26 @@ div[class^="fold"] {
 }
 .events-index-cell-flyer {
   text-align: center;
+  position: relative;
   img {
     min-width: 50%;
     max-width: 50%;
     margin: 0em auto;
   }
+}
+
+.events-index-cell-flyer-expired {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  background-image: asset-data-url("red-no.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 75% 75%;
+  opacity: 0.5;
 }
 .events-index-cell-buttons {
   text-align: center;

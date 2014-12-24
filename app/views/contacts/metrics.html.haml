@@ -1,0 +1,201 @@
+.row
+  .col-xs-3
+  .col-xs-6.admin-text.admin-top
+    %form
+      %fieldset
+        %legend Your Site's Stats
+
+        .row.form-row
+          .col-xs-12
+            %small How many times your homepage has been loaded
+        .row.form-row
+          .col-xs-6
+            %label Total # of Site Visits
+          .col-xs-6
+            %label= @total_visits
+
+        .row.form-row
+          .col-xs-12
+            <hr />
+
+        .row.form-row
+          .col-xs-12
+            %small An estimate of how many actual people have used the site.
+        .row.form-row
+          .col-xs-6
+            %label # of Unique Visitors
+          .col-xs-6
+            %label= @unique_visitors
+        .row.form-row
+          .col-xs-1
+          .col-xs-5
+            %label % of Total Visits
+          .col-xs-6
+            %label #{@percent_unique_visitors_of_total.to_s}%
+
+        .row.form-row
+          .col-xs-12
+            <hr />
+
+        .row.form-row
+          .col-xs-12
+            %small How many people have registered their email or Facebook-liked.
+        .row.form-row
+          .col-xs-6
+            %label # of Contacts
+          .col-xs-6
+            %label= @num_contacts
+            .row
+              .col-xs-6
+                %small Email Only:
+              .col-xs-6
+                %small= @num_email
+            .row
+              .col-xs-6
+                %small Facebook Likes:
+              .col-xs-6
+                %small= @num_fb
+            .row
+              .col-xs-4
+              .col-xs-2
+                %small Female:
+              .col-xs-2
+                %small= @fb_female
+              .col-xs-2
+                %small Male:
+              .col-xs-2
+                %small= @fb_male
+        .row.form-row
+          .col-xs-6
+            %label % of Unique Visitors registered as Contacts
+          .col-xs-6
+            %label #{@percent_contacts_of_uniques.to_s}%
+        .row.form-row
+          .col-xs-6
+            %label % of Unique Visitors to Facebook-like
+          .col-xs-6
+            %label #{@percent_fb_of_uniques.to_s}%
+        .row.form-row
+          .col-xs-1
+          .col-xs-5
+            %label % of Contacts to FB
+          .col-xs-6
+            %label #{@percent_fb_of_contacts.to_s}%
+            .row.form-row
+              .col-xs-3
+                %small Female:
+              .col-xs-3
+                %small #{@percent_female_of_fb}%
+              .col-xs-3
+                %small Male:
+              .col-xs-3
+                %small #{@percent_male_of_fb}%
+
+        .row.form-row
+          .col-xs-12
+            <hr />
+
+        .row.form-row
+          .col-xs-12
+            %small How many orders for tickets have been made.
+        .row.form-row
+          .col-xs-6
+            %label # of Purchases
+          .col-xs-6
+            %label= @num_purchases
+        .row.form-row
+          .col-xs-1
+          .col-xs-5
+            %label % of Total Visits
+          .col-xs-6
+            %label #{@percent_purchases_of_visits}%
+        .row.form-row
+          .col-xs-6
+            %label # of Tickets Sold
+          .col-xs-6
+            %label= @num_tickets
+        .row.form-row
+          .col-xs-6
+            %label Average Tickets per Order
+          .col-xs-6
+            %label= @avg_tickets_per_purchase
+
+        .row.form-row
+          .col-xs-12
+            <hr />
+
+        .row.form-row
+          .col-xs-12
+            %small How many people have bought at least one ticket.
+        .row.form-row
+          .col-xs-6
+            %label # of Paying Customers
+          .col-xs-6
+            %label= @num_paying
+            .row
+              .col-xs-3
+                %small Female:
+              .col-xs-3
+                %small= @num_paying_female
+              .col-xs-3
+                %small Male:
+              .col-xs-3
+                %small= @num_paying_male
+            .row
+              .col-xs-2
+              .col-xs-10
+                %small Data available for #{@percent_paying_gender_data.to_s}% of customers
+        .row.form-row
+          .col-xs-6
+            %label Average Tickets per Customer
+          .col-xs-6
+            %label= @avg_tickets_per_paying
+            .row
+              .col-xs-3
+                %small Female:
+              .col-xs-3
+                %small= @avg_tickets_per_female
+              .col-xs-3
+                %small Male:
+              .col-xs-3
+                %small= @avg_tickets_per_male
+            .row
+              .col-xs-2
+              .col-xs-10
+                %small Data available for #{@percent_paying_gender_data.to_s}% of customers
+
+        .row.form-row
+          .col-xs-12
+            <hr />
+
+        .row.form-row
+          .col-xs-6
+            %label Average # of Tickets Sold per Event
+          .col-xs-6
+            %label= @avg_tickets_per_event
+        .row.form-row
+          .col-xs-6
+            %label Average % of Available Tickets Sold
+            .row
+              .col-xs-12
+                %small 100% would be every event sold-out
+          .col-xs-6
+            %label #{@avg_percentage_tickets_per_event}%
+        .row.form-row
+          .col-xs-6
+            %label Total Sales
+            .row
+              .col-xs-12
+                %small Doesn't reflect any refunds. Check <a href="https://dashboard.stripe.com/login" target="_blank">Stripe</a> for full reports.
+          .col-xs-6
+            %label $#{@total_sales}
+        .row.form-row
+          .col-xs-6
+            %label Average Sales per Event
+            .row
+              .col-xs-12
+                %small Out of the #{@num_events} events that sold tickets through the site.
+          .col-xs-6
+            %label $#{@avg_sales_per_event}
+
+  .col-xs-3
