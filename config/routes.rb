@@ -57,6 +57,7 @@ Rails.application.routes.draw do
   get '/contacts/unsubscribe/:id', to: 'contacts#unsubscribe'
   get '/contacts/subscribe', to: 'contacts#subscribe'
   patch '/contacts/update/:id', to: 'contacts#update'
+  get '/privacy-policy', to: 'welcome#privacy'
 
 
   # The priority is based upon order of creation: first created -> highest priority.
