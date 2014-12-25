@@ -103,11 +103,6 @@
                     %a{:href => "/emails/event"} New Event Email
                   %li
                     %a{:href => "/emails/change"} Change Public Address
-                  %li
-                    %a{:href => "#"}
-                      %strong Facebook:
-                  %li
-                    %a{:href => "/events/fb-promote"} Your Likes
               %li.dropdown
                 %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
                   Metrics
@@ -123,15 +118,11 @@
                 %ul.dropdown-menu{:role => "menu"}
                   %li
                     %a{:href => "/users/edit"} Edit
-                  - if current_user.role == "admin"
-                    %li
-                      %a{:href => "/users/sign_up"} Sign Up
               %li.active
                 - if user_signed_in?
                   = link_to("Sign Out", destroy_user_session_path, :method => :delete)
                 - else
                   %a{:href => "/users/sign_in"} Sign In
-          / /.navbar-collapse
       - if user_signed_in? or params[:controller] === "charges"
         - if flash[:notice]
           .row
