@@ -18,8 +18,11 @@
   function initializeEventHandlers() {
     $('.three-column-button').click(threeColumnButtonClick);
     $('.panorama-column-button').click(panoramaColumnButtonClick);
-    $('.content-footer').mouseenter(tryptGlow);
-    $('.content-footer').mouseleave(tryptFade);
+    $('.content-footer').mouseenter(footerMouse);
+    $('.content-footer').mouseleave(footerMouse);
+    $('.content-heading').mouseenter(footerMouse);
+    $('.content-heading').mouseleave(footerMouse);
+    $('#facebook-event').click(getFacebookEvent);
     $('#facebook-event').click(getFacebookEvent);
   }
 
@@ -282,6 +285,26 @@
     $scrollWindow.scrollTo(amountToMove, 0, {duration: moveTime, onAfter: function(){
       $arrow.css(propertyToColor, arrowColorRested);
     }});
+  }
+
+  function footerMouse(event) {
+    var mouseX = event.pageX;
+    var type = event.type;
+    var $trypt;
+    var $trypts = $('[class^="trypt-bright"]');
+    _.each($trypts, function(t){
+      var $t = $(t);
+      var tLeft = parseInt($t.offset().left);
+      var tRight =  tLeft + $t.width();
+      if(tLeft <= mouseX && mouseX <= tRight){
+        $trypt = $t;
+      }
+    });
+    if(type === 'mouseenter'){
+      $trypt.animate({'opacity': '1'}, 1500);
+    } else if(type === 'mouseleave'){
+      $trypt.animate({'opacity': '.2'}, 1500);
+    }
   }
 
   function tryptGlow(){
