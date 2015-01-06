@@ -138,8 +138,13 @@
   }
 
   function positionHeadsOneColumnCenter() {
-    $('div[class^="fold"]').css('left', '33%');
-    $('div[class^="panel"]').width('75%');
+    if(isPortrait()){
+      $('div[class^="fold"]').css('left', '0%');
+      $('div[class^="panel"]').width('210%');
+    } else {
+      $('div[class^="fold"]').css('left', '33%');
+      $('div[class^="panel"]').width('75%');
+    }
   }
 
   function positionHeadsThreeColumns() {

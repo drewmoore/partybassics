@@ -843,3 +843,12 @@ form#event-purchases {
     font-size: 7px;
   }
 }
+
+@media (max-width: 350px) {
+  .panorama-column-button, .three-column-button, #buy-tickets-button {
+    font-size: 100%;
+  }
+  .content-heading > h1 {
+    font-size: 140%;
+  }
+}
