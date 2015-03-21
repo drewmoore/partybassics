@@ -96,18 +96,17 @@ class EventsController < ApplicationController
   private
 
   def get_current_event
-    today = DateTime.now.to_date.strftime
-    @current_event = Event.where("date" => today).limit(1)
-    if @current_event.empty?
-      today_date = today.gsub("-","")
-      eligible_events = []
-      @events.each do |event|
-        event_date = event.date.gsub("-","")
-        eligible_events << event if event_date >= today_date
-      end
-      @current_event = eligible_events[0]
+    today = DateTime.now
+    @events.each do |event|
+      year = event.date.split("-")[0].to_i
+      month = event.date.split("-")[1].to_i
+      day = event.date.split("-")[2].to_i
+      event_date = DateTime.new(year, month, day)
+        if event_date >= today
+          @current_event ||= event
+        end
     end
-    @current_event
+    @current_event ||= @events.last
   end
 
   def convert_date
