@@ -212,7 +212,7 @@
     var widthNeeded = newCellWidth * cellCount;
     var marginRatio = 0.06;
     var marginPerSide = newCellWidth * marginRatio;
-    var safetyMargin = (newCellWidth + (marginPerSide * 4)) * 2;
+    var safetyMargin = (newCellWidth + (marginPerSide * 4)) * 4;
     var newPanelWidth = widthNeeded + (marginPerSide * (cellCount * 2)) + safetyMargin;
     $scrollPanel.css('width', newPanelWidth.toString());
     $cells.css('margin', '0px ' + (marginPerSide * 2).toString() + 'px');
