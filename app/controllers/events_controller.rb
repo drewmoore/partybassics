@@ -67,6 +67,11 @@ class EventsController < ApplicationController
     @events = all_events.sort_by do |e|
       datestring = ""
       datearray = e.date.split("-")
+      datearray.each do |number|
+        if number.length == 1
+          number.prepend "0"
+        end
+      end
       year = datearray[0]
       month = datearray[1]
       day = datearray[2]
