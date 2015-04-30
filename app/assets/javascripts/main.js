@@ -2,6 +2,8 @@
 
   'use strict';
   var arrowColorRested;
+  var $activeArrow;
+  var eventsScrollTimer;
 
   $(document).ready(initialize);
 
@@ -88,7 +90,8 @@
   }
 
   function receiveEvents() {
-    $('.arrow-container').bind('click', eventsScroll);
+    $('.arrow-container').bind('mousedown', setEventsScrollTimer);
+    $('.arrow-container').bind('mouseup', stopEventsScrollTimer);
     $('.event-flyer').bind('click', displayEvent);
     $('.event-flyer').bind('mouseover', eventMouseOver);
     $('.event-flyer').bind('mouseout', eventMouseOut);
@@ -260,9 +263,17 @@
     if(viewportWidthRatio < 0.5 || window.innerWidth < window.innerHeight){ return true; } else { return false; }
   }
 
+  function setEventsScrollTimer(){
+    $activeArrow = $(this);
+    eventsScrollTimer = setInterval(eventsScroll, 50);
+  }
+
+  function stopEventsScrollTimer(){
+    clearInterval(eventsScrollTimer);
+  }
+
   function eventsScroll() {
-    var $self = $(this);
-    var id = $self.attr('id');
+    var id = $activeArrow.attr('id');
     var $scrollPanel = $('#events-scroll-panel');
     var $scrollWindow = $('#events-scroll-window');
     var side;
@@ -270,9 +281,9 @@
       if(str === 'left'){ side = 'right';}
       if(str === 'right'){ side = 'left';}
     });
-    var moveRatio = 0.1;
+    var moveRatio = 0.005;
     var amountToMove;
-    var moveTime = 200;
+    var moveTime = 40;
     var flipSide;
     if(side === 'left'){
       amountToMove = '+=' + parseInt(($scrollPanel.width() * moveRatio)).toString() + 'px';
