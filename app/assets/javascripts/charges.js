@@ -4,11 +4,11 @@
   $(document).ready(initialize);
 
   // From Stripe. Prevent errors.
-  if(StripeCheckout){
-    var handler = StripeCheckout.configure({token: cardValidated});
-  } else {
+  if(typeof(StripeCheckout) == 'undefined'){
     var handler;
     console.log('Stripe having an issue.');
+  } else {
+    var handler = StripeCheckout.configure({token: cardValidated});
   }
 
 
