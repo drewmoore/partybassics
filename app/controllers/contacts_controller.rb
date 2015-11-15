@@ -1,6 +1,6 @@
 class ContactsController < ApplicationController
   def create
-    pre = Contact.find_by("email LIKE ?", contact_params[:email])
+    pre = Contact.find_by(email: contact_params[:email])
     visitor = Visitor.find(contact_params[:visitor_id])
     if pre
       if visitor and !pre.visitors.exists? visitor
@@ -24,7 +24,7 @@ class ContactsController < ApplicationController
 
   def subscribe_this
     @email = contact_params[:email]
-    pre = Contact.find_by("email LIKE ?", contact_params[:email])
+    pre = Contact.find_by(email: contact_params[:email])
     if pre
       attribute = {unsubscribed: false}
       pre.update_attributes(attribute)

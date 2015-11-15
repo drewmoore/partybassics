@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
 
   def set_visitor
     ip = request.env["HTTP_X_FORWARDED_FOR"]
-    @visitor = Visitor.find_by("ip LIKE ?", ip)
+    @visitor = Visitor.find_by(ip: ip)
     if @visitor
       if params[:controller] === "welcome" and params[:action] === "index"
         @visitor.visits += 1

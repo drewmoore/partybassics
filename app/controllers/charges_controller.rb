@@ -17,7 +17,7 @@ class ChargesController < ApplicationController
     @lastfour = params[:lastfour]
 
     Contact.create(email: @email)
-    @contact = Contact.find_by("email LIKE ?", @email)
+    @contact = Contact.find_by(email: @email)
     @contact.tickets_purchased += @quantity.to_i
     @contact.add_visitor set_visitor
     @contact.save

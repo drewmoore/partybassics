@@ -10,8 +10,11 @@ namespace :import do
     charges_new_page = Page.create!(controller: 'charges', action: 'new', title: 'Party Bassics')
     charges_create_page = Page.create!(controller: 'charges', action: 'create', title: 'Party Bassics')
     contacts_update_page = Page.create!(controller: 'contacts', action: 'update', title: 'Party Bassics')
-    custom_mailer_send_event_page = Page.create!(controller: 'custom_mailer', action: 'send_event', title: 'Party Bassics')
-    charge_mailer_purchase_confirmation_page = Page.create!(controller: 'charge_mailer', action: 'purchase_confirmation', title: 'Party Bassics')
+    mailers_template_page = Page.create!(controller: 'mailers', action: 'template', title: 'Party Bassics')
+    mailers_send_event_page = Page.create!(controller: 'mailers', action: 'send_event', title: 'Party Bassics')
+    charge_mailers_purchase_confirmation_page = Page.create!(
+      controller: 'charge_mailers', action: 'purchase_confirmation', title: 'Party Bassics'
+    )
 
     # welcome#index
 
@@ -65,21 +68,21 @@ namespace :import do
 
     contacts_update_page.contents.create!(identifier: 'email-list-subscribe-link', text: 'Join Mailing List')
 
-    # custom_mailer#send_event
+    # mailers#send_event
 
-    custom_mailer_send_event_page.contents.create!(identifier: 'email-event-display-ticket-link', text: 'New Event from Party Bassics')
-    custom_mailer_send_event_page.contents.create!(identifier: 'email-event-display-facebook-link', text: 'Facebook Event')
-    email_graphic = custom_mailer_send_event_page.graphics.create!(
+    mailers_send_event_page.contents.create!(identifier: 'email-event-display-ticket-link', text: 'New Event from Party Bassics')
+    mailers_send_event_page.contents.create!(identifier: 'email-event-display-facebook-link', text: 'Facebook Event')
+    email_graphic = mailers_send_event_page.graphics.create!(
       identifier: 'email-logo-image',
       image: File.open("#{Rails.root}/lib/assets/import_content/graphics/partybassics-logo.png")
     )
 
     # charge_mailer#purchase_confirmation
 
-    charge_mailer_purchase_confirmation_page.contents.create!(
+    charge_mailers_purchase_confirmation_page.contents.create!(
       identifier: 'email-ticket-confirmation-heading',
       text: 'Confirmation for Your Tickets with Party Bassics'
     )
-    charge_mailer_purchase_confirmation_page.graphics << email_graphic
+    charge_mailers_purchase_confirmation_page.graphics << email_graphic
   end
 end

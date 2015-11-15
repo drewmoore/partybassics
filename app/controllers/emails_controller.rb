@@ -7,7 +7,7 @@ class EmailsController < ApplicationController
   def create
     @subject = params[:subject]
     @text = params[:text]
-    list = Contact.where("unsubscribed LIKE ?", false)
+    list = Contact.where(unsubscribed: false)
     list.each do |contact|
       CustomMailer.mass_email(@subject, @text, contact)
     end
@@ -16,7 +16,7 @@ class EmailsController < ApplicationController
   end
 
   def change
-    @content = Content.find_by("identifier LIKE ?", "contact-info-content-main-email")
+    @content = Content.find_by(identifier: "contact-info-content-main-email")
   end
 
   def event
@@ -27,7 +27,7 @@ class EmailsController < ApplicationController
     @event = Event.find(params[:event_id])
     @subject = params[:subject]
     @text = params[:text]
-    list = Contact.where("unsubscribed LIKE ?", false)
+    list = Contact.where(unsubscribed: false)
     list.each do |contact|
       CustomMailer.send_event(@event, @subject, @text, contact)
     end

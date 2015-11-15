@@ -4,7 +4,7 @@ class CustomMailer < ActionMailer::Base
   layout 'email'
 
   def mass_email(subject, text, contact)
-    @layout = Page.find_by("controller LIKE ? and action LIKE ?", "mailers", "template")
+    @layout = Page.find_by(controller: 'mailers', action: 'template')
     @subject = subject || @layout.title
     @text = text || ""
     @contact = contact
@@ -20,8 +20,8 @@ class CustomMailer < ActionMailer::Base
 
   def send_event(event, subject, text, contact)
     @event = event
-    @layout = Page.find_by("controller LIKE ? and action LIKE ?", "mailers", "template")
-    @page = Page.find_by("controller LIKE ? and action LIKE ?", "mailers", "send_event")
+    @layout = Page.find_by(controller: 'mailers', action: 'template')
+    @page = Page.find_by(controller: 'mailers', action: 'send_event')
     @subject = subject || @layout.title
     @text = text || ""
     @contact = contact

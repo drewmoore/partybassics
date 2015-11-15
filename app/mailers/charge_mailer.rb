@@ -6,8 +6,8 @@ class ChargeMailer < ActionMailer::Base
     @purchase = purchase
     @contact = Contact.find_by("id", @purchase.email) || Contact.create(email: @purchase.email)
     @event = event
-    @layout = Page.find_by("controller LIKE ? and action LIKE ?", "mailers", "template")
-    @page = Page.find_by("controller LIKE ? and action LIKE ?", "charge_mailers", "purchase_confirmation")
+    @layout = Page.find_by(controller: 'mailers', action: 'template')
+    @page = Page.find_by(controller: 'charge_mailers', action: 'purchase_confirmation')
     @graphics = @layout.get_graphics
     @contents = @page.get_contents
     @layout_contents = @layout.get_contents

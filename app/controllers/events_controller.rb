@@ -1,11 +1,11 @@
 class EventsController < ApplicationController
   def index
-    @events = Event.all.where("hide LIKE ?", false)
+    @events = Event.all.where(hide: false)
     @events.order! 'created_at DESC'
   end
 
   def archive
-    @events = Event.all.where("hide LIKE ?", true)
+    @events = Event.all.where(hide: true)
     @events.order! 'created_at DESC'
     render "index"
   end
@@ -63,7 +63,7 @@ class EventsController < ApplicationController
   end
 
   def display
-    all_events = Event.all.where("hide LIKE ?", false)
+    all_events = Event.all.where(hide: false)
     @events = all_events.sort_by do |e|
       datestring = ""
       datearray = e.date.split("-")
@@ -95,7 +95,7 @@ class EventsController < ApplicationController
   end
 
   def fb_promote
-    @contacts = Contact.where("unfacebooked LIKE ?", false)
+    @contacts = Contact.where(unfacebooked: false)
   end
 
   private
