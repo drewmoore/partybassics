@@ -5,6 +5,7 @@ namespace :import do
     # Create the page views for the site.
     welcome_index_page = Page.create!(controller: 'welcome', action: 'index', title: 'Party Bassics')
     welcome_about_us_page = Page.create!(controller: 'welcome', action: 'about_us', title: 'Party Bassics')
+    events_display_page = Page.create!(controller: 'events', action: 'display', title: 'Party Bassics')
     events_display_one_page = Page.create!(controller: 'events', action: 'display_one', title: 'Party Bassics')
     charges_new_page = Page.create!(controller: 'charges', action: 'new', title: 'Party Bassics')
     charges_create_page = Page.create!(controller: 'charges', action: 'create', title: 'Party Bassics')

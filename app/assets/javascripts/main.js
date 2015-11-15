@@ -127,6 +127,8 @@
 
   function scrollToCurrent(callback){
     var $cells = $('.event-cell');
+    if(!$cells.length){ return; }
+
     var currentId = $cells.attr('data-current');
     var $currentEvent;
     _.each($cells, function(cell){
