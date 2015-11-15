@@ -23,9 +23,9 @@ ActiveRecord::Schema.define(version: 20141224071447) do
     t.string   "last_name",         default: ""
     t.string   "full_name",         default: ""
     t.boolean  "unsubscribed",      default: false
+    t.boolean  "unfacebooked",      default: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "unfacebooked",      default: false
   end
 
   create_table "contacts_visitors", id: false, force: true do |t|
@@ -50,7 +50,6 @@ ActiveRecord::Schema.define(version: 20141224071447) do
     t.datetime "updated_at"
     t.string   "title"
     t.string   "date"
-    t.time     "string"
     t.string   "time"
     t.string   "flyer"
     t.string   "description",     default: ""

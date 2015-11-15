@@ -12,12 +12,12 @@
 
     - if @event.price
       - if in_future?(@event) and !@event.price.empty?
-        - identifier = "event-display-ticket-link"
+        - identifier = "email-event-display-ticket-link"
         - text = @contents[identifier].text
         %a{:href => "https://partybassics.com/charges/new/#{@event.id}", :target => "new", :class => identifier} <h5>#{text}</h5>
 
     - if !@event.facebook_id.empty?
-      - identifier = "event-display-facebook-link"
+      - identifier = "email-event-display-facebook-link"
       - text = @contents[identifier].text
       %a{:href => "https://facebook.com/events/#{@event.facebook_id}", :target => "new", :class => identifier} <h5>#{text}</h5>
 
