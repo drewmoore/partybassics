@@ -24,7 +24,7 @@ namespace :import do
     welcome_index_page.contents.create!(identifier: 'welcome-page-email-list-subscribe-link', text: 'Join the Mailing List')
     welcome_index_page.contents.create!(
       identifier: 'website-author-link',
-      text: 'Site by <a href="andrewwilliammoore.com" target="_blank">Drew Moore</a>'
+      text: 'Site by <a href="http://andrewwilliammoore.com" target="_blank">Drew Moore</a>'
     )
     welcome_index_page.graphics.create!(
       identifier: 'logo-image',

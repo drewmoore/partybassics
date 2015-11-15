@@ -3,7 +3,13 @@
 
   $(document).ready(initialize);
 
-  var handler = StripeCheckout.configure({token: cardValidated});
+  // From Stripe. Prevent errors.
+  if(StripeCheckout){
+    var handler = StripeCheckout.configure({token: cardValidated});
+  } else {
+    var handler;
+    console.log('Stripe having an issue.');
+  }
 
 
   function initialize(){
