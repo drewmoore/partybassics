@@ -221,7 +221,7 @@
     $cells.css('margin', '0px ' + (marginPerSide * 2).toString() + 'px');
     $cells.css('width', newCellWidth.toString());
     $cells.css('height', newCellHeight.toString());
-    if(callback){callback();}
+    if(typeof(callback) == 'function'){callback();}
   }
 
   function sizeThaEvent(){
@@ -316,10 +316,12 @@
         $trypt = $t;
       }
     });
-    if(type === 'mouseenter'){
-      $trypt.animate({'opacity': '1'}, 1500);
-    } else if(type === 'mouseleave'){
-      $trypt.animate({'opacity': '.2'}, 1500);
+    if($trypt){
+      if(type === 'mouseenter'){
+        $trypt.animate({'opacity': '1'}, 1500);
+      } else if(type === 'mouseleave'){
+        $trypt.animate({'opacity': '.2'}, 1500);
+      }
     }
   }
 

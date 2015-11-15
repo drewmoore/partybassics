@@ -3,14 +3,14 @@ namespace :import do
 
   task :content => :environment do
     # Create the page views for the site.
-    welcome_index_page = Page.create!(controller: 'welcome', action: 'index')
-    welcome_about_us_page = Page.create!(controller: 'welcome', action: 'about_us')
-    events_display_one_page = Page.create!(controller: 'events', action: 'display_one')
-    charges_new_page = Page.create!(controller: 'charges', action: 'new')
-    charges_create_page = Page.create!(controller: 'charges', action: 'create')
-    contacts_update_page = Page.create!(controller: 'contacts', action: 'update')
-    custom_mailer_send_event_page = Page.create!(controller: 'custom_mailer', action: 'send_event')
-    charge_mailer_purchase_confirmation_page = Page.create!(controller: 'charge_mailer', action: 'purchase_confirmation')
+    welcome_index_page = Page.create!(controller: 'welcome', action: 'index', title: 'Party Bassics')
+    welcome_about_us_page = Page.create!(controller: 'welcome', action: 'about_us', title: 'Party Bassics')
+    events_display_one_page = Page.create!(controller: 'events', action: 'display_one', title: 'Party Bassics')
+    charges_new_page = Page.create!(controller: 'charges', action: 'new', title: 'Party Bassics')
+    charges_create_page = Page.create!(controller: 'charges', action: 'create', title: 'Party Bassics')
+    contacts_update_page = Page.create!(controller: 'contacts', action: 'update', title: 'Party Bassics')
+    custom_mailer_send_event_page = Page.create!(controller: 'custom_mailer', action: 'send_event', title: 'Party Bassics')
+    charge_mailer_purchase_confirmation_page = Page.create!(controller: 'charge_mailer', action: 'purchase_confirmation', title: 'Party Bassics')
 
     # welcome#index
 
