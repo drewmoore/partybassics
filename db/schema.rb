@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 20160604233805) do
     t.string   "date"
     t.string   "time"
     t.string   "flyer"
-    t.text     "description",     limit: 255, default: ""
+    t.text     "description",     default: ""
     t.string   "facebook_id"
     t.string   "venue"
     t.string   "street"
@@ -61,8 +61,8 @@ ActiveRecord::Schema.define(version: 20160604233805) do
     t.string   "price"
     t.string   "ticket_limit"
     t.string   "tickets_sold"
-    t.boolean  "hide",                        default: false
-    t.text     "eventbrite_link", limit: 255, default: ""
+    t.boolean  "hide",            default: false
+    t.text     "eventbrite_link", default: ""
   end
 
   create_table "graphics", force: true do |t|

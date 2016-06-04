@@ -1,7 +1,7 @@
 class ChangeStringsToTextInEvents < ActiveRecord::Migration
   def up
-    change_column :events, :description,     :text
-    change_column :events, :eventbrite_link, :text
+    change_column :events, :description,     :text, :limit => nil
+    change_column :events, :eventbrite_link, :text, :limit => nil
   end
 
   def down
