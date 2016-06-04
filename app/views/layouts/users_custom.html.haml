@@ -7,6 +7,7 @@
     = csrf_meta_tags
   %body
     .container-fluid
+      #key-storage{:data => { :facebook_app_id => ENV['FB_APP_ID'] }, :style => { :display => 'none' }}
       - if user_signed_in?
         %nav.navbar.navbar-default{:role => "navigation"}
           .navbar-header

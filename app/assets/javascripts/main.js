@@ -1,12 +1,10 @@
 (function(){
-
   'use strict';
   var arrowColorRested;
   var $activeArrow;
   var eventsScrollTimer;
 
   $(document).ready(initialize);
-
 
   function initialize(){
     initializeEventHandlers();
@@ -338,31 +336,42 @@
   function getFacebookEvent(event){
     event.preventDefault();
     var facebookId = $('#event_facebook_id').val();
-    FB.login(function(response){
-      if(response.status === 'connected'){
-        FB.api('/v2.2/' + facebookId, function(apiResponse){
-          $('#event_title').val(apiResponse.name);
-          $('#event_description').val(apiResponse.description);
-          var date = apiResponse.start_time.split('T')[0];
-          var year = date.split('-')[0];
-          var month = date.split('-')[1];
-          var day = date.split('-')[2];
-          $('#event_date_1i option:contains(' + year + ')').prop({selected:true});
-          $('#event_date_2i option:contains(' + convertToMonthString(month) + ')').prop({selected:true});
-          $('#event_date_3i option:contains(' + day + ')').prop({selected:true});
-          var time = apiResponse.start_time.split('T')[1];
-          var hour = time.split(':')[0];
-          var minute = time.split(':')[1];
-          var newTime = hour + ':' + minute;
-          $('#event_time').val(newTime);
-          $('#event_venue').val(apiResponse.location);
-          $('#event_city').val(apiResponse.venue.city);
-          $('#event_street').val(apiResponse.venue.street);
-          $('#event_zip').val(apiResponse.venue.zip);
+    if (FB.getUserID().length) {
+      FB.api('/v2.2/' + facebookId, function(apiResponse){
+        populateEventForm(apiResponse);
+      });
+    } else {
+      FB.login(function(response){
+        if(response.status === 'connected'){
+          FB.api('/v2.2/' + facebookId, function(apiResponse){
+            populateEventForm(apiResponse);
+          });
+        }
+      });
+    }
+  }
 
-        });
-      }
-    });
+  function populateEventForm(apiResponse){
+    $('#event_title').val(apiResponse.name);
+    $('#event_description').val(apiResponse.description);
+    var date = apiResponse.start_time.split('T')[0];
+    var year = date.split('-')[0];
+    var month = date.split('-')[1];
+    var day = date.split('-')[2];
+    $('#event_date_1i option:contains(' + year + ')').prop({selected:true});
+    $('#event_date_2i option:contains(' + convertToMonthString(month) + ')').prop({selected:true});
+    $('#event_date_3i option:contains(' + day + ')').prop({selected:true});
+    var time = apiResponse.start_time.split('T')[1];
+    var hour = time.split(':')[0];
+    var minute = time.split(':')[1];
+    var newTime = hour + ':' + minute;
+    $('#event_time').val(newTime);
+    $('#event_venue').val(apiResponse.location);
+    if (apiResponse.venue) {
+      $('#event_city').val(apiResponse.venue.city);
+      $('#event_street').val(apiResponse.venue.street);
+      $('#event_zip').val(apiResponse.venue.zip);
+    }
   }
 
   function convertToMonthString(month){
@@ -407,6 +416,4 @@
     }
     return newMonth;
   }
-
-
 })();
