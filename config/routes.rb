@@ -1,12 +1,4 @@
 Rails.application.routes.draw do
-  #
-  # HEY! SECURITY CHECK!!!
-  #
-  # Comment out the lines below to prevent hooligans from creating new accounts and wrecking the site
-  #
-  # match 'users/' => redirect('/'), via: [:post, :delete]
-  # match 'users/sign_up' => redirect('/'), via: [:get, :post]
-
   devise_for :users
   devise_scope :user do
     authenticated :user do
