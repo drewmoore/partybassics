@@ -4,7 +4,7 @@
   var $activeArrow;
   var eventsScrollTimer;
 
-  $(document).ready(initialize);
+  $(document).on('ready page:load', initialize);
 
   function initialize(){
     initializeEventHandlers();
