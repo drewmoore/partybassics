@@ -346,9 +346,6 @@
   }
 
   function populateEventForm(apiResponse){
-
-    console.log('hello apiResponse: ', apiResponse);
-
     $('#event_title').val(apiResponse.name);
     $('#event_description').val(apiResponse.description);
     var date = apiResponse.start_time.split('T')[0];
