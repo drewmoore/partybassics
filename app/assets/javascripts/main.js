@@ -407,6 +407,4 @@
     }
     return newMonth;
   }
-
-
 })();
