@@ -48,10 +48,9 @@
           .col-xs-3
             - identifier = "welcome-page-email-list-subscribe-link"
             - text = @contents[identifier].text
-            %small.creator{:class => identifier}= text.html_safe
+            %small.creator{:class => identifier}= link_to(text, contacts_subscribe_path)
           .col-xs-3
             - identifier = "website-author-link"
             - text = @contents[identifier].text
             %small.creator{:class => identifier}= text.html_safe
           .col-xs-3
-
