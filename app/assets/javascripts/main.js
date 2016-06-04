@@ -336,13 +336,19 @@
   function getFacebookEvent(event){
     event.preventDefault();
     var facebookId = $('#event_facebook_id').val();
-    FB.login(function(response){
-      if(response.status === 'connected'){
-        FB.api('/v2.2/' + facebookId, function(apiResponse){
-          populateEventForm(apiResponse);
-        });
-      }
-    });
+    if (FB.getUserID().length) {
+      FB.api('/v2.2/' + facebookId, function(apiResponse){
+        populateEventForm(apiResponse);
+      });
+    } else {
+      FB.login(function(response){
+        if(response.status === 'connected'){
+          FB.api('/v2.2/' + facebookId, function(apiResponse){
+            populateEventForm(apiResponse);
+          });
+        }
+      });
+    }
   }
 
   function populateEventForm(apiResponse){
@@ -361,9 +367,11 @@
     var newTime = hour + ':' + minute;
     $('#event_time').val(newTime);
     $('#event_venue').val(apiResponse.location);
-    $('#event_city').val(apiResponse.venue.city);
-    $('#event_street').val(apiResponse.venue.street);
-    $('#event_zip').val(apiResponse.venue.zip);
+    if (apiResponse.venue) {
+      $('#event_city').val(apiResponse.venue.city);
+      $('#event_street').val(apiResponse.venue.street);
+      $('#event_zip').val(apiResponse.venue.zip);
+    }
   }
 
   function convertToMonthString(month){
