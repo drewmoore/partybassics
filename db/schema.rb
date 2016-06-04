@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141224071447) do
+ActiveRecord::Schema.define(version: 20160604233805) do
 
   create_table "contacts", force: true do |t|
     t.string   "email",             default: ""
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 20141224071447) do
     t.string   "date"
     t.string   "time"
     t.string   "flyer"
-    t.string   "description",     default: ""
+    t.text     "description",     limit: 255, default: ""
     t.string   "facebook_id"
     t.string   "venue"
     t.string   "street"
@@ -61,8 +61,8 @@ ActiveRecord::Schema.define(version: 20141224071447) do
     t.string   "price"
     t.string   "ticket_limit"
     t.string   "tickets_sold"
-    t.boolean  "hide",            default: false
-    t.string   "eventbrite_link", default: ""
+    t.boolean  "hide",                        default: false
+    t.text     "eventbrite_link", limit: 255, default: ""
   end
 
   create_table "graphics", force: true do |t|
