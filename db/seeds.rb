@@ -2,21 +2,24 @@
 [
   {:title=>"Party Bassics", :controller=>"welcome", :action=>"index"}, {:title=>"Party Bassics", :controller=>"welcome", :action=>"about_us"}, {:title=>"Party Bassics", :controller=>"events", :action=>"display"}, {:title=>"Party Bassics", :controller=>"events", :action=>"display_one"}, {:title=>"Party Bassics", :controller=>"charges", :action=>"new"}, {:title=>"Party Bassics", :controller=>"charges", :action=>"create"}, {:title=>"Party Bassics", :controller=>"contacts", :action=>"update"}, {:title=>"Party Bassics", :controller=>"mailers", :action=>"template"}, {:title=>"Party Bassics", :controller=>"mailers", :action=>"send_event"}, {:title=>"Party Bassics", :controller=>"charge_mailers", :action=>"purchase_confirmation"}
 ].each do |page|
-  Page.find_or_create_by!(page)
+  next if Page.find_by(controller: page[:controller], action: page[:action])
+  Page.create!(page)
 end
 
 # Seed contents from heroku.
 [
   {:text=>"Dance Your Demons Out", :identifier=>"heading-tagline"}, {:text=>"About Us", :identifier=>"three-column-button"}, {:text=>"Events", :identifier=>"panorama-column-button"}, {:text=>"Follow Us", :identifier=>"social-media-prompt"}, {:text=>"Join Us", :identifier=>"facebook-group-prompt"}, {:text=>"Like This Site", :identifier=>"like-website-prompt"}, {:text=>"Login", :identifier=>"admin-link"}, {:text=>"Join the Mailing List", :identifier=>"welcome-page-email-list-subscribe-link"}, {:text=>"Site by <a href=\"http://andrewwilliammoore.com\" target=\"_blank\">Drew Moore</a>", :identifier=>"website-author-link"}, {:text=>"Pics", :identifier=>"instagram-panel-heading"}, {:text=>"Info", :identifier=>"main-info-panel-heading"}, {:text=>"Partybassics is based in Nashville, TN.", :identifier=>"main-info-panel-text"}, {:text=>"Stay in Touch", :identifier=>"contact-info-panel-heading"}, {:text=>"Contact Us", :identifier=>"contact-info-content-heading"}, {:text=>"Email", :identifier=>"contact-info-content-main-email"}, {:text=>"Social", :identifier=>"social-info-content-heading"}, {:text=>"Get Tickets", :identifier=>"event-display-ticket-link"}, {:text=>"Facebook Event", :identifier=>"event-display-facebook-link"}, {:text=>"Price", :identifier=>"charges-new-price-label"}, {:text=>"Quantity", :identifier=>"charges-new-quantity-label"}, {:text=>"Buy Tickets", :identifier=>"charges-new-purchase-button"}, {:text=>"Thank You", :identifier=>"charges-receipt-page-heading"}, {:text=>"Back to Home", :identifier=>"charges-receipt-link-back"}, {:text=>"Join Mailing List", :identifier=>"email-list-subscribe-link"}, {:text=>"New Event from Party Bassics", :identifier=>"email-event-display-ticket-link"}, {:text=>"Facebook Event", :identifier=>"email-event-display-facebook-link"}, {:text=>"Confirmation for Your Tickets with Party Bassics", :identifier=>"email-ticket-confirmation-heading"}
 ].each do |content|
-  Content.find_or_create_by!(content)
+  next if Content.find_by(identifier: content[:identifier])
+  Content.create!(content)
 end
 
 # Seed graphics from heroku.
 [
   {:identifier=>"logo-image"}, {:identifier=>"email-logo-image"}
 ].each do |graphic|
-  Graphic.find_or_create_by!(graphic)
+  next if Graphic.find_by(identifier: graphic[:identifier])
+  Graphic.create!(graphic)
 end
 
 # Associate contents and pages
@@ -40,3 +43,8 @@ end
     graphic.pages << page unless graphic.pages.include?(page)
   end
 end
+
+# Add contents that had previously been missing:
+content = Content.find_by!(identifier: 'contact-info-content-main-email')
+content.update_attributes(text: 'info@partybassics.com')
+content.pages << Page.find_by!(controller: 'mailers', action: 'template')
