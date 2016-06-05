@@ -33,8 +33,7 @@
           .col-xs-4
             - identifier = "facebook-group-prompt"
             - text = @contents[identifier].text
-            %small{:class => identifier}= text
-            <div class="fb-like" data-layout="button" data-share="true" data-width="150" data-show-faces="false" data-href="https://www.facebook.com/groups/partybassics/"></div>
+            %small{:class => identifier}= link_to(text, 'https://www.facebook.com/groups/partybassics', :target => :_blank)
           .col-xs-4
             - identifier = "like-website-prompt"
             - text = @contents[identifier].text
