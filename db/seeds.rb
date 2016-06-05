@@ -44,7 +44,18 @@ end
   end
 end
 
-# Add contents that had previously been missing:
+# Update and associate contents that had previously been missing:
 content = Content.find_by!(identifier: 'contact-info-content-main-email')
 content.update_attributes(text: 'info@partybassics.com')
 content.pages << Page.find_by!(controller: 'mailers', action: 'template')
+
+# Associate graphics that had previously been missing:
+graphic = Graphic.find_by!(identifier: 'email-logo-image')
+graphic.pages << Page.find_by!(controller: 'mailers', action: 'template')
+
+# Assign default image file to graphics.
+Graphic.all.each do |graphic|
+  next if graphic.image.file
+  graphic.image = File.open("#{Rails.root}/db/seed_assets/old_logo.png")
+  graphic.save!
+end
