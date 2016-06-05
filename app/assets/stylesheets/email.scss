@@ -6,6 +6,10 @@ div {
   vertical-align: top;
 }
 
+.email-container {
+  min-height: 20em;
+  overflow-y: auto;
+}
 .email-two-panel {
   text-align: center;
   min-width: 100%;
