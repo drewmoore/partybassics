@@ -1,5 +1,3 @@
-require 'fog/aws'
-
 class Graphic < ActiveRecord::Base
   validates_format_of     :identifier, with: /\A^\S+$\z/, on: :create
   validates_uniqueness_of :identifier

@@ -53,7 +53,7 @@ gem 'unirest'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'nokogiri'
 gem 'premailer-rails'
-gem 'fog-aws'
+gem 'fog'
 
 group :production do
   gem 'rails_12factor'
