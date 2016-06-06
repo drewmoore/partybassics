@@ -15,8 +15,8 @@
           .row
             .col-xs-12.email-logo-image
               - identifier = "email-logo-image"
-              - image = @graphics[identifier].image.file.file
-              =image_tag(attachments[image].url, alt: "")
+              - image = @graphics[identifier].image.file.url
+              =image_tag(image, alt: "")
           .row
             .col-xs-12
 

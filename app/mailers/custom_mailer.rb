@@ -10,10 +10,6 @@ class CustomMailer < ActionMailer::Base
     @contact = contact
     @layout_contents = @layout.get_contents
     @graphics = @layout.get_graphics
-    @layout.graphics.each do |graphic|
-      image_file = graphic.image.current_path.to_s
-      attachments.inline[graphic.image.file.file] = File.read image_file
-    end
     main_email = @layout_contents["contact-info-content-main-email"].text
     mail(subject: @subject, to: @contact.email, from: main_email).deliver
   end
@@ -28,10 +24,6 @@ class CustomMailer < ActionMailer::Base
     @layout_contents = @layout.get_contents
     @contents = @page.get_contents
     @graphics = @layout.get_graphics
-    @layout.graphics.each do |graphic|
-      image_file = graphic.image.current_path.to_s
-      attachments.inline[graphic.image.file.file] = File.read image_file
-    end
     if File.exists? event.flyer.versions[:portrait].display.path
       image_file = @event.flyer.versions[:portrait].display.current_path.to_s
       attachments.inline["flyer.jpg"] = File.read image_file
