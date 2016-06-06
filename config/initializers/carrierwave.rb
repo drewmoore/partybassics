@@ -4,6 +4,5 @@ CarrierWave.configure do |config|
     aws_access_key_id:     ENV['AWS_ACCESS_KEY_ID'],
     aws_secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']
   }
-  config.fog_directory   = 'partybassics'                          # required
-  config.fog_public      = false                                        # optional, defaults to true
+  config.fog_directory   = 'partybassics'
 end
