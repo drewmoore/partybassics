@@ -25,16 +25,15 @@ class FlyerUploader < CarrierWave::Uploader::Base
     end
   end
 
-
   protected
 
     def is_landscape? picture
-      image = MiniMagick::Image.open(picture.path)
+      image = MiniMagick::Image.open(picture.file.url)
       image[:width] > image[:height]
     end
 
     def is_portrait? picture
-      image = MiniMagick::Image.open(picture.path)
+      image = MiniMagick::Image.open(picture.file.url)
       image[:height] > image[:width]
     end
 
