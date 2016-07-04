@@ -6,7 +6,8 @@
     - else
       %title Party Bassics
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-    %script{:src => "https://checkout.stripe.com/checkout.js"}
+    - if params[:controller] === "charges"
+      %script{:src => "https://checkout.stripe.com/checkout.js"}
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = favicon_link_tag 'favicon.ico'
     %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/

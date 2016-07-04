@@ -3,9 +3,10 @@
 
   var handler;
 
-  $(document).on('page:load ready', initialize);
+  $(document).on('ready page:load', initialize);
 
   function initialize(){
+    if($('#from-controller').val() !== 'charges') { return; }
     // From Stripe. Prevent errors.
     if(typeof(StripeCheckout) == 'undefined'){
       console.log('Stripe having an issue.');
