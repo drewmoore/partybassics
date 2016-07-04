@@ -11,7 +11,7 @@
             - if !event.time.empty?
               %h5=event_time(event.time)
           .col-xs-12.events-index-cell-flyer
-            =image_tag(flyer(event, 'display'))
+            =image_tag(event.flyer.url_for(:display))
             - if event.hide === true
               .events-index-cell-flyer-expired
         .row
