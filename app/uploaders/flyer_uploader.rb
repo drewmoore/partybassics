@@ -19,12 +19,20 @@ class FlyerUploader < CarrierWave::Uploader::Base
     end
   end
 
-  def url_for(size)
-    event = model
-    orientation = nil
-    versions.keys.each do |version|
-      orientation = version if send("is_#{version}?")
+  def version_names
+    versions.keys
+  end
+
+  def orientation
+    if @orientation.nil?
+      version_names.each do |version|
+        @orientation = version if send("is_#{version}?")
+      end
     end
+    @orientation
+  end
+
+  def url_for(size)
     versions[orientation].send(size).url
   end
 

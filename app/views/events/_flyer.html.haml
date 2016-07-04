@@ -1,0 +1,4 @@
+- format    ||= 'flyer'
+- class_names = "event-#{format} #{event.flyer.orientation}"
+
+%div{:class => class_names, :style => "background-image: url(#{event.flyer.url_for(:display)})"}
