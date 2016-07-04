@@ -1,18 +1,18 @@
 (function(){
   'use strict';
 
-  $(document).ready(initialize);
+  var handler;
 
-  // From Stripe. Prevent errors.
-  if(typeof(StripeCheckout) == 'undefined'){
-    var handler;
-    console.log('Stripe having an issue.');
-  } else {
-    var handler = StripeCheckout.configure({token: cardValidated});
-  }
-
+  $(document).on('page:load ready', initialize);
 
   function initialize(){
+    // From Stripe. Prevent errors.
+    if(typeof(StripeCheckout) == 'undefined'){
+      console.log('Stripe having an issue.');
+    } else {
+      handler = StripeCheckout.configure({token: cardValidated});
+    }
+
     $('#buy-tickets-button').click(buyTickets);
     // Close Checkout on page navigation
     $(window).on('popstate', function() {
