@@ -13,7 +13,7 @@
                   %li=m
         .row.form-row
           .col-xs-12.event-edit-flyer
-            =image_tag(flyer(@event, 'display'))
+            =image_tag(@event.flyer.url_for(:display))
         .row.form-row
           .col-xs-4
             =f.label :title
