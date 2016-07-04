@@ -4,16 +4,13 @@
 #event-display-one
   .event-third
     .event-poster-frame
-      =render partial: 'event_poster'
+      =render partial: 'flyer', locals: { event: @event, format: 'poster' }
   .event-third
     .event-content-middle
-
       =render "events/display_content"
-
       - if !@event.street.empty? and !@event.zip.empty?
         .event-map-container
           <iframe frameborder="0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA9PK12yeQsAsR4Mt40YYq-hAKCI_Ulinw&q=#{google_map_query(@event.street, @event.zip)}"></iframe>
-
   .event-third
     .event-content-right
       %p= simple_format(@event.description)
