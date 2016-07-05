@@ -26,5 +26,4 @@
     %p= simple_format(@event.description)
 
   .inline-block-container.email-right
-    =image_tag(attachments["flyer.jpg"].url, alt: "")
-
+    =render partial: 'flyer', locals: { event: @event, style: 'poster' }
