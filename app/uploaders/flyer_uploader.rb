@@ -49,8 +49,14 @@ class FlyerUploader < CarrierWave::Uploader::Base
     end
 
     def image
+      # The definition of self depends on what is calling this method. If it
+      # traces back to the CarrierWave config above, the picture must be passed
+      # as an arg. Store as an instance global to avoid reloading on each method call.
       @picture ||= self
+      # Store the image file as an instance global to avoid re-opening on
+      # each method call.
       if @image_file.nil?
+        # Is this a local temp file being prepared for s3 or is this from the bucket?
         if File.file?(@picture.path)
           image_path = Rails.root + @picture.path
         else

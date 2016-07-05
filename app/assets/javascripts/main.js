@@ -76,9 +76,8 @@
   }
 
   function getEventsDisplay(){
-    positionHeadsPanorama(function(){
-      $.ajax({type: 'get', url: 'events/display', success: receiveEvents});
-    });
+    positionHeadsPanorama();
+    $.ajax({type: 'get', url: 'events/display', success: receiveEvents});
     $(window).unbind('resize');
     $(window).bind('resize', sizeEvents);
   }
@@ -162,8 +161,7 @@
     });
   }
 
-  function positionHeadsPanorama(callback){
-    $('#content-body').empty();
+  function positionHeadsPanorama(){
     tryptGlow();
     $('.foldL').animate({'left': '0%'}, 1000);
     $('.foldC').animate({'left': '25%'}, 1000);
@@ -177,7 +175,7 @@
       $center.css('left', '25%');
       $right.css('left', '50%');
     });
-    $('div[class^="panel"]').animate({'width':'50%'}, 1000, callback);
+    $('div[class^="panel"]').animate({'width':'50%'}, 1000);
   }
 
   function eventMouseOver(){
