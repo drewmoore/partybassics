@@ -26,4 +26,4 @@
     %p= simple_format(@event.description)
 
   .inline-block-container.email-right
-    =render partial: 'flyer', locals: { event: @event, style: 'poster' }
+    =render partial: '/events/flyer', locals: { event: @event, style: 'poster' }
