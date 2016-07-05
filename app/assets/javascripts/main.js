@@ -4,15 +4,13 @@
   var $activeArrow;
   var eventsScrollTimer;
 
+  window.onpopstate = onPop;
   $(document).on('ready page:load', initialize);
 
   function initialize(){
     initializeEventHandlers();
     positionHeadsOneColumnCenter();
-    if($('#from-controller').val() === 'welcome'){
-      window.onpopstate = onPop;
-      saveState({caller: 'initialize'});
-    }
+    saveState({caller: 'initialize'});
   }
 
   function initializeEventHandlers() {
@@ -27,9 +25,7 @@
   }
 
   function saveState(state){
-    if($('#from-controller').val() === 'welcome'){
-      window.history.pushState(state, '', '');
-    }
+    window.history.pushState(state, '', '');
   }
 
   function originalState(){
@@ -38,10 +34,10 @@
 
   function onPop(event){
     var pageStates = {
-      initialize:originalState,
-      getWelcomeAbout:getWelcomeAbout,
-      getEventsDisplay:getEventsDisplay,
-      displayEvent:displayEvent
+      initialize: originalState,
+      getWelcomeAbout: getWelcomeAbout,
+      getEventsDisplay: getEventsDisplay,
+      displayEvent: displayEvent
     };
     // Only apply if the event state is a function relevant to the customer interface.
     if(event && pageStates[event.state.caller]){
