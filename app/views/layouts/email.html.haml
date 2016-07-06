@@ -4,9 +4,7 @@
   %head
     %meta{'http-equiv' => 'Content-Type', :content => 'text/html; charset=UTF-8'}/
     %meta{:name => "viewport", :content => "width=device-width, initial-scale=1"}/
-    =stylesheet_link_tag 'dremplate'
-    =stylesheet_link_tag 'main'
-    =stylesheet_link_tag 'email'
+    =stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
   %body
     .container-fluid.email-container
       .row

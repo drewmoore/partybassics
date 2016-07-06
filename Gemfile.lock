@@ -224,6 +224,10 @@ GEM
       railties (>= 3.1.0)
       turbolinks
     json (1.8.1)
+    launchy (2.4.3)
+      addressable (~> 2.3)
+    letter_opener (1.4.1)
+      launchy (~> 2.2)
     libv8 (3.16.14.7)
     lodash-rails (2.4.1)
       railties (>= 3.1)
@@ -366,6 +370,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   jquery-turbolinks
+  letter_opener
   lodash-rails
   mini_magick
   mobvious-rails

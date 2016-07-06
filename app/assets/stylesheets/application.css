@@ -12,7 +12,5 @@
  *
  *= require_tree .
  *= require_self
- *= require_dremplate
- *= require_main
  *= require rails_bootstrap_forms
  */

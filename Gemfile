@@ -55,8 +55,12 @@ gem 'nokogiri'
 gem 'premailer-rails'
 gem 'fog'
 
-group :development do
+group :development, :test do
   gem 'pry-rails'
+end
+
+group :development do
+  gem 'letter_opener'
 end
 
 group :production do
