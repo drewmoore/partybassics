@@ -49,3 +49,7 @@ Rails.application.configure do
     port: 587
   }
 end
+
+CarrierWave.configure do |config|
+  config.fog_directory = ENV['PB_S3_BUCKET_DEV']
+end
