@@ -33,7 +33,8 @@ class FlyerUploader < CarrierWave::Uploader::Base
   end
 
   def url_for(size)
-    versions[orientation].send(size).url
+    version = versions[orientation].send(size).url
+    version.present? ? version.url : nil
   end
 
   protected
