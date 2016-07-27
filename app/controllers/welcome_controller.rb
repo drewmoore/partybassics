@@ -6,7 +6,8 @@ class WelcomeController < ApplicationController
     instagram = Instagram.new
     @pictures = instagram.recent_media_for_user(ENV['INSTAGRAM_USER_ID'])
     if @pictures[:error_type] == :oauth
-      @pictures[:authorization_url] = instagram.authorization_url
+      redirect_uri = request.url.remove(":#{ request.port.to_s }")
+      @pictures[:authorization_url] = instagram.authorization_url(redirect_uri)
     end
 
 
