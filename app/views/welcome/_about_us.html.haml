@@ -7,8 +7,14 @@
       - identifier = "instagram-panel-heading"
       - text = @contents[identifier].text
       %h2{:class => identifier}= text
-      - @pictures.each do |pic|
-        =image_tag(pic)
+      - if @pictures[:authorization_url]
+        %p
+          Authorize
+          =link_to('Instagram', @pictures[:authorization_url])
+          to check out our most recent pics
+      - else
+        - @pictures.each do |pic|
+          =image_tag(pic)
   .event-third
     .event-content-middle.about-panel
       - identifier = "main-info-panel-heading"

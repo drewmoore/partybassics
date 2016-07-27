@@ -54,6 +54,7 @@ gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'nokogiri'
 gem 'premailer-rails'
 gem 'fog'
+gem 'httparty'
 
 group :development, :test do
   gem 'pry-rails'
