@@ -13,7 +13,7 @@
           =link_to('Instagram', @pictures[:authorization_url], target: '_blank')
           to check out our most recent pics
       - else
-        - @pictures.each do |pic|
+        - @pictures[:payload].each do |pic|
           =image_tag(pic)
   .event-third
     .event-content-middle.about-panel

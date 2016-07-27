@@ -17,7 +17,10 @@ class Instagram
     if response['error_type'] == 'OAuthForbiddenException'
       results[:error_type] = :oauth
     else
-      results = response
+      results[:payload] = []
+      response.body['data'].each do |datum|
+        results[:payload] << datum['images']['thumbnail']['url'].gsub('http:', '')
+      end
     end
     results
   end
