@@ -18,6 +18,9 @@ class Instagram
       results[:error_type] = :oauth
     else
       results[:payload] = []
+
+      Rails.logger.debug "\n\n hello: #{ response }\n\n"
+      
       response.body['data'].each do |datum|
         results[:payload] << datum['images']['thumbnail']['url'].gsub('http:', '')
       end
