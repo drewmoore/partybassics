@@ -142,6 +142,8 @@
               %p.error
                 = flash[:error]
       %input#from-controller{:type => "hidden", :value => params[:controller]}/
+      - if @redirect_path.present?
+        %input#redirect-path{:type => "hidden", :value => @redirect_path }
 
       =form_for @contact, url: {controller: "contacts", action: "create"}, remote: true  do |f|
         =f.hidden_field :email

@@ -10,7 +10,7 @@
       - if @pictures[:authorization_url]
         %p
           Authorize
-          =link_to('Instagram', @pictures[:authorization_url], target: '_blank')
+          =link_to('Instagram', @pictures[:authorization_url])
           to check out our most recent pics
       - else
         - @pictures[:payload].each do |pic|

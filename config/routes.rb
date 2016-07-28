@@ -34,6 +34,7 @@ Rails.application.routes.draw do
       root 'welcome#index', as: :unauthenticated_root
       get 'events/display' => 'events#display'
       get 'events/display-one/:id', to: 'events#display_one'
+      get 'instagram-callback', to: 'welcome#instagram_callback'
       get '/pages/(*all)', to: redirect('/')
       get '/contents/(*all)', to: redirect('/')
       get '/graphics/(*all)', to: redirect('/')

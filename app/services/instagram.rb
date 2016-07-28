@@ -20,7 +20,7 @@ class Instagram
       results[:payload] = []
 
       Rails.logger.debug "\n\n hello: #{ response }\n\n"
-      
+
       response.body['data'].each do |datum|
         results[:payload] << datum['images']['thumbnail']['url'].gsub('http:', '')
       end
@@ -28,10 +28,11 @@ class Instagram
     results
   end
 
-  def authorization_url(redirect_uri = 'http://localhost')
+  def authorization_url(redirect_uri = 'http://localhost', options = {})
     endpoint = "#{ self.class.base_uri }/oauth/authorize/"
-    params   = "?client_id=#{ ENV['INSTAGRAM_CLIENT'] }" +
+    params   = "?client_id=#{ @options[:query][:client_id] }" +
                "&redirect_uri=#{ redirect_uri }&response_type=code"
+    options.each { |k, v| params += "&#{ k.to_s }=#{ v.to_s }" }
     endpoint + params
   end
 end

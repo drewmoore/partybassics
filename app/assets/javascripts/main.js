@@ -11,6 +11,7 @@
     initializeEventHandlers();
     positionHeadsOneColumnCenter();
     saveState({caller: 'initialize'});
+    navigateToState();
   }
 
   function initializeEventHandlers() {
@@ -366,6 +367,22 @@
       $('#event_street').val(apiResponse.venue.street);
       $('#event_zip').val(apiResponse.venue.zip);
     }
+  }
+
+  function navigateToState(){
+    var path;
+    var $redirectInput = $('#redirect-path');
+    if ($redirectInput.length) {
+      path = $redirectInput.val();
+      $redirectInput.remove();
+    }
+    var eventHandler = function () {};
+    switch(path){
+      case '/about-us':
+        eventHandler = threeColumnButtonClick;
+        break;
+    }
+    eventHandler();
   }
 
   function convertToMonthString(month){
