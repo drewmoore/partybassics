@@ -58,12 +58,16 @@ class Instagram
     endpoint = '/oauth/authorize/'
     params   = "?client_id=#{ @client_id }"\
                "&redirect_uri=#{ @redirect_uri }&response_type=code"\
-               '&scope=public_content'
+               '&scope=' + self.class.permissions_scopes
     options.each { |k, v| params += "&#{ k.to_s }=#{ v.to_s }" }
     self.class.base_uri + endpoint + params
   end
 
   private
+
+  def self.permissions_scopes
+    'public_content'
+  end
 
   def signed_request(endpoint, params)
     # Copied from Instagram API docs.
