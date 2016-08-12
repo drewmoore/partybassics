@@ -5,29 +5,16 @@ class WelcomeController < ApplicationController
   end
 
   def about_us
-    instagram = Instagram.new
+    instagram = Instagram.new(
+      request.protocol, request.host, instagram_callback_path,
+      session[:instagram_access_token]
+    )
+    
     @pictures = instagram.recent_media_for_user(ENV['INSTAGRAM_USER_ID'])
-    if @pictures[:error_type] == :oauth
-      redirect_uri = request.protocol + request.host + '/instagram-callback'
-      @pictures[:authorization_url] = instagram.authorization_url(
-                                        redirect_uri, { state: request.path })
+    if @pictures[:error_type]
+      @pictures[:authorization_url] = instagram.authorization_url(state: request.path)
     end
 
-
-=begin
-    url = "https://api.instagram.com/v1/users/1125041972/media/recent/?count=10&client_id=#{ENV["INSTAGRAM_CLIENT"]}&sig=#{ENV["INSTAGRAM_SECRET"]}&redirect_uri=//localhost&response_type=code"
-    @pictures = []
-
-    binding.pry
-
-    begin
-      response = Unirest::get url
-      response.body["data"].each do |datum|
-        @pictures << datum["images"]["thumbnail"]["url"].gsub("http:", "")
-      end
-    rescue
-    end
-=end
     respond_to do |format|
       format.js
     end
@@ -35,10 +22,12 @@ class WelcomeController < ApplicationController
 
   def instagram_callback
     session[:redirect_path] = params[:state]
-
-    code  = params[:code]
-
-
+    code = params[:code]
+    if code.present?
+      instagram = Instagram.new(request.protocol, request.host, instagram_callback_path)
+      response = instagram.request_access_token(code)
+      session[:instagram_access_token] = response[:access_token] unless response[:error]
+    end
     redirect_to action: :index
   end
 
