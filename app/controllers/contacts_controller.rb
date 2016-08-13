@@ -119,7 +119,6 @@ class ContactsController < ApplicationController
     @percent_female_of_fb = percent(@fb_female, @num_fb)
     @percent_male_of_fb = percent(@fb_male, @num_fb)
     @percent_purchases_of_visits = percent(@num_purchases, @total_visits)
-
   end
 
   private
