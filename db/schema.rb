@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160604233805) do
+ActiveRecord::Schema.define(version: 20160813042458) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "contacts", force: true do |t|
     t.string   "email",             default: ""
@@ -59,7 +62,7 @@ ActiveRecord::Schema.define(version: 20160604233805) do
     t.string   "zip"
     t.string   "city"
     t.string   "price"
-    t.string   "ticket_limit"
+    t.integer  "ticket_limit"
     t.string   "tickets_sold"
     t.boolean  "hide",            default: false
     t.text     "eventbrite_link", default: ""
@@ -97,7 +100,7 @@ ActiveRecord::Schema.define(version: 20160604233805) do
     t.integer  "event_id"
   end
 
-  add_index "purchases", ["event_id"], name: "index_purchases_on_event_id"
+  add_index "purchases", ["event_id"], name: "index_purchases_on_event_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -115,8 +118,8 @@ ActiveRecord::Schema.define(version: 20160604233805) do
     t.string   "role"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "visitors", force: true do |t|
     t.string   "ip"
@@ -126,6 +129,6 @@ ActiveRecord::Schema.define(version: 20160604233805) do
     t.integer  "contact_id"
   end
 
-  add_index "visitors", ["contact_id"], name: "index_visitors_on_contact_id"
+  add_index "visitors", ["contact_id"], name: "index_visitors_on_contact_id", using: :btree
 
 end
