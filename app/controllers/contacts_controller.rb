@@ -48,8 +48,7 @@ class ContactsController < ApplicationController
     contacts = Contact.all
     visitors = Visitor.all
     @total_visits = 0
-    @unique_visitors = 0
-    @unique_visitors += contacts.length
+    @unique_visitors = contacts.length
     visitors.each do |v|
       @total_visits += v.visits
       if v.contacts.length === 0
@@ -102,7 +101,7 @@ class ContactsController < ApplicationController
     @avg_tickets_per_paying = avg(@num_tickets, @num_paying)
     @avg_tickets_per_female = avg((@num_tickets_male + @num_tickets_female), @num_paying_female)
     @avg_tickets_per_male = avg((@num_tickets_male + @num_tickets_female), @num_paying_male)
-    ticketed_events = Event.all.where("ticket_limit > 0")
+    ticketed_events = Event.all.where(Event.arel_table[:ticket_limit].gt(0))
     @num_events = ticketed_events.length
     @avg_tickets_per_event = avg(@num_tickets, @num_events)
     ticket_percentage_total = 0
